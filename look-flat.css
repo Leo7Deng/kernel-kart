@@ -1,0 +1,142 @@
+/* Kernel Kart's Classic Flat style (Settings > Style; js/look.js 'flat'): Classic exactly (style.css: its layout, its
+   indigo, red-orange and gold, Bungee and Fredoka, the round corners, the skewed badges, the inked and extruded titles),
+   calmed down: solid fills in Classic's own palette instead of gradients, simple soft shadows instead of coloured glows,
+   no gloss, shine sweeps, spotlights, sunbursts or rainbows, fewer things moving. Where a big surface wants a little
+   life it gets a gentle two-tone, never a rainbow. Every rule starts with [data-look=flat] (ui.js applyLook), so the
+   classic look is exactly style.css. A choice saved under the earlier Bold, Cartoon and Clean styles loads as this. */
+:root[data-look=flat]{
+  --panel:#1c1846; --panel-solid:#1c1846; --card:rgba(255,255,255,.055); --card-solid:#262158;
+  --hot:#ff4d3a; --hot-edge:#8e1233;
+  --shadow:0 14px 34px rgba(0,0,0,.36);
+  --soft-sh:0 3px 0 rgba(0,0,0,.25);
+}
+html[data-look=flat],html[data-look=flat] body{background:linear-gradient(180deg,#171443,#0b0a24)}
+[data-look=flat] .menubg-shade{background:rgba(11,9,34,.8)}
+
+/* ---------- the logo and titles: flat letters, the ink outline and the red extrusion kept; no gloss, shine, swoosh or bob */
+[data-look=flat] .kk-logo{filter:drop-shadow(0 8px 14px rgba(0,0,0,.35))}
+[data-look=flat] .kk-logo .kk-bob,[data-look=flat] .kk-logo .kk-speed{animation:none}
+[data-look=flat] .kk-logo .kk-gloss,[data-look=flat] .kk-logo .kk-swoosh{display:none}
+[data-look=flat] .kk-logo .kk-w{fill:#f6f5ff}
+[data-look=flat] .kk-logo .kk-g{fill:#ffc23a}
+[data-look=flat] .kk-logo .kk-speed{stroke:#ff8a5c}
+[data-look=flat] h1.logo{text-shadow:3px 4px 0 #8a1f2a,5px 7px 0 var(--ink)}
+[data-look=flat] h1.logo span{text-shadow:3px 4px 0 #a2410f,5px 7px 0 var(--ink)}
+[data-look=flat] h1.logo::after{background:var(--accent)}
+
+/* ---------- panels and headers */
+[data-look=flat] .panel{background:var(--panel);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 1px 0 rgba(0,0,0,.4),var(--shadow)}
+[data-look=flat] .panel::before{background:var(--hot)}
+[data-look=flat] .panel>h2::after{background:rgba(255,255,255,.1)}
+[data-look=flat] .panel h2 .num{background:var(--hot);box-shadow:0 3px 0 var(--hot-edge)}
+
+/* ---------- buttons, segmented controls */
+[data-look=flat] button{background:rgba(255,255,255,.065);box-shadow:var(--soft-sh)}
+[data-look=flat] button:hover{background:rgba(255,255,255,.11)}
+[data-look=flat] button.sel{background:rgba(255,75,62,.2);box-shadow:var(--soft-sh)}
+[data-look=flat] button.big{background:linear-gradient(180deg,#ff5a3e,#f2413a);text-shadow:0 2px 0 rgba(120,10,40,.4);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.22),0 6px 0 var(--hot-edge),0 14px 26px rgba(0,0,0,.35)}
+[data-look=flat] button.big::before{display:none}
+[data-look=flat] button.big::after{animation:none}
+[data-look=flat] button.big:hover{filter:brightness(1.05);background:linear-gradient(180deg,#ff6446,#f6493f)}
+[data-look=flat] button.big:active{box-shadow:inset 0 2px 0 rgba(255,255,255,.22),0 2px 0 var(--hot-edge),0 6px 14px rgba(0,0,0,.3)}
+[data-look=flat] .seg button.sel{background:var(--hot);box-shadow:0 2px 0 var(--hot-edge)}
+[data-look=flat] kbd{background:#332d6e}
+
+[data-look=flat] button.whatsnew{background:rgba(255,176,46,.17);box-shadow:0 6px 16px rgba(0,0,0,.3)}
+[data-look=flat] button.whatsnew:hover{background:rgba(255,176,46,.26)}
+[data-look=flat] button.settings-btn{background:#1c1846;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+[data-look=flat] button.settings-btn:hover{background:#2a2563}
+[data-look=flat] .wn-dot{box-shadow:0 0 0 2px var(--ink);animation:none}
+
+/* 2 racers: the car on a two-tone stage in the racer's colour, a flat shadow under it, a solid line on top */
+[data-look=flat] .who-chips i{box-shadow:0 2px 0 rgba(0,0,0,.3)}
+[data-look=flat] .char{background:linear-gradient(180deg,color-mix(in srgb,var(--rc) 26%,#221d52) 0 118px,#221d52 118px);box-shadow:var(--soft-sh)}
+[data-look=flat] .char::before{background:rgba(8,6,24,.32);opacity:1;height:22px;top:108px}
+[data-look=flat] .char::after{background:var(--rc);opacity:.9}
+[data-look=flat] .char:hover{box-shadow:0 10px 22px rgba(0,0,0,.35)}
+[data-look=flat] .char:hover canvas{transform:scale(1.05)}
+[data-look=flat] .char .trait{background:var(--gold)}
+[data-look=flat] .char .bar{box-shadow:none}
+[data-look=flat] .char .bar i{box-shadow:none}
+[data-look=flat] .char .stats .bar:nth-of-type(2) i{background:#3fa7ff} [data-look=flat] .char .stats .bar:nth-of-type(4) i{background:#ff5a3c}
+[data-look=flat] .char .stats .bar:nth-of-type(6) i{background:#3fd68b} [data-look=flat] .char .stats .bar:nth-of-type(8) i{background:#9d7dff}
+[data-look=flat] .char .bar.over b{background:var(--gold);box-shadow:none}
+[data-look=flat] .char .stats .bar.neg i{background:#ff4b3e}
+[data-look=flat] .char.p0,[data-look=flat] .char.p1,[data-look=flat] .char.p2,[data-look=flat] .char.p3{animation:none}
+[data-look=flat] .char.p0{box-shadow:0 0 0 3px color-mix(in srgb,var(--p1) 30%,transparent)} [data-look=flat] .char.p1{box-shadow:0 0 0 3px color-mix(in srgb,var(--p2) 30%,transparent)}
+[data-look=flat] .char.p2{box-shadow:0 0 0 3px color-mix(in srgb,var(--p3) 30%,transparent)} [data-look=flat] .char.p3{box-shadow:0 0 0 3px color-mix(in srgb,var(--p4) 30%,transparent)}
+
+/* 3 tracks: a solid name band, a solid ring when picked */
+[data-look=flat] .track{background:#221d52;box-shadow:var(--soft-sh)}
+[data-look=flat] .track>.n{background:rgba(12,10,36,.84);padding-top:9px}
+[data-look=flat] .track:hover{box-shadow:0 10px 22px rgba(0,0,0,.35)}
+[data-look=flat] .track:hover>canvas,[data-look=flat] .track:hover>.rnd-face{transform:scale(1.04)}
+[data-look=flat] .track.sel{box-shadow:0 0 0 3px rgba(255,75,62,.28);animation:none}
+[data-look=flat] .track.sel>.n{background:#a3202e}
+[data-look=flat] .track.sel::after{background-color:var(--hot);box-shadow:0 0 0 3px var(--ink);animation:none}
+[data-look=flat] .track.incup{box-shadow:0 0 0 3px rgba(255,176,46,.26)}
+[data-look=flat] .cupnum{background:var(--hot);box-shadow:0 0 0 3px var(--ink);animation:none}
+/* the Random card: a two-tone red die face, the inked ? on it */
+[data-look=flat] .track.random .rnd-face,[data-look=flat] .net-cur.random .rnd-face{background:linear-gradient(135deg,#ff5a3e 0 50%,#e8413a 50%);box-shadow:none}
+
+/* 4 settings, How to play */
+[data-look=flat] .item{background:#221d52}
+
+/* ---------- Cup mode */
+[data-look=flat] .cupbox{background:rgba(255,176,46,.06)}
+[data-look=flat] button.cup-card{background:color-mix(in srgb,var(--cc) 15%,#1f1a4c)}
+[data-look=flat] button.cup-card:hover{background:color-mix(in srgb,var(--cc) 22%,#1f1a4c);box-shadow:0 10px 22px rgba(0,0,0,.35)}
+[data-look=flat] button.cup-card:hover .trophy{animation:none}
+[data-look=flat] button.cup-card.sel{box-shadow:0 0 0 3px color-mix(in srgb,var(--cc) 30%,transparent);animation:none}
+[data-look=flat] .slot.full{animation:none}
+[data-look=flat] .slot .sb{background:var(--hot)}
+
+/* ---------- time trial */
+[data-look=flat] .ttbox{background:rgba(88,225,255,.07)}
+
+/* ---------- online */
+[data-look=flat] .net-way,[data-look=flat] .net-way+.net-way{background:rgba(5,4,20,.3)}
+[data-look=flat] .net-way{box-shadow:inset 3px 0 0 #9d7dff} [data-look=flat] .net-way+.net-way{box-shadow:inset 3px 0 0 var(--cyan)}
+[data-look=flat] button.go{background:var(--hot);box-shadow:0 3px 0 var(--hot-edge)}
+[data-look=flat] button.go:hover{background:#ff5d48;filter:none}
+[data-look=flat] .net-code{text-shadow:4px 6px 0 #a2410f,6px 9px 0 var(--ink)}
+[data-look=flat] .net-player{animation:none}
+[data-look=flat] .chat-log{background:rgba(5,4,20,.38);box-shadow:none}
+[data-look=flat] .chat-hud .chat-line{background:rgba(20,16,50,.72);text-shadow:none}
+[data-look=flat] .net-cur>canvas,[data-look=flat] .net-cur>.rnd-face{box-shadow:var(--soft-sh)}
+
+/* ---------- the loading screen */
+[data-look=flat] .loading-top-badge,[data-look=flat] .char .trait,[data-look=flat] .loading-racer-trait{background:var(--gold)}
+[data-look=flat] .loading-grid-card{background:rgba(255,255,255,.05)}
+[data-look=flat] .loading-grid-card.human{box-shadow:0 0 0 3px rgba(255,75,62,.24)}
+[data-look=flat] .loading-tip{background:rgba(255,176,46,.09)}
+[data-look=flat] .loading-progress-bar{background:var(--accent);box-shadow:none}
+[data-look=flat] .ct.now{box-shadow:0 0 0 3px rgba(255,176,46,.18)}
+[data-look=flat] .ct.now::after{display:none}
+[data-look=flat] .ct.now .ct-b{background:var(--hot)}
+[data-look=flat] .ct-link{background:rgba(255,255,255,.22)}
+
+/* ---------- results (results.css draws them the flat way in every look): the flying points, the wait for the scores */
+[data-look=flat] .fly-pts{text-shadow:0 3px 0 #8a5a00}
+[data-look=flat] .fly-pts.human{text-shadow:0 3px 0 #b8321f}
+[data-look=flat] .board-wait{animation:none}
+
+/* ---------- the podium: solid gold, silver and bronze steps, the chequered edge kept; no sunburst, the champion still */
+[data-look=flat] .pod-rays{display:none}
+[data-look=flat] .pod1 .pod-step{background:#c08a22} [data-look=flat] .pod2 .pod-step{background:#6f76a8} [data-look=flat] .pod3 .pod-step{background:#a3603a}   /* (deep enough for the white names, as Classic's see-through steps are) */
+[data-look=flat] .pod-step{box-shadow:inset 0 2px 0 rgba(255,255,255,.3)}
+[data-look=flat] .pod1 .pod-art{animation:podDrop .6s cubic-bezier(.3,1.4,.5,1) 1.15s both}
+[data-look=flat] .confetti i:nth-child(4n+1){background:var(--accent)!important} [data-look=flat] .confetti i:nth-child(4n+2){background:var(--gold)!important}
+[data-look=flat] .confetti i:nth-child(4n+3){background:#f6f5ff!important} [data-look=flat] .confetti i:nth-child(4n){background:var(--violet)!important}
+
+/* ---------- dialogs */
+[data-look=flat] .cl-box,[data-look=flat] .clip-box{background:#1f1a4d}
+[data-look=flat] .set-row .switch:checked{background:var(--hot)}
+
+@media (max-width:700px){
+  [data-look=flat] .char{background:linear-gradient(180deg,color-mix(in srgb,var(--rc) 26%,#221d52) 0 96px,#221d52 96px)}
+  [data-look=flat] .char::before{top:86px;height:18px}
+}
+
+html[data-look=flat] .track>.ttb{background:#141033}

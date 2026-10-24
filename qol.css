@@ -1,0 +1,80 @@
+/* Kernel Kart: small comforts (js/qol.js and friends). Loaded after menu.css, before the look-*.css files; drawn the
+   Classic Flat way (solid fills, soft simple shadows) in every look. */
+
+/* ---------- touch: no rubber-band scrolling of the page, no long-press callout or tap flash, no text picked up on the race */
+html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
+button,.mtile,.rcard,.char,.track{-webkit-touch-callout:none}
+canvas#game{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+
+/* ---------- full screen (qol.js fsButton): in the top bars beside How to play; a phone held upright has no room for it
+   there (the pause card has it too) */
+@media (max-width:520px){.mscreen .m-util button.kk-fs{display:none}}
+
+/* ---------- the pause card (pause-ui.js): over the race, the three ways out big, then the settings you'd want mid-race */
+.pause-back{z-index:30;background:rgba(8,6,26,.6)}
+.pause-box{width:min(400px,100%);max-height:calc(100% - 8px);overflow-y:auto;padding:18px 20px 16px;gap:0}
+.pause-h{margin:0 0 14px;text-align:center;font-family:var(--display);font-weight:400;font-size:2rem;letter-spacing:.06em;text-transform:uppercase}
+.pause-btns{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.pause-btns button{min-height:48px;font-size:1.05rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:14px}
+.pause-btns button.go{min-height:54px;font-size:1.2rem}
+.pause-btns kbd{font-size:.72rem;opacity:.85}
+.pause-set .set-row{padding:9px 4px}
+.pause-box button.pz-fs{margin:12px auto 0;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;font-weight:700}
+.pz-fs svg{width:20px;height:20px}
+@media (max-height:560px){.pause-back{padding:8px}.pause-box{width:min(640px,100%);display:grid;grid-template-columns:1fr 1fr;column-gap:18px;padding:12px 16px}
+  .pause-h{grid-column:1/-1;margin-bottom:8px;font-size:1.5rem}.pause-btns{margin:0}.pause-btns button{min-height:44px}.pause-btns button.go{min-height:48px}
+  .pause-set .set-row{padding:6px 2px}.pause-set .set-row:first-child{border-top:0}.pause-box button.pz-fs{grid-column:1;margin:10px 0 0}}
+
+/* ---------- each player's race keys (qol.js raceKeys) in their colour: the racers screen, the loading screen, the room */
+.touch-only{display:none}
+@media (hover:none){.touch-only{display:inline}}
+.race-keys{display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px}
+.race-keys .rk{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.race-keys .rk kbd{min-width:1.6em;text-align:center;background:var(--pc,#403a78);border-color:color-mix(in srgb,var(--pc,#403a78) 60%,#000);color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.35)}
+.race-keys .rk i{font-style:normal;font-size:.72em;color:var(--muted)}
+.race-keys .rk b{font-weight:700;font-size:.85em;color:var(--text)}
+.ps-race{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px;margin:0 0 6px;font-size:.85rem}
+.ps-race-l{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.loading-keys{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px}
+.loading-keys .lk{display:flex;align-items:center;gap:8px;padding:5px 10px 5px 6px;border-radius:12px;background:rgba(255,255,255,.05);border:2px solid var(--pc);font-size:13px}
+.loading-keys .lk-tag{font-weight:800;font-size:11px;color:#fff;background:var(--pc);border-radius:7px;padding:1px 7px}
+.loading-keys .race-touch{font-size:13px;color:var(--muted)}
+.np-keys{margin-top:6px;font-size:.78rem}
+
+/* ---------- online: Reconnecting… (net-ui.js net.onReconnect), over whatever's on screen while a player's connection comes back */
+.net-recon{z-index:70}
+.recon-box{width:min(420px,100%);align-items:center;text-align:center;gap:10px;padding:22px 22px 18px}
+.recon-box h2{margin:0}
+.recon-box .help{margin:0}
+.recon-box button{min-height:44px;margin-top:6px}
+.recon-spin{width:42px;height:42px;border-radius:50%;border:5px solid rgba(255,255,255,.14);border-top-color:var(--gold);animation:reconspin .9s linear infinite}
+@keyframes reconspin{to{transform:rotate(360deg)}}
+html.kk-still .recon-spin{animation-duration:3s}
+
+/* ---------- online: the room link as a QR code (net-ui.js showQr, qr.js) */
+button.net-qr{padding:3px 12px;font-size:13px;border-radius:10px}
+.qr-box{width:min(420px,100%);align-items:center}
+.qr-box .cl-head{align-self:stretch}
+.qr-img{width:min(320px,72vw,60vh);aspect-ratio:1;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 3px 0 rgba(0,0,0,.28)}
+.qr-img svg{display:block;width:100%;height:100%}
+.qr-url{margin-top:12px;text-align:center;word-break:break-all;user-select:text;-webkit-user-select:text}
+
+/* ---------- the map screen's track search (menu.js searchBox): a pill in the well's colours beside the Front-runner switch */
+.m-search{display:flex;align-items:center;gap:8px;flex:1 1 200px;max-width:320px;min-width:0;min-height:44px;padding:0 10px 0 12px;border-radius:999px;background:var(--m-well,rgba(6,5,24,.42));border:2px solid var(--m-line,rgba(255,255,255,.1));color:var(--muted)}
+.m-search:focus-within{border-color:var(--gold,#ffc93c);color:var(--text)}
+.m-search svg{flex:none;width:18px;height:18px}
+.m-search input{flex:1 1 auto;min-width:0;font:inherit;font-size:16px;font-weight:600;color:var(--text);background:none;border:0;outline:none;padding:0;user-select:text;-webkit-user-select:text}
+.mscreen .m-search input:focus-visible{outline:none}
+.m-search input::placeholder{color:var(--muted);opacity:1}
+.m-search input::-webkit-search-cancel-button{filter:invert(1) opacity(.6);cursor:pointer}
+.m-search kbd{flex:none;font-size:.72rem;opacity:.8}
+.m-search:focus-within kbd{display:none}
+.mscreen .mgrid .mtile.m-gone{display:none}
+.m-none{margin:4px 2px 12px}
+@media (max-height:560px){.m-search{min-height:38px;flex-basis:150px}}
+
+/* ---------- online: each player's link in the room (net-link.js linkChip): three bars and the round trip, after their name */
+.np-ping{display:inline-flex;vertical-align:middle}
+.np-link{display:inline-flex;align-items:center;gap:4px;padding:1px 7px 1px 5px;border-radius:999px;background:rgba(0,0,0,.28);font-size:.72rem;font-weight:700;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.np-link svg{width:14px;height:12px}
+.np-link.lv1{color:#ff8a8a}.np-link.lv2{color:#ffc56a}.np-link.lv3{color:#7fe3b0}

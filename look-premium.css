@@ -1,0 +1,90 @@
+/* Kernel Kart's Premium style (Settings > Style; js/look.js 'premium'): warm and polished, like a console game's menus,
+   on the modern base (look-modern.css, under <html data-modern data-look="premium">). Deep espresso and charcoal
+   surfaces with a very subtle warm shade down the big ones and a faint warm highlight along their top edges, a rich
+   amber accent with copper beside it (dark text on it), warm off-white type, Montserrat in spaced capitals for the
+   headers and titles over Manrope, generous rounded corners, soft shadows. No glows, no rainbows. */
+:root[data-look=premium]{
+  --ground:#120d0a; --veil:rgba(17,12,9,.8); --bg0:#120d0a; --bg1:#120d0a; --bg2:#120d0a;
+  --panel:#1d1612; --panel-solid:#1d1612; --panel-bg:linear-gradient(180deg,#241b16,#1c1511 260px); --panel2:#261d18;
+  --card:#271e19; --card2:#322720; --card3:#3d3028; --well:#150f0c;
+  --line:#33281f; --line2:#46382d; --line3:#5c4a3b;
+  --text:#f6ede2; --muted:#ab9a88; --soft:#d8cab9;
+  --accent:#ec9a3e; --accent-h:#f4a94f; --accent-d:#d3832b; --accent-soft:rgba(236,154,62,.12); --accent-soft2:rgba(236,154,62,.34); --accent2:#d4864b; --on-accent:#1c120b;
+  --gold:#f2c14e; --gold-soft:rgba(242,193,78,.11); --gold-line:rgba(242,193,78,.42); --on-gold:#2a1c08;
+  --green:#86c06c; --red:#e0624c; --red-soft:rgba(224,98,76,.15); --red-text:#f0907f; --cyan:#5fb7ad; --violet:#b08bd0; --coral:#e2795b; --mint:#86c06c;
+  --ink:#1a120d; --deep:rgba(12,6,2,.55); --hot:#ec9a3e; --hot-edge:#8a4f1c;
+  --p1:#ff5d73; --p2:#3fa7ff; --p3:#2fc27a; --p4:#f5a524;
+  --hi:inset 0 1px 0 rgba(255,214,170,.07);
+  --sh1:0 1px 2px rgba(10,4,0,.32),0 4px 12px rgba(10,4,0,.2);
+  --sh2:0 2px 5px rgba(10,4,0,.34),0 12px 28px rgba(10,4,0,.32);
+  --shadow:0 2px 8px rgba(10,4,0,.3),0 22px 50px rgba(10,4,0,.38);
+  --display:"Montserrat","Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --mono:var(--body);
+  --logo-a:#f6ede2; --logo-b:#ec9a3e;
+  --st1:#7aa3d6; --st2:#e2795b; --st3:#86c06c; --st4:#b08bd0;
+  --band:rgba(21,15,11,.9); --bar:rgba(18,13,10,.95); --link:#f2b36a; --silver:#d3cbc1; --bronze:#c8834e; --scrim:rgba(10,6,4,.74);
+  --big-bg:linear-gradient(180deg,#f3a64e,#e48b31); --big-bg-h:linear-gradient(180deg,#f7b25d,#ea953b); --big-ts:0 1px 0 rgba(255,230,190,.35);
+  --r-panel:16px; --r-card:12px; --r-card-in:11px; --r-btn:9px; --r-big:12px;
+  --chev-ink:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Cpath d='M3 3l7 7-7 7M15 3l7 7-7 7' fill='none' stroke='%231c120b' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+html[data-look=premium],html[data-look=premium] body{background:radial-gradient(ellipse 120% 70% at 50% -10%,#24190f,#120d0a 62%)}
+
+/* ---------- the logo: warm white and amber, no outline; titles in Montserrat */
+[data-look=premium] .kk-logo text{font-family:var(--display);font-weight:800}
+[data-look=premium] .kk-logo .kk-speed{stroke:var(--accent2);opacity:.85}
+[data-look=premium] .kk-logo .kk-rib{fill:#efe2cf} [data-look=premium] .kk-logo .kk-sq{fill:#2a1d15}
+[data-look=premium] h1.logo{font-family:var(--display);font-weight:800;letter-spacing:.5px;text-shadow:0 2px 0 var(--deep),0 12px 30px rgba(0,0,0,.35)}
+[data-look=premium] h1.logo::after{display:block;height:2px;width:min(160px,40%);margin-top:14px;border-radius:2px;transform:none;background:linear-gradient(90deg,var(--accent),rgba(236,154,62,0))}
+[data-look=premium] .results h1.logo::after,[data-look=premium] .loading-header h1.logo::after{margin:14px auto 0;background:linear-gradient(90deg,rgba(236,154,62,0),var(--accent),rgba(236,154,62,0))}
+
+/* ---------- panels: spaced capitals for the headers, the number in a copper-edged tile, a copper hairline fading out */
+[data-look=premium] #p-mode{--sc:var(--accent)} [data-look=premium] #p-racers{--sc:var(--coral)} [data-look=premium] #p-track{--sc:var(--green)}
+[data-look=premium] #p-online{--sc:var(--violet)} [data-look=premium] #raceset{--sc:var(--gold)} [data-look=premium] #learn{--sc:var(--cyan)}
+[data-look=premium] .panel{padding:22px}
+[data-look=premium] .panel h2{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:2.4px;font-size:14px}
+[data-look=premium] .panel>h2::after{background:linear-gradient(90deg,color-mix(in srgb,var(--sc,var(--accent)) 40%,transparent),transparent 80%)}
+[data-look=premium] .panel h2 .num{min-width:34px;height:28px;border-radius:8px;font:700 13px/1 var(--display);letter-spacing:.5px}
+@supports (background:color-mix(in srgb,red 50%,blue)){[data-look=premium] .panel h2 .num{background:color-mix(in srgb,var(--sc,var(--accent)) 12%,transparent);color:color-mix(in srgb,var(--sc,var(--accent)) 85%,#fff);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--sc,var(--accent)) 45%,transparent)}}
+[data-look=premium] .lbl{font-family:var(--display);font-weight:600;letter-spacing:1.6px;font-size:10.5px}
+
+/* ---------- buttons: amber with dark type when picked; START a warm amber bar */
+[data-look=premium] button.big{font-family:var(--display);font-weight:800;letter-spacing:2.5px;font-size:19px;padding:15px 64px 15px 48px;
+  box-shadow:inset 0 1px 0 rgba(255,236,205,.5),inset 0 -2px 0 rgba(120,60,10,.22),0 2px 5px rgba(10,4,0,.35),0 12px 28px rgba(10,4,0,.36)}
+[data-look=premium] button.big::after{background:var(--chev-ink) center/contain no-repeat;opacity:.85}
+[data-look=premium] .seg button.sel{box-shadow:inset 0 1px 0 rgba(255,236,205,.4),0 1px 3px rgba(10,4,0,.35)}
+[data-look=premium] button.mode-card.sel::before,[data-look=premium] .track.sel::after{background-image:var(--check-ink)}
+[data-look=premium] .track.sel::after{background:var(--accent) var(--check-ink) center/75% no-repeat}
+[data-look=premium] .wn-dot{color:var(--on-accent)}
+
+/* 1 Mode: warm tints per mode */
+[data-look=premium] button.mode-card{--mc:var(--accent)}
+[data-look=premium] button.mode-card[data-m=cup]{--mc:var(--gold)} [data-look=premium] button.mode-card[data-m=tt]{--mc:var(--cyan)} [data-look=premium] button.mode-card[data-m=online]{--mc:var(--violet)}
+[data-look=premium] .mc-t{font-family:var(--display);font-weight:700;font-size:15.5px}
+
+/* 2 racers: a warm backdrop in the racer's colour, names in Montserrat */
+@supports (background:color-mix(in srgb,red 50%,blue)){[data-look=premium] .char::before{background:linear-gradient(180deg,color-mix(in srgb,var(--rc) 26%,var(--card)),color-mix(in srgb,var(--rc) 12%,var(--card)));border-bottom:1px solid color-mix(in srgb,var(--rc) 55%,transparent)}}
+[data-look=premium] .char .n{font-family:var(--display);font-weight:700;letter-spacing:.2px}
+[data-look=premium] .char .l{font-family:var(--display);letter-spacing:1.2px;font-size:10px}
+[data-look=premium] .char .trait{color:var(--gold);background:var(--gold-soft);box-shadow:inset 0 0 0 1px rgba(242,193,78,.25)}
+[data-look=premium] .char .bar i{background:var(--accent)}
+
+/* 3 tracks */
+[data-look=premium] .track>.n{font-family:var(--display);font-weight:700;letter-spacing:.2px}
+[data-look=premium] .track.sel>.n{color:var(--on-accent)}
+[data-look=premium] .cupnum{font-family:var(--display)}
+/* the Random card: two-tone copper on espresso, an amber ? */
+[data-look=premium] .track.random .rnd-face,[data-look=premium] .net-cur.random .rnd-face{background:linear-gradient(135deg,#3a2a20 0 50%,#30231b 50%)}
+[data-look=premium] .track.random .rnd-face span,[data-look=premium] .net-cur.random .rnd-face span{font:800 58px/1 var(--display);color:var(--accent)}
+[data-look=premium] .track.random:hover .rnd-face span{color:var(--gold)}
+
+/* the rest */
+[data-look=premium] .learn summary{font-family:var(--display);font-weight:700;letter-spacing:.3px}
+[data-look=premium] .cup-lbl,[data-look=premium] .loading-subheading,[data-look=premium] .res-card h2,[data-look=premium] .loading-top-badge{font-family:var(--display);letter-spacing:1.8px}
+[data-look=premium] .net-way>b,[data-look=premium] .cc-name,[data-look=premium] .net-curname,[data-look=premium] .loading-racer-name,[data-look=premium] .res-cup{font-family:var(--display);font-weight:700}
+[data-look=premium] .net-code{font-weight:800;letter-spacing:14px;color:var(--text);text-shadow:0 2px 0 var(--deep),0 14px 30px rgba(0,0,0,.35)}
+[data-look=premium] .rrow .pos,[data-look=premium] .brow .pos{font-family:var(--display);font-weight:800}
+[data-look=premium] .pod-num{font-weight:800}
+[data-look=premium] .pod-step{border-radius:12px 12px 0 0}
+[data-look=premium] .pod1 .pod-step{background:linear-gradient(180deg,#f4c95c,#e5b043)} [data-look=premium] .pod2 .pod-step{background:linear-gradient(180deg,#ddd5cb,#c9c0b5)} [data-look=premium] .pod3 .pod-step{background:linear-gradient(180deg,#d38f59,#bf7a45)}
+[data-look=premium] .cl-head h2,[data-look=premium] .clip-head h2,[data-look=premium] .cl-ver-sec h3{font-family:var(--display);font-weight:700}
+[data-look=premium] .start-bar{border-top-color:rgba(236,154,62,.18)}

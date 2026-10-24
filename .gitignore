@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.DS_Store
+.play/
+.kk-board.json
+.kk-board.json.tmp
