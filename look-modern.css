@@ -1,0 +1,347 @@
+/* Kernel Kart's modern base (Racing and Premium; js/look.js): every screen of style.css redone as a game UI, under
+   <html data-modern>. Structure only: every colour, font and corner comes from the look's variables (look-racing.css,
+   look-premium.css). --sc: a section's colour, --mc: a mode's. Every rule starts with [data-modern], so Classic is
+   exactly style.css. */
+:root[data-modern]{
+  --t:.16s cubic-bezier(.2,.7,.2,1);
+  --check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.4l2.6 2.4L12 5.4' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --check-ink:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.4l2.6 2.4L12 5.4' fill='none' stroke='%23140e0a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+html[data-modern],html[data-modern] body{background:var(--ground);font-family:var(--body);-webkit-font-smoothing:antialiased}
+[data-modern] .menubg-shade{background:var(--veil)}
+[data-modern] #ui>.screen{scrollbar-color:var(--line2) transparent}
+[data-modern] *::selection{background:var(--accent-soft2);color:var(--text)}
+[data-modern] .num,[data-modern] .time,[data-modern] .pts,[data-modern] .sv,[data-modern] .blap{font-variant-numeric:tabular-nums}
+
+/* ---------- the logo and screen titles: flat two-tone lettering on a crisp offset shadow; no outline, extrusion, gloss or bob */
+[data-modern] .kk-logo{filter:drop-shadow(0 3px 0 var(--deep)) drop-shadow(0 12px 22px rgba(0,0,0,.35))}
+[data-modern] .kk-logo .kk-bob{animation:none}
+[data-modern] .kk-logo text{font-family:var(--display);font-weight:700}
+[data-modern] .kk-logo .kk-ex,[data-modern] .kk-logo .kk-ol,[data-modern] .kk-logo .kk-gloss,[data-modern] .kk-logo .kk-swoosh{display:none}
+[data-modern] .kk-logo .kk-w{fill:var(--logo-a);stroke:var(--logo-a);stroke-width:3;paint-order:stroke}   /* (a stroke in its own colour: a touch heavier, not an outline) */
+[data-modern] .kk-logo .kk-g{fill:var(--logo-b);stroke:var(--logo-b);stroke-width:4;paint-order:stroke}
+[data-modern] .kk-logo .kk-speed{stroke:var(--accent);opacity:.9;animation:none}
+[data-modern] h1.logo{font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,46px);color:var(--text);transform:none;-webkit-text-stroke:0;letter-spacing:-.6px;text-shadow:0 2px 0 var(--deep)}
+[data-modern] h1.logo span{color:var(--logo-b);text-shadow:0 2px 0 var(--deep)}
+[data-modern] h1.logo::after{display:none}
+[data-modern] .loading-header h1.logo{transform:none}
+[data-modern] .sub{color:var(--muted)}
+
+/* ---------- panels and section headers: each section has a colour of its own (--sc) on its number tile */
+[data-modern] .panel{background:var(--panel-bg);color:var(--text);border:1px solid var(--line);border-radius:var(--r-panel);box-shadow:var(--hi),var(--shadow)}
+[data-modern] .panel::before{display:none}
+[data-modern] #p-mode{--sc:var(--accent)} [data-modern] #p-racers{--sc:var(--coral)} [data-modern] #p-track{--sc:var(--green)}
+[data-modern] #p-online{--sc:var(--violet)} [data-modern] #raceset{--sc:var(--gold)} [data-modern] #learn{--sc:var(--cyan)}
+[data-modern] .panel h2{font-family:var(--display);font-weight:600;color:var(--text);text-transform:none;letter-spacing:-.2px;font-size:18px}
+[data-modern] .panel>h2::after{height:1px;border-radius:0;background:var(--line)}
+[data-modern] .panel h2 .num{min-width:32px;height:26px;padding:0 7px;border-radius:7px;background:var(--card2);color:var(--soft);box-shadow:none;transform:none;text-shadow:none;font:700 13px/1 var(--display);letter-spacing:.2px;font-variant-numeric:tabular-nums}
+@supports (background:color-mix(in srgb,red 50%,blue)){[data-modern] .panel h2 .num{background:color-mix(in srgb,var(--sc,var(--accent)) 16%,transparent);color:color-mix(in srgb,var(--sc,var(--accent)) 80%,#fff)}}
+
+/* ---------- buttons, segmented controls, labels */
+[data-modern] button{font-family:var(--body);color:var(--text);background:var(--card);border:1px solid var(--line2);border-radius:var(--r-btn);box-shadow:var(--hi),0 1px 2px rgba(0,0,0,.22);font-weight:600;font-size:14.5px;transition:background var(--t),border-color var(--t),color var(--t),box-shadow var(--t),transform var(--t)}
+[data-modern] button:hover{background:var(--card2);border-color:var(--line3);transform:none}
+[data-modern] button.sel{background:var(--accent);color:var(--on-accent);border-color:var(--accent);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 1px 2px rgba(0,0,0,.25)}
+[data-modern] button:focus-visible,[data-modern] .track:focus-visible,[data-modern] .char:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+[data-modern] button:active:not(:disabled):not(.big){transform:translateY(1px);box-shadow:none;background:var(--card3)}
+[data-modern] button.big{font-family:var(--display);font-weight:700;letter-spacing:.4px;font-size:20px;padding:14px 62px 14px 46px;color:var(--on-accent);background:var(--big-bg);border:0;border-radius:var(--r-big);transform:none;text-shadow:var(--big-ts);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -2px 0 rgba(0,0,0,.16),0 2px 4px rgba(0,0,0,.3),0 10px 24px rgba(0,0,0,.32)}
+[data-modern] button.big::before{display:none}
+[data-modern] button.big::after{animation:none;width:22px;height:16px;margin-top:-8px;right:26px;transition:transform var(--t)}
+[data-modern] button.big:hover{filter:none;background:var(--big-bg-h);transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -2px 0 rgba(0,0,0,.14),0 3px 6px rgba(0,0,0,.3),0 14px 30px rgba(0,0,0,.36)}
+[data-modern] button.big:hover::after{transform:translateX(3px)}
+[data-modern] button.big:active{background:var(--accent-d);transform:translateY(1px);box-shadow:inset 0 2px 3px rgba(0,0,0,.2),0 1px 2px rgba(0,0,0,.3)}
+[data-modern] button.big:disabled{filter:none;opacity:1;background:var(--card2);color:var(--muted);box-shadow:var(--hi);text-shadow:none} [data-modern] button.big:disabled:hover{transform:none}
+[data-modern] button.big:disabled:hover::after{transform:none}
+[data-modern] button.big:disabled::after{opacity:.4}
+[data-modern] .seg{gap:2px;padding:3px;border-radius:9px;background:var(--well);border:1px solid var(--line);box-shadow:inset 0 1px 2px rgba(0,0,0,.25)}
+[data-modern] .seg button{border:0;border-radius:6px;background:transparent;color:var(--soft);box-shadow:none;font-size:14px}
+[data-modern] .seg button:hover{background:var(--card2);color:var(--text);transform:none}
+[data-modern] .seg button.sel{background:var(--accent);color:var(--on-accent);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 1px 3px rgba(0,0,0,.35);text-shadow:none}
+[data-modern] .seg button:disabled:hover{background:transparent}
+[data-modern] .lbl{font-family:var(--body);font-weight:600;color:var(--muted);letter-spacing:.9px;font-size:10.5px}
+[data-modern] .help b{color:var(--text)}
+[data-modern] kbd{background:var(--card2);color:var(--text);border:1px solid var(--line3);border-bottom-width:2px;border-radius:5px;font-family:var(--body);font-weight:600;font-size:.9em}
+[data-modern] .dot{box-shadow:0 0 0 1.5px rgba(255,255,255,.55)}
+
+/* ---------- the menu's header */
+[data-modern] .menu-head .sub{color:var(--soft);font-weight:500;background:none;border:0;padding:0;box-shadow:none;margin-top:6px}
+[data-modern] .menu-head .sub::before{display:none}
+[data-modern] button.whatsnew,[data-modern] button.settings-btn{color:var(--text);background:var(--panel);border:1px solid var(--line2);border-radius:var(--r-btn);box-shadow:var(--hi),var(--sh1);font-weight:600}
+[data-modern] button.whatsnew:hover,[data-modern] button.settings-btn:hover{background:var(--card2);border-color:var(--line3)}
+[data-modern] button.whatsnew:not(.settings-btn)::before{color:var(--gold)}
+[data-modern] .wn-v{color:var(--muted);font-weight:500}
+[data-modern] .wn-dot{border-radius:999px;background:var(--accent);color:var(--on-accent);box-shadow:none;animation:none;font-weight:700}
+[data-modern] button.wn-small{border-color:var(--line2)}
+
+/* 1 Mode: tiles with the mode's icon on a tile of its own colour (--mc); picked: tinted in it, with a check */
+[data-modern] button.mode-card{--mc:var(--accent);border:1px solid var(--line);border-radius:var(--r-card);background:var(--card);box-shadow:var(--hi),var(--sh1)}
+[data-modern] button.mode-card[data-m=cup]{--mc:var(--gold)} [data-modern] button.mode-card[data-m=tt]{--mc:var(--cyan)} [data-modern] button.mode-card[data-m=online]{--mc:var(--violet)}
+[data-modern] button.mode-card::after{display:none}
+[data-modern] button.mode-card .trophy{filter:none;transition:none;box-sizing:border-box;width:48px;height:48px;padding:8px;border-radius:var(--r-card);background:var(--card2)}
+[data-modern] button.mode-card:hover{background:var(--card2);border-color:var(--line3);transform:translateY(-2px);box-shadow:var(--hi),var(--sh2)}
+[data-modern] button.mode-card:hover .trophy{transform:none}
+[data-modern] .mc-t{font-family:var(--display);font-weight:600;letter-spacing:-.1px;color:var(--text);font-size:16px}
+[data-modern] .mc-d{color:var(--muted)}
+[data-modern] button.mode-card.sel{background:var(--accent-soft);border-color:var(--mc);transform:none;box-shadow:inset 0 0 0 1px var(--mc),var(--sh1);animation:none}
+[data-modern] button.mode-card.sel .mc-d{color:var(--soft);opacity:1}
+[data-modern] button.mode-card.sel::before{width:18px;height:18px;box-shadow:none;animation:none;background:var(--mc) var(--check) center/80% no-repeat}
+@supports (background:color-mix(in srgb,red 50%,blue)){
+  [data-modern] button.mode-card .trophy{background:color-mix(in srgb,var(--mc) 15%,transparent)}
+  [data-modern] button.mode-card:hover{border-color:color-mix(in srgb,var(--mc) 45%,var(--line2))}
+  [data-modern] button.mode-card.sel{background:color-mix(in srgb,var(--mc) 12%,var(--card))}
+  [data-modern] button.mode-card.sel .trophy{background:color-mix(in srgb,var(--mc) 24%,transparent)}
+}
+
+/* 2 Who's racing */
+[data-modern] .who{background:var(--well);border:1px solid var(--line);border-radius:var(--r-card)}
+[data-modern] .rrow .who,[data-modern] .brow .who{background:none;border:0}   /* (a results row's racer is a .who too) */
+[data-modern] .who-plus{font-family:var(--body);font-weight:500;color:var(--muted)}
+[data-modern] .who-sum{color:var(--muted)} [data-modern] .who-sum b{color:var(--text)}
+[data-modern] .who-chips i{border-radius:4px;transform:none;box-shadow:none;font-family:var(--body);font-weight:700;letter-spacing:.3px}
+[data-modern] .who-chips i.bot{background:var(--card2);color:var(--muted)}
+[data-modern] .ptab{border-radius:var(--r-btn)}
+[data-modern] .ptab.p0.sel{background:var(--card2);border-color:var(--p1);box-shadow:inset 0 0 0 1px var(--p1)} [data-modern] .ptab.p1.sel{background:var(--card2);border-color:var(--p2);box-shadow:inset 0 0 0 1px var(--p2)}
+[data-modern] .ptab.p2.sel{background:var(--card2);border-color:var(--p3);box-shadow:inset 0 0 0 1px var(--p3)} [data-modern] .ptab.p3.sel{background:var(--card2);border-color:var(--p4);box-shadow:inset 0 0 0 1px var(--p4)}
+/* racer cards: the car on a backdrop of the racer's colour with a line of it under, then name, language, blurb, trait and stats */
+[data-modern] .char{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--hi),var(--sh1);transition:border-color var(--t),box-shadow var(--t),transform var(--t)}
+[data-modern] .char::before{left:0;right:0;top:0;width:auto;height:112px;margin:0;border-radius:var(--r-card-in) var(--r-card-in) 0 0;background:var(--card2);opacity:1;border-bottom:2px solid rgba(255,255,255,.08)}
+@supports (background:color-mix(in srgb,red 50%,blue)){[data-modern] .char::before{background:linear-gradient(180deg,color-mix(in srgb,var(--rc) 30%,var(--card)),color-mix(in srgb,var(--rc) 20%,var(--card)));border-bottom-color:color-mix(in srgb,var(--rc) 70%,transparent)}}
+[data-modern] .char::after{display:none}
+[data-modern] .char:hover{transform:translateY(-2px);border-color:var(--line3);box-shadow:var(--hi),var(--sh2)}
+[data-modern] .char:hover canvas{transform:none}
+[data-modern] .char .n{font-family:var(--display);font-weight:700;letter-spacing:-.2px;color:var(--text);text-shadow:none;margin-top:6px;font-size:17px}
+[data-modern] .char .l{color:var(--soft);background:var(--card2);border-radius:4px;font-family:var(--body);font-weight:600;letter-spacing:.6px}
+[data-modern] .char .b{color:var(--muted)}
+[data-modern] .char .trait{color:var(--gold);background:var(--gold-soft);border-radius:4px;transform:none;font-weight:600}
+[data-modern] .char .stats{color:var(--muted);font-family:var(--body);font-weight:600;letter-spacing:.4px}
+[data-modern] .char .stats .sv{color:var(--text);font-weight:600}
+[data-modern] .char .bar{height:6px;background:var(--well);border-radius:3px;box-shadow:none}
+[data-modern] .char .bar i{border-radius:3px;box-shadow:none;background:var(--accent)}
+[data-modern] .char .stats .bar:nth-of-type(2) i{background:var(--st1)} [data-modern] .char .stats .bar:nth-of-type(4) i{background:var(--st2)}
+[data-modern] .char .stats .bar:nth-of-type(6) i{background:var(--st3)} [data-modern] .char .stats .bar:nth-of-type(8) i{background:var(--st4)}
+[data-modern] .char .bar.over b{border-radius:3px;background:var(--gold);box-shadow:none}
+[data-modern] .char .bar.neg{background:var(--red-soft)} [data-modern] .char .stats .bar.neg i{background:var(--red)}
+[data-modern] .char.p0,[data-modern] .char.p1,[data-modern] .char.p2,[data-modern] .char.p3{animation:none}
+[data-modern] .char.p0{border-color:var(--p1);box-shadow:inset 0 0 0 1px var(--p1),var(--sh2)} [data-modern] .char.p1{border-color:var(--p2);box-shadow:inset 0 0 0 1px var(--p2),var(--sh2)}
+[data-modern] .char.p2{border-color:var(--p3);box-shadow:inset 0 0 0 1px var(--p3),var(--sh2)} [data-modern] .char.p3{border-color:var(--p4);box-shadow:inset 0 0 0 1px var(--p4),var(--sh2)}
+[data-modern] .char .tag{font-family:var(--body);font-weight:700;border-radius:4px;transform:none;box-shadow:0 1px 3px rgba(0,0,0,.3);text-shadow:none}
+
+/* 3 tracks: the thumbnail with a solid name band over its foot; a hover lifts the card and eases the map in a touch */
+[data-modern] .track{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--hi),var(--sh1);transition:border-color var(--t),box-shadow var(--t),transform var(--t)}
+[data-modern] .track>.n{padding:8px 12px;font-family:var(--display);font-weight:600;letter-spacing:-.1px;color:var(--text);background:var(--band);text-shadow:none;font-size:14.5px;border-top:1px solid rgba(255,255,255,.04)}
+[data-modern] .track:hover{transform:translateY(-2px);border-color:var(--line3);box-shadow:var(--hi),var(--sh2)}
+[data-modern] .track>canvas,[data-modern] .track>.rnd-face{transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+[data-modern] .track:hover>canvas,[data-modern] .track:hover>.rnd-face{transform:scale(1.025)}
+[data-modern] .track.sel{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),var(--sh2);animation:none}
+[data-modern] .track.sel>.n{background:var(--accent);color:var(--on-accent);border-top-color:transparent}
+[data-modern] .track.sel::after{width:24px;height:24px;background:var(--accent) var(--check) center/75% no-repeat;box-shadow:0 1px 3px rgba(0,0,0,.35);animation:none}
+[data-modern] .track:active,[data-modern] .char:active{transform:translateY(0)}
+[data-modern] .track .d{color:var(--muted)}
+[data-modern] .track .d.tl{color:var(--soft)}
+[data-modern] .lapfix{color:var(--on-gold);background:var(--gold);border-radius:4px;font-family:var(--body);font-weight:700}
+[data-modern] .track .d.best{color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums}
+[data-modern] .newbest{border-radius:4px;background:var(--gold);color:var(--on-gold);font-weight:700}
+[data-modern] .track.incup{border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold),var(--sh1)}
+[data-modern] .cupnum{width:28px;height:28px;background:var(--gold);color:var(--on-gold);font-family:var(--display);font-weight:700;font-size:14px;box-shadow:0 1px 3px rgba(0,0,0,.35);animation:none}
+/* the Random card: a plain ? on a slate face */
+[data-modern] .track.random .rnd-face,[data-modern] .net-cur.random .rnd-face{background:var(--card2);box-shadow:none}
+[data-modern] .track.random .rnd-face span,[data-modern] .net-cur.random .rnd-face span{font:700 56px/1 var(--display);color:var(--soft);-webkit-text-stroke:0;text-shadow:none;transform:none;transition:color var(--t)}
+[data-modern] .track.random:hover .rnd-face span{transform:none;color:var(--text)}
+[data-modern] .td-more .d.td-full{border-top:1px solid var(--line)}
+[data-modern] button.more{color:var(--soft);background:transparent;border:1px solid var(--line2);border-radius:6px;box-shadow:none;font-weight:600}
+[data-modern] button.more:hover{background:var(--card2);color:var(--text)}
+[data-modern] .tinfo .d.tl{color:var(--text)}
+
+/* 4 race settings, START, How to play */
+[data-modern] .start-bar{background:var(--bar);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(0,0,0,.25)}
+[data-modern] #starthint{color:var(--muted)}
+[data-modern] .learn details{border-top:1px solid var(--line)}
+[data-modern] .learn summary{border-radius:6px;transition:background var(--t),color var(--t)}
+[data-modern] .learn summary::before{border-color:var(--muted);border-width:0 2px 2px 0}
+[data-modern] .learn summary:hover{color:var(--text);background:var(--card)}
+[data-modern] .ln-list b{color:var(--text)}
+[data-modern] .item{background:var(--card);border:1px solid var(--line);border-radius:var(--r-btn);box-shadow:var(--hi)}
+[data-modern] .odds-gap input,[data-modern] .set-row input[type=range]{accent-color:var(--accent)}
+[data-modern] .odds-row .bar{height:8px;background:var(--well);border-radius:3px}
+[data-modern] .odds-row .bar i{border-radius:3px}
+[data-modern] .odds-row .p{font-family:var(--body);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* ---------- Cup mode */
+[data-modern] .mini canvas{border-radius:6px}
+[data-modern] .cupbox{background:var(--well);border:1px solid var(--line);border-radius:var(--r-card)}
+[data-modern] .cup-lbl{font-family:var(--body);font-weight:700;letter-spacing:.9px;color:var(--muted)}
+[data-modern] button.cup-card{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--cc);border-radius:var(--r-card);box-shadow:var(--hi),var(--sh1)}
+[data-modern] button.cup-card:hover{background:var(--card2);border-color:var(--line3);border-top-color:var(--cc);transform:translateY(-2px);box-shadow:var(--hi),var(--sh2)}
+[data-modern] button.cup-card:hover .trophy{animation:none}
+[data-modern] button.cup-card.sel{background:var(--card2);border-color:var(--cc);transform:none;box-shadow:inset 0 0 0 1px var(--cc),var(--sh1);animation:none}
+@supports (background:color-mix(in srgb,red 50%,blue)){[data-modern] button.cup-card.sel{background:color-mix(in srgb,var(--cc) 11%,var(--card))}}
+[data-modern] .cc-name{font-family:var(--display);font-weight:600;letter-spacing:-.1px;color:var(--text)}
+[data-modern] .cc-go{color:var(--ink);border-radius:4px;box-shadow:none;transform:none;font-weight:700}
+[data-modern] .slot{border-radius:var(--r-btn)}
+[data-modern] .slot.full{background:var(--card);border:1px solid var(--line2);box-shadow:var(--hi);animation:none}
+[data-modern] .slot.empty{border:1px dashed var(--line3);color:var(--muted)} [data-modern] .slot.empty.need{border-color:var(--gold)}
+[data-modern] .slot .sb{color:var(--on-accent);background:var(--accent);box-shadow:none;font-family:var(--display);font-weight:700}
+[data-modern] .slot.empty .sb{background:var(--card2);color:var(--muted)}
+[data-modern] .slot .sx{background:var(--card2);border:1px solid var(--line2);box-shadow:none}
+[data-modern] .slot .sx:hover{background:var(--red);border-color:var(--red);color:#fff}
+
+/* ---------- time trial */
+[data-modern] .ttbox{background:var(--well);border:1px solid var(--line);border-radius:var(--r-card)}
+[data-modern] .tt-rec b{font-family:var(--display);font-weight:700;font-size:26px;color:var(--gold)}
+[data-modern] .tt-rec b.none{color:var(--muted)}
+[data-modern] .track .d.tt{color:var(--link);font-weight:600;font-variant-numeric:tabular-nums}
+[data-modern] .tt-big{background:var(--well);border:1px solid var(--line);border-radius:var(--r-card)}
+[data-modern] .tt-big b{font-family:var(--display);font-weight:700;font-size:30px;color:var(--text)}
+[data-modern] .tt-big.gold{background:var(--gold-soft);border-color:var(--gold-line)} [data-modern] .tt-big.gold b{color:var(--gold)}
+
+/* ---------- online: the panel and the room */
+[data-modern] .net input{color:var(--text);background:var(--well);border:1px solid var(--line2);border-radius:var(--r-btn);box-shadow:inset 0 1px 2px rgba(0,0,0,.25);transition:border-color var(--t),box-shadow var(--t)}
+[data-modern] .net input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft2)}
+[data-modern] .net-note{color:var(--red-text)}
+[data-modern] .net-way,[data-modern] .net-way+.net-way{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--hi),var(--sh1)}
+[data-modern] .net-way>b{font-family:var(--display);font-weight:600;letter-spacing:-.1px;text-transform:none;font-size:16px;color:var(--text)}
+[data-modern] button.go{color:var(--on-accent);background:var(--accent);border:1px solid var(--accent);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 1px 2px rgba(0,0,0,.25)}
+[data-modern] button.go:hover{background:var(--accent-h);border-color:var(--accent-h);filter:none}
+[data-modern] .net-code{font-family:var(--display);font-weight:700;font-size:clamp(44px,9vw,76px);color:var(--text);-webkit-text-stroke:0;text-shadow:0 3px 0 var(--deep);transform:none;letter-spacing:12px}
+[data-modern] .net-url{color:var(--link)}
+[data-modern] .net-player{background:var(--card);border-width:1px;border-radius:var(--r-btn);box-shadow:var(--hi),var(--sh1);animation:none}
+[data-modern] .net-you{border-radius:4px;background:var(--card2);color:var(--soft)}
+[data-modern] .pickby{border-radius:4px;font-weight:700}
+[data-modern] .net-by{border-radius:4px;box-shadow:none}
+[data-modern] .net-cur{background:var(--well);border:1px solid var(--line);border-radius:var(--r-card)}
+[data-modern] .net-cur>canvas,[data-modern] .net-cur>.rnd-face{border-radius:var(--r-btn)!important;box-shadow:var(--sh1)}
+[data-modern] .net-curname{font-family:var(--display);font-weight:600}
+[data-modern] .net-anyone{border-radius:4px}
+[data-modern] .net-anyone.ro{background:var(--card2);color:var(--muted)}
+[data-modern] .chat-log{background:var(--well);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:inset 0 1px 2px rgba(0,0,0,.25);scrollbar-color:var(--line2) transparent}
+[data-modern] .chat-name{font-weight:700}
+[data-modern] .chat-quick button{border-radius:var(--r-btn)}
+[data-modern] .chat-hud .chat-line{border-radius:var(--r-btn);background:rgba(0,0,0,.62);text-shadow:none;font-family:var(--body)}
+[data-modern] .chat-hud.typing .chat-line{background:rgba(0,0,0,.78)}
+[data-modern] .ch-type input.ch-in{border-radius:var(--r-btn);background:var(--well)}
+[data-modern] .chat-btn{background:rgba(0,0,0,.45)}
+[data-modern] .cool-ring{color:var(--muted)}
+[data-modern] .cool-ring i{background:conic-gradient(var(--accent) calc(var(--f,0) * 360deg),var(--line2) 0)}   /* (a countdown dial, not a decoration) */
+
+/* ---------- the loading screen */
+[data-modern] .loading-panel{border-radius:12px}
+[data-modern] .loading-top-badge{font-family:var(--body);font-weight:700;letter-spacing:.9px;color:var(--muted);background:var(--card2);border-radius:4px;transform:none}
+[data-modern] .l-badge{color:var(--soft);background:var(--card);border:1px solid var(--line);border-radius:4px;font-family:var(--body);font-weight:600}
+[data-modern] .loading-map-card{background:var(--well);border:1px solid var(--line);border-radius:var(--r-card)}
+[data-modern] .loading-map-canvas canvas{border-radius:6px}
+[data-modern] .loading-subheading{font-family:var(--body);font-weight:700;color:var(--muted);letter-spacing:.9px}
+[data-modern] .loading-grid-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:var(--hi),var(--sh1);animation:none}
+[data-modern] .loading-grid-card.human{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),var(--sh1)}
+[data-modern] .loading-slot-badge{font-family:var(--display);font-weight:700;color:var(--soft);background:var(--card2);border-radius:4px}
+[data-modern] .loading-slot-badge.pole{color:var(--on-gold);background:var(--gold)}
+[data-modern] .loading-racer-name{font-family:var(--display);font-weight:700}
+[data-modern] .loading-racer-trait{color:var(--gold);background:var(--gold-soft);border-radius:4px;font-weight:600}
+[data-modern] .loading-racer-tag{border-radius:4px}
+[data-modern] .loading-tip{background:var(--card);border:1px solid var(--line);border-radius:var(--r-btn);box-shadow:var(--hi)}
+[data-modern] .tip-pill{color:var(--on-accent);background:var(--accent);font-family:var(--body);font-weight:700;border-radius:4px;transform:none}
+[data-modern] .tip-msg{color:var(--soft)}
+[data-modern] .loading-progress-labels{font-family:var(--body);font-weight:600;color:var(--muted);letter-spacing:.3px;font-variant-numeric:tabular-nums}
+[data-modern] .loading-progress-track{height:8px;background:var(--well);border-radius:4px;box-shadow:inset 0 1px 2px rgba(0,0,0,.3);transform:none}
+[data-modern] .loading-progress-bar{border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.2);background:var(--accent)}
+[data-modern] .ct{background:var(--card);border:1px solid var(--line);border-radius:var(--r-btn);box-shadow:var(--hi)}
+[data-modern] .ct-n{color:var(--muted)}
+[data-modern] .ct-b{background:var(--card2);color:var(--muted);box-shadow:none;font-family:var(--display);font-weight:700}
+[data-modern] .ct.done .ct-b{background:var(--green);color:#fff}
+[data-modern] .ct.now{background:var(--accent-soft);border-color:var(--accent);transform:none;box-shadow:none}
+[data-modern] .ct.now .ct-b{background:var(--accent);color:var(--on-accent)} [data-modern] .ct.now .ct-n{color:var(--text)}
+[data-modern] .ct.now::after{display:none}
+[data-modern] .ct-link{height:1px;border-radius:0;background:var(--line3)}
+[data-modern] .ct-lead b{color:var(--text)}
+
+/* ---------- results and the cup's standings */
+[data-modern] .res-panel{background:var(--panel)}
+[data-modern] .res-cup{font-family:var(--display);font-weight:600;letter-spacing:0;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:var(--r-btn);box-shadow:var(--hi),var(--sh1)}
+[data-modern] .cup-pips i{background:var(--card2)}
+[data-modern] .cup-pips i.done{background:var(--gold)} [data-modern] .cup-pips i.now{background:var(--accent);box-shadow:none}
+[data-modern] .res-card{background:var(--well);border:1px solid var(--line);border-radius:var(--r-card)}
+[data-modern] .res-card h2{font-family:var(--body);font-weight:700;letter-spacing:1px;font-size:11.5px;text-transform:uppercase;color:var(--muted)}
+[data-modern] .rrow,[data-modern] .brow{background:var(--card);border:1px solid var(--line);border-radius:var(--r-btn);box-shadow:var(--hi)}
+[data-modern] .rrow.first,[data-modern] .brow.lead{background:var(--gold-soft);border-color:var(--gold-line);box-shadow:inset 3px 0 0 var(--gold)}
+[data-modern] .rrow.human:not(.first),[data-modern] .brow.human:not(.lead){background:var(--card)}
+@supports (background:color-mix(in srgb,red 50%,blue)){[data-modern] .rrow.human:not(.first),[data-modern] .brow.human:not(.lead){background:color-mix(in srgb,var(--pc) 12%,var(--card))}}
+[data-modern] .rrow.human,[data-modern] .brow.human{box-shadow:inset 3px 0 0 var(--pc)}
+[data-modern] .rrow .pos,[data-modern] .brow .pos{transform:none;font-family:var(--display);font-weight:700;font-variant-numeric:tabular-nums}
+[data-modern] .rrow.first .pos,[data-modern] .brow.lead .pos{color:var(--gold);text-shadow:none}
+[data-modern] .rrow .time{font-weight:600;color:var(--soft)}
+[data-modern] .gain{font-family:var(--display);font-weight:700;color:var(--gold)}
+[data-modern] .brow.lead.human{box-shadow:inset 3px 0 0 var(--pc)}
+[data-modern] .brow.me .nm{color:var(--text)}
+[data-modern] .brow .flash{background:var(--gold-soft)}
+[data-modern] .mv .up{color:var(--green)} [data-modern] .mv .down{color:var(--red-text)}
+[data-modern] .brow .pts{font-family:var(--display);font-weight:700;color:var(--gold)}
+[data-modern] .cup-chip{border-radius:4px;background:var(--card2);color:var(--muted)}
+[data-modern] .cup-chip.p1{background:var(--gold);color:var(--on-gold)} [data-modern] .cup-chip.p2{background:var(--silver);color:var(--ink)} [data-modern] .cup-chip.p3{background:var(--bronze);color:var(--ink)}
+[data-modern] .fly-pts{font-family:var(--display);font-weight:700;color:var(--gold);text-shadow:0 2px 8px rgba(0,0,0,.5)}
+[data-modern] .fly-pts.human{color:#fff}
+[data-modern] .board-wait{animation:none}
+
+/* ---------- the podium: gold, silver and bronze steps with a lit top edge, no sunburst */
+[data-modern] .pod-rays{display:none}
+[data-modern] .pod-step{border:0;border-radius:var(--r-btn) 8px 0 0;box-shadow:inset 0 2px 0 rgba(255,255,255,.35),inset 0 -24px 32px -24px rgba(0,0,0,.12)}
+[data-modern] .pod-step::before{display:none}
+[data-modern] .pod1 .pod-step{background:var(--gold)} [data-modern] .pod2 .pod-step{background:var(--silver)} [data-modern] .pod3 .pod-step{background:var(--bronze)}
+[data-modern] .pod-col.me .pod-step{box-shadow:inset 0 0 0 2px #fff,inset 0 2px 0 rgba(255,255,255,.35)}
+[data-modern] .pod-num{font-family:var(--display);font-weight:700;font-size:30px;color:var(--ink);-webkit-text-stroke:0;text-shadow:0 1px 0 rgba(255,255,255,.3)} [data-modern] .pod1 .pod-num{font-size:42px}
+[data-modern] .pod-name{font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--ink)}
+[data-modern] .pod-tag .ptag{color:var(--ink)!important}
+[data-modern] .pod-pts{border-radius:4px;background:rgba(0,0,0,.28);color:#fff}
+[data-modern] .confetti i{border-radius:1px}
+[data-modern] .confetti i:nth-child(4n+1){background:var(--accent)!important} [data-modern] .confetti i:nth-child(4n+2){background:var(--gold)!important}
+[data-modern] .confetti i:nth-child(4n+3){background:var(--text)!important} [data-modern] .confetti i:nth-child(4n){background:var(--muted)!important}
+
+/* ---------- dialogs: What's new, Settings, the Watch how clip */
+[data-modern] .cl-back,[data-modern] .clip-back{background:var(--scrim)}
+[data-modern] .cl-box,[data-modern] .clip-box{background:var(--panel);border:1px solid var(--line2);border-radius:var(--r-panel);box-shadow:var(--hi),0 4px 10px rgba(0,0,0,.3),0 30px 70px rgba(0,0,0,.45)}
+[data-modern] .cl-head h2,[data-modern] .clip-head h2{font-family:var(--display);font-weight:600}
+[data-modern] .cl-x,[data-modern] .clip-x{border-radius:6px}
+[data-modern] .cl-ver-sec h3{font-family:var(--display);font-weight:600;font-size:16px;color:var(--text)}
+[data-modern] .cl-date,[data-modern] .cl-meta{font-family:var(--body);color:var(--muted)}
+[data-modern] .cl-ver-sec li{border-top:1px solid var(--line)}
+[data-modern] .cl-more{border-radius:4px}
+[data-modern] .cl-new{border-radius:4px;color:var(--on-accent);background:var(--accent);font-weight:700}
+[data-modern] .cl-k{border-radius:4px}
+[data-modern] button.cl-f{border-radius:6px}
+[data-modern] button.cl-f[aria-pressed=true]{color:var(--ink);background:var(--k);border-color:var(--k)}
+[data-modern] button.clip-go{color:var(--on-accent);background:var(--accent);border:1px solid var(--accent);border-radius:6px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+[data-modern] button.clip-go:hover{background:var(--accent-h);border-color:var(--accent-h)}
+[data-modern] .clip-line{color:var(--soft)}
+[data-modern] .clip-cv{border-radius:var(--r-btn);border:1px solid var(--line)}
+[data-modern] .clip-cap{color:var(--text);font-family:var(--body);font-weight:600}
+[data-modern] .set-row{border-top:1px solid var(--line)}
+[data-modern] .set-row small{color:var(--muted)}
+[data-modern] .set-row b{color:var(--soft);font-family:var(--body);font-weight:600;font-variant-numeric:tabular-nums}
+[data-modern] .set-row .switch{width:40px;height:22px;border-radius:999px;background:var(--line2);border:0;box-shadow:inset 0 1px 2px rgba(0,0,0,.3);transition:background var(--t)}
+[data-modern] .set-row .switch::after{top:2px;left:2px;width:18px;height:18px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.35);transition:transform .18s cubic-bezier(.2,.7,.2,1),background .15s}
+[data-modern] .set-row .switch:checked{background:var(--accent)}
+[data-modern] .set-row .switch:checked::after{transform:translateX(18px)}
+[data-modern] .set-row .switch:focus-visible,[data-modern] .set-row input[type=range]:focus-visible{outline:2px solid var(--accent)}
+[data-modern] .kk-update{color:var(--text);background:var(--panel);border:1px solid var(--line2);border-radius:var(--r-card);box-shadow:var(--hi),var(--shadow);font-family:var(--body)}
+[data-modern] .kk-update button{color:var(--on-accent);background:var(--accent);border:0;border-radius:6px}
+[data-modern] .kk-update button.later{color:var(--text);background:var(--card2)}
+[data-modern] .fps{border-radius:4px;background:rgba(0,0,0,.6);color:var(--soft);font:600 12px/1.3 var(--body);font-variant-numeric:tabular-nums}
+[data-modern] #toast{background:var(--card)!important;color:var(--text)!important;border:1px solid var(--line2);border-radius:var(--r-btn)!important;box-shadow:var(--hi),var(--shadow);font-family:var(--body);font-weight:600}
+
+@media (max-width:700px){
+  [data-modern] .panel{border-radius:var(--r-card)} [data-modern] .char{border-radius:var(--r-card)}
+  [data-modern] .char::before{height:92px;width:auto;margin:0;top:0;border-radius:9px 9px 0 0}
+  [data-modern] .seg{border-radius:9px}
+  [data-modern] .start-bar button.big{font-size:17px;padding:12px 52px 12px 38px} [data-modern] .start-bar button.big::after{right:18px;width:20px}
+}
+@media (max-width:640px){[data-modern] button.big{font-size:17px;padding:12px 52px 12px 38px}}
+@media (max-width:420px){[data-modern] button.mode-card .trophy{width:38px;height:38px;padding:6px}}
+@media (hover:none){[data-modern] .char:hover,[data-modern] .track:hover,[data-modern] button.mode-card:hover,[data-modern] button.cup-card:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){[data-modern] .char,[data-modern] .track,[data-modern] button,[data-modern] .track>canvas{transition:none}
+  [data-modern] .char:hover,[data-modern] .track:hover,[data-modern] button.mode-card:hover,[data-modern] button.cup-card:hover,[data-modern] button.big:hover,[data-modern] .track:hover>canvas{transform:none}}
+[data-modern] button.cl-f{color:var(--k);background:color-mix(in srgb,var(--k) 10%,transparent);border-color:color-mix(in srgb,var(--k) 34%,transparent)}   /* the What's new filters keep their kind's colour */
+[data-modern] button.cl-f:hover:not([aria-pressed=true]){background:color-mix(in srgb,var(--k) 18%,transparent)}
+/* the menu's START dock chips, the track filter and the time trial's best on a track card (style.css), in this look's cards */
+[data-modern] button.dchip{background:var(--card);border-color:var(--line2);box-shadow:var(--hi)} [data-modern] button.dchip:hover{background:var(--card2)}
+[data-modern] .dchip .dc-t small{color:var(--muted)} [data-modern] .dchip.tt-has .dc-t small{color:var(--gold)}
+[data-modern] .tfilter button{background:var(--card);border-color:var(--line2);font-weight:600} [data-modern] .tfilter button:hover{background:var(--card2)}
+[data-modern] .tfilter button.sel{background:color-mix(in srgb,var(--cc,var(--accent)) 26%,var(--card));border-color:var(--cc,var(--accent));color:var(--text)}
+[data-modern] .track>.ttb{background:var(--panel-bg,rgba(0,0,0,.8));border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.35)} [data-modern] .track>.ttb span{font-weight:700}

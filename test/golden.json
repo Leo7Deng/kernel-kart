@@ -1,0 +1,3898 @@
+{
+ "0:Crab Harbor:L0:s1": {
+  "order": [
+   "ferris",
+   "tux",
+   "gopher",
+   "swifty"
+  ],
+  "times": [
+   134.267,
+   135.8,
+   137.95,
+   137.7
+  ],
+  "picks": {
+   "leak": 3,
+   "thread": 2,
+   "undo": 5,
+   "panic": 4,
+   "boost": 9,
+   "duck": 6,
+   "sudo": 3,
+   "ghost": 5,
+   "pull": 2,
+   "shield": 1,
+   "oc": 3,
+   "ff": 1,
+   "bubble": 1,
+   "mega": 3,
+   "tomato": 1,
+   "grow": 2
+  },
+  "hash": "dfe15c1e"
+ },
+ "0:Crab Harbor:L0:s2": {
+  "order": [
+   "duke",
+   "pyth",
+   "ferris",
+   "cpp"
+  ],
+  "times": [
+   129.383,
+   128.933,
+   133.7,
+   131.183
+  ],
+  "picks": {
+   "boost": 12,
+   "mega": 2,
+   "ghost": 5,
+   "oc": 3,
+   "duck": 3,
+   "tomato": 3,
+   "sudo": 5,
+   "undo": 1,
+   "leak": 1,
+   "pull": 3,
+   "thread": 1,
+   "bubble": 3,
+   "loop": 1,
+   "panic": 2,
+   "ff": 1
+  },
+  "hash": "d236d8ab"
+ },
+ "0:Crab Harbor:L1:s1": {
+  "order": [
+   "duke",
+   "ferris",
+   "pyth",
+   "cpp"
+  ],
+  "times": [
+   129.967,
+   128.967,
+   130.35,
+   129.783
+  ],
+  "picks": {
+   "duck": 5,
+   "bubble": 5,
+   "shield": 5,
+   "oc": 8,
+   "leak": 4,
+   "grow": 7,
+   "tomato": 2,
+   "ghost": 3,
+   "sudo": 4,
+   "loop": 1,
+   "thread": 2,
+   "panic": 3,
+   "ff": 1,
+   "pull": 1,
+   "undo": 1,
+   "boost": 1
+  },
+  "hash": "7284c135"
+ },
+ "0:Crab Harbor:L1:s2": {
+  "order": [
+   "droid",
+   "docky",
+   "octo",
+   "pyth"
+  ],
+  "times": [
+   130.833,
+   130.367,
+   129.017,
+   131.617
+  ],
+  "picks": {
+   "duck": 3,
+   "bubble": 5,
+   "ghost": 6,
+   "leak": 3,
+   "shield": 3,
+   "thread": 4,
+   "grow": 2,
+   "loop": 1,
+   "panic": 3,
+   "mega": 1,
+   "sudo": 3,
+   "pull": 2,
+   "boost": 5,
+   "tomato": 2,
+   "oc": 3,
+   "undo": 2,
+   "ff": 1
+  },
+  "hash": "52c11e22"
+ },
+ "0:Crab Harbor:L2:s1": {
+  "order": [
+   "droid",
+   "docky",
+   "octo",
+   "pyth"
+  ],
+  "times": [
+   132.983,
+   131.55,
+   127.3,
+   133.567
+  ],
+  "picks": {
+   "boost": 10,
+   "tomato": 3,
+   "shield": 2,
+   "leak": 1,
+   "undo": 3,
+   "oc": 3,
+   "duck": 8,
+   "bubble": 3,
+   "thread": 2,
+   "grow": 2,
+   "pull": 3,
+   "ff": 1,
+   "mega": 2,
+   "panic": 2,
+   "ghost": 3,
+   "loop": 1,
+   "sudo": 3,
+   "fork": 1
+  },
+  "hash": "b8e64de"
+ },
+ "0:Crab Harbor:L2:s2": {
+  "order": [
+   "swifty",
+   "tux",
+   "octo",
+   "gopher"
+  ],
+  "times": [
+   132.233,
+   131.517,
+   133.017,
+   132.667
+  ],
+  "picks": {
+   "duck": 4,
+   "boost": 9,
+   "panic": 4,
+   "sudo": 4,
+   "bubble": 6,
+   "tomato": 3,
+   "grow": 4,
+   "loop": 1,
+   "oc": 4,
+   "pull": 1,
+   "shield": 4,
+   "mega": 2,
+   "undo": 3,
+   "thread": 3,
+   "ff": 1,
+   "leak": 2,
+   "ghost": 1
+  },
+  "hash": "8d8ceba9"
+ },
+ "1:Pharaoh's Jackpot:L0:s1": {
+  "order": [
+   "duke",
+   "pyth",
+   "ferris",
+   "cpp"
+  ],
+  "times": [
+   113.75,
+   112.433,
+   119.417,
+   115.5
+  ],
+  "picks": {
+   "duck": 9,
+   "pull": 5,
+   "ghost": 15,
+   "sudo": 8,
+   "panic": 2,
+   "shield": 2,
+   "boost": 13,
+   "bubble": 5,
+   "leak": 2,
+   "grow": 12,
+   "mega": 3,
+   "tomato": 2,
+   "ff": 1,
+   "fork": 1,
+   "oc": 3,
+   "undo": 3
+  },
+  "hash": "5916b656"
+ },
+ "1:Pharaoh's Jackpot:L0:s2": {
+  "order": [
+   "docky",
+   "pyth",
+   "droid",
+   "octo"
+  ],
+  "times": [
+   117.033,
+   112.65,
+   114.333,
+   114.267
+  ],
+  "picks": {
+   "boost": 11,
+   "leak": 3,
+   "thread": 4,
+   "shield": 8,
+   "ghost": 5,
+   "pull": 6,
+   "duck": 5,
+   "sudo": 5,
+   "mega": 7,
+   "bubble": 10,
+   "loop": 1,
+   "grow": 6,
+   "oc": 6,
+   "tomato": 2,
+   "undo": 1,
+   "panic": 1
+  },
+  "hash": "87cdd04d"
+ },
+ "1:Pharaoh's Jackpot:L1:s1": {
+  "order": [
+   "docky",
+   "octo",
+   "droid",
+   "pyth"
+  ],
+  "times": [
+   116.033,
+   114.767,
+   117.783,
+   118.567
+  ],
+  "picks": {
+   "boost": 14,
+   "mega": 6,
+   "ff": 1,
+   "ghost": 7,
+   "pull": 4,
+   "thread": 8,
+   "sudo": 9,
+   "loop": 2,
+   "oc": 5,
+   "tomato": 5,
+   "fork": 2,
+   "bubble": 10,
+   "panic": 3,
+   "undo": 5,
+   "shield": 2,
+   "grow": 2,
+   "duck": 4,
+   "leak": 1
+  },
+  "hash": "4e050b3e"
+ },
+ "1:Pharaoh's Jackpot:L1:s2": {
+  "order": [
+   "octo",
+   "swifty",
+   "gopher",
+   "tux"
+  ],
+  "times": [
+   115.583,
+   112.383,
+   114.017,
+   111.4
+  ],
+  "picks": {
+   "undo": 4,
+   "boost": 12,
+   "duck": 9,
+   "fork": 2,
+   "shield": 4,
+   "bubble": 7,
+   "grow": 6,
+   "oc": 6,
+   "tomato": 3,
+   "pull": 3,
+   "loop": 3,
+   "ghost": 5,
+   "ff": 1,
+   "panic": 3,
+   "mega": 5,
+   "sudo": 5,
+   "thread": 3,
+   "leak": 1
+  },
+  "hash": "bfa23846"
+ },
+ "1:Pharaoh's Jackpot:L2:s1": {
+  "order": [
+   "gopher",
+   "swifty",
+   "tux",
+   "octo"
+  ],
+  "times": [
+   110.05,
+   110.033,
+   108.5,
+   111.1
+  ],
+  "picks": {
+   "boost": 15,
+   "bubble": 4,
+   "sudo": 8,
+   "grow": 12,
+   "pull": 7,
+   "leak": 3,
+   "loop": 3,
+   "mega": 3,
+   "shield": 2,
+   "duck": 1,
+   "oc": 4,
+   "undo": 5,
+   "thread": 3,
+   "tomato": 3,
+   "ghost": 7,
+   "ff": 3
+  },
+  "hash": "cfed1694"
+ },
+ "1:Pharaoh's Jackpot:L2:s2": {
+  "order": [
+   "cpp",
+   "duke",
+   "tux",
+   "ferris"
+  ],
+  "times": [
+   117.483,
+   113.267,
+   118.95,
+   118.533
+  ],
+  "picks": {
+   "leak": 5,
+   "undo": 2,
+   "boost": 21,
+   "thread": 5,
+   "mega": 5,
+   "tomato": 2,
+   "ghost": 4,
+   "duck": 8,
+   "grow": 7,
+   "shield": 3,
+   "bubble": 7,
+   "ff": 2,
+   "sudo": 4,
+   "pull": 6,
+   "oc": 3,
+   "panic": 5
+  },
+  "hash": "bd7510c4"
+ },
+ "2:Duke's Volcano:L0:s1": {
+  "order": [
+   "droid",
+   "octo",
+   "docky",
+   "pyth"
+  ],
+  "times": [
+   126.083,
+   131.683,
+   124.55,
+   133.95
+  ],
+  "picks": {
+   "grow": 5,
+   "bubble": 6,
+   "sudo": 2,
+   "panic": 5,
+   "boost": 6,
+   "duck": 2,
+   "leak": 2,
+   "pull": 2,
+   "oc": 5,
+   "shield": 3,
+   "thread": 1,
+   "tomato": 1,
+   "ghost": 2
+  },
+  "hash": "f749acd8"
+ },
+ "2:Duke's Volcano:L0:s2": {
+  "order": [
+   "tux",
+   "octo",
+   "swifty",
+   "gopher"
+  ],
+  "times": [
+   113.633,
+   120.4,
+   126.783,
+   117.817
+  ],
+  "picks": {
+   "duck": 3,
+   "boost": 8,
+   "ff": 2,
+   "thread": 5,
+   "sudo": 4,
+   "bubble": 1,
+   "leak": 1,
+   "tomato": 1,
+   "mega": 1,
+   "grow": 5,
+   "pull": 1,
+   "shield": 2,
+   "oc": 3,
+   "loop": 2
+  },
+  "hash": "567c15d2"
+ },
+ "2:Duke's Volcano:L1:s1": {
+  "order": [
+   "swifty",
+   "gopher",
+   "tux",
+   "octo"
+  ],
+  "times": [
+   123.267,
+   118.45,
+   121.267,
+   124.75
+  ],
+  "picks": {
+   "loop": 1,
+   "duck": 4,
+   "sudo": 3,
+   "ghost": 2,
+   "thread": 5,
+   "leak": 5,
+   "boost": 5,
+   "grow": 3,
+   "panic": 3,
+   "oc": 5,
+   "bubble": 4,
+   "ff": 1,
+   "pull": 3,
+   "tomato": 1
+  },
+  "hash": "41ef62c2"
+ },
+ "2:Duke's Volcano:L1:s2": {
+  "order": [
+   "ferris",
+   "tux",
+   "duke",
+   "cpp"
+  ],
+  "times": [
+   122.217,
+   122.9,
+   114.35,
+   117.55
+  ],
+  "picks": {
+   "sudo": 3,
+   "grow": 3,
+   "oc": 8,
+   "tomato": 1,
+   "duck": 3,
+   "shield": 2,
+   "thread": 2,
+   "ghost": 3,
+   "boost": 3,
+   "leak": 1,
+   "pull": 5,
+   "bubble": 2,
+   "panic": 1,
+   "ff": 1,
+   "undo": 2,
+   "mega": 1,
+   "loop": 1
+  },
+  "hash": "65041a3a"
+ },
+ "2:Duke's Volcano:L2:s1": {
+  "order": [
+   "tux",
+   "ferris",
+   "duke",
+   "cpp"
+  ],
+  "times": [
+   122.567,
+   124.117,
+   118.017,
+   117.333
+  ],
+  "picks": {
+   "tomato": 3,
+   "duck": 3,
+   "undo": 2,
+   "bubble": 7,
+   "sudo": 5,
+   "boost": 7,
+   "leak": 2,
+   "pull": 2,
+   "oc": 7,
+   "ghost": 5,
+   "thread": 2,
+   "grow": 3,
+   "shield": 1,
+   "loop": 2
+  },
+  "hash": "86c13ece"
+ },
+ "2:Duke's Volcano:L2:s2": {
+  "order": [
+   "droid",
+   "pyth",
+   "duke",
+   "docky"
+  ],
+  "times": [
+   129.317,
+   126.283,
+   128.233,
+   128.733
+  ],
+  "picks": {
+   "duck": 8,
+   "ghost": 2,
+   "shield": 4,
+   "grow": 2,
+   "bubble": 5,
+   "boost": 5,
+   "oc": 2,
+   "sudo": 6,
+   "panic": 2,
+   "thread": 4,
+   "undo": 3,
+   "leak": 2,
+   "mega": 1,
+   "pull": 3,
+   "tomato": 2,
+   "loop": 1
+  },
+  "hash": "82906593"
+ },
+ "3:Moonshot:L0:s1": {
+  "order": [
+   "octo",
+   "swifty",
+   "tux",
+   "gopher"
+  ],
+  "times": [
+   125.333,
+   123.867,
+   128.5,
+   123.367
+  ],
+  "picks": {
+   "grow": 6,
+   "mega": 1,
+   "undo": 2,
+   "leak": 4,
+   "bubble": 6,
+   "sudo": 2,
+   "pull": 3,
+   "ghost": 5,
+   "tomato": 2,
+   "duck": 3,
+   "oc": 3,
+   "loop": 1,
+   "thread": 1
+  },
+  "hash": "a4025647"
+ },
+ "3:Moonshot:L0:s2": {
+  "order": [
+   "ferris",
+   "duke",
+   "cpp",
+   "tux"
+  ],
+  "times": [
+   126.95,
+   127,
+   123.4,
+   129.167
+  ],
+  "picks": {
+   "loop": 3,
+   "duck": 4,
+   "undo": 4,
+   "ghost": 4,
+   "mega": 3,
+   "shield": 2,
+   "thread": 2,
+   "sudo": 7,
+   "ff": 4,
+   "oc": 4,
+   "tomato": 1,
+   "boost": 3,
+   "pull": 1,
+   "grow": 1,
+   "leak": 1
+  },
+  "hash": "88eb7824"
+ },
+ "3:Moonshot:L1:s1": {
+  "order": [
+   "ferris",
+   "duke",
+   "tux",
+   "cpp"
+  ],
+  "times": [
+   123.6,
+   129.067,
+   120.7,
+   125.867
+  ],
+  "picks": {
+   "bubble": 2,
+   "tomato": 2,
+   "ghost": 5,
+   "shield": 2,
+   "grow": 4,
+   "duck": 3,
+   "undo": 3,
+   "leak": 1,
+   "panic": 1,
+   "boost": 6,
+   "oc": 3,
+   "loop": 3,
+   "pull": 3,
+   "ff": 1,
+   "sudo": 1,
+   "thread": 2
+  },
+  "hash": "17b4620d"
+ },
+ "3:Moonshot:L1:s2": {
+  "order": [
+   "docky",
+   "duke",
+   "droid",
+   "pyth"
+  ],
+  "times": [
+   118.4,
+   122.033,
+   122.7,
+   119.317
+  ],
+  "picks": {
+   "loop": 1,
+   "bubble": 4,
+   "sudo": 6,
+   "mega": 1,
+   "boost": 2,
+   "oc": 4,
+   "grow": 4,
+   "tomato": 1,
+   "pull": 3,
+   "ghost": 2,
+   "shield": 4,
+   "panic": 2,
+   "ff": 1,
+   "duck": 1
+  },
+  "hash": "d00bb0be"
+ },
+ "3:Moonshot:L2:s1": {
+  "order": [
+   "duke",
+   "droid",
+   "docky",
+   "pyth"
+  ],
+  "times": [
+   113.083,
+   112.6,
+   115.767,
+   112.05
+  ],
+  "picks": {
+   "leak": 1,
+   "sudo": 4,
+   "boost": 7,
+   "loop": 1,
+   "ghost": 3,
+   "thread": 2,
+   "shield": 3,
+   "duck": 3,
+   "tomato": 1,
+   "grow": 6,
+   "oc": 4,
+   "mega": 1,
+   "ff": 1,
+   "bubble": 1,
+   "pull": 1,
+   "panic": 1
+  },
+  "hash": "6617f21"
+ },
+ "3:Moonshot:L2:s2": {
+  "order": [
+   "docky",
+   "swifty",
+   "gopher",
+   "octo"
+  ],
+  "times": [
+   125.483,
+   125.567,
+   125.717,
+   123.75
+  ],
+  "picks": {
+   "duck": 7,
+   "leak": 2,
+   "loop": 1,
+   "undo": 3,
+   "shield": 3,
+   "panic": 2,
+   "thread": 1,
+   "bubble": 2,
+   "pull": 3,
+   "grow": 2,
+   "ghost": 3,
+   "boost": 5,
+   "oc": 3,
+   "sudo": 2,
+   "mega": 1,
+   "tomato": 2
+  },
+  "hash": "132a40ab"
+ },
+ "4:Sakura Stack:L0:s1": {
+  "order": [
+   "tux",
+   "ferris",
+   "duke",
+   "cpp"
+  ],
+  "times": [
+   104.45,
+   106.2,
+   100.783,
+   100.05
+  ],
+  "picks": {
+   "boost": 12,
+   "mega": 2,
+   "ghost": 3,
+   "bubble": 3,
+   "leak": 3,
+   "oc": 4,
+   "grow": 2,
+   "pull": 1,
+   "duck": 1,
+   "thread": 1,
+   "undo": 2
+  },
+  "hash": "beb14955"
+ },
+ "4:Sakura Stack:L0:s2": {
+  "order": [
+   "droid",
+   "pyth",
+   "duke",
+   "docky"
+  ],
+  "times": [
+   102.383,
+   99.2,
+   100.067,
+   101.383
+  ],
+  "picks": {
+   "sudo": 3,
+   "shield": 5,
+   "boost": 4,
+   "pull": 1,
+   "duck": 3,
+   "thread": 2,
+   "grow": 5,
+   "ghost": 5,
+   "mega": 1,
+   "oc": 1,
+   "panic": 2,
+   "bubble": 1,
+   "ff": 1,
+   "leak": 1
+  },
+  "hash": "7f33d068"
+ },
+ "4:Sakura Stack:L1:s1": {
+  "order": [
+   "docky",
+   "droid",
+   "duke",
+   "pyth"
+  ],
+  "times": [
+   96.733,
+   99.9,
+   101.367,
+   100.983
+  ],
+  "picks": {
+   "fork": 1,
+   "thread": 5,
+   "grow": 2,
+   "shield": 4,
+   "panic": 3,
+   "bubble": 2,
+   "sudo": 3,
+   "ff": 1,
+   "boost": 4,
+   "mega": 2,
+   "duck": 4,
+   "oc": 2,
+   "pull": 2,
+   "ghost": 2
+  },
+  "hash": "a573d1c1"
+ },
+ "4:Sakura Stack:L1:s2": {
+  "order": [
+   "docky",
+   "swifty",
+   "octo",
+   "gopher"
+  ],
+  "times": [
+   97.967,
+   100.367,
+   98.367,
+   95.217
+  ],
+  "picks": {
+   "sudo": 2,
+   "boost": 8,
+   "thread": 2,
+   "oc": 2,
+   "ghost": 5,
+   "mega": 1,
+   "duck": 2,
+   "shield": 3,
+   "pull": 4,
+   "loop": 2,
+   "grow": 1,
+   "panic": 1
+  },
+  "hash": "7e3c70bf"
+ },
+ "4:Sakura Stack:L2:s1": {
+  "order": [
+   "docky",
+   "gopher",
+   "swifty",
+   "octo"
+  ],
+  "times": [
+   96.583,
+   94.767,
+   98.55,
+   91.333
+  ],
+  "picks": {
+   "sudo": 3,
+   "bubble": 3,
+   "ghost": 6,
+   "duck": 1,
+   "oc": 4,
+   "grow": 5,
+   "mega": 1,
+   "ff": 3,
+   "boost": 6,
+   "pull": 3,
+   "thread": 2,
+   "leak": 1,
+   "shield": 1
+  },
+  "hash": "603a22b4"
+ },
+ "4:Sakura Stack:L2:s2": {
+  "order": [
+   "cpp",
+   "tux",
+   "swifty",
+   "ferris"
+  ],
+  "times": [
+   102.267,
+   105.883,
+   103.533,
+   103.983
+  ],
+  "picks": {
+   "bubble": 1,
+   "ghost": 3,
+   "mega": 3,
+   "duck": 6,
+   "boost": 4,
+   "panic": 3,
+   "shield": 5,
+   "undo": 2,
+   "sudo": 4,
+   "grow": 2,
+   "thread": 2,
+   "leak": 1
+  },
+  "hash": "8966bbea"
+ },
+ "5:Pyth Plateau:L0:s1": {
+  "order": [
+   "duke",
+   "docky",
+   "pyth",
+   "droid"
+  ],
+  "times": [
+   75.383,
+   77.333,
+   76.4,
+   74.417
+  ],
+  "picks": {
+   "sudo": 2,
+   "boost": 12,
+   "ghost": 4,
+   "tomato": 2,
+   "duck": 3,
+   "mega": 3,
+   "thread": 1,
+   "loop": 2,
+   "bubble": 1,
+   "leak": 3,
+   "panic": 1,
+   "shield": 2,
+   "grow": 3,
+   "pull": 1,
+   "ff": 1
+  },
+  "hash": "51437622"
+ },
+ "5:Pyth Plateau:L0:s2": {
+  "order": [
+   "swifty",
+   "docky",
+   "gopher",
+   "octo"
+  ],
+  "times": [
+   72.867,
+   74.767,
+   76.45,
+   73.917
+  ],
+  "picks": {
+   "boost": 9,
+   "thread": 2,
+   "grow": 2,
+   "oc": 4,
+   "pull": 5,
+   "loop": 2,
+   "ghost": 7,
+   "shield": 3,
+   "duck": 4,
+   "undo": 1,
+   "tomato": 1,
+   "bubble": 3,
+   "ff": 1,
+   "mega": 1,
+   "sudo": 1,
+   "panic": 1
+  },
+  "hash": "aeceb0ab"
+ },
+ "5:Pyth Plateau:L1:s1": {
+  "order": [
+   "swifty",
+   "octo",
+   "docky",
+   "gopher"
+  ],
+  "times": [
+   72.967,
+   75.95,
+   75.3,
+   75.45
+  ],
+  "picks": {
+   "duck": 3,
+   "sudo": 3,
+   "thread": 4,
+   "bubble": 6,
+   "boost": 8,
+   "ghost": 6,
+   "oc": 2,
+   "tomato": 1,
+   "pull": 4,
+   "shield": 2,
+   "mega": 1,
+   "fork": 1,
+   "grow": 1,
+   "leak": 2,
+   "ff": 1
+  },
+  "hash": "5f098011"
+ },
+ "5:Pyth Plateau:L1:s2": {
+  "order": [
+   "ferris",
+   "tux",
+   "swifty",
+   "cpp"
+  ],
+  "times": [
+   74.817,
+   71.033,
+   72.367,
+   73.217
+  ],
+  "picks": {
+   "bubble": 3,
+   "shield": 5,
+   "ghost": 5,
+   "panic": 2,
+   "thread": 1,
+   "duck": 5,
+   "sudo": 3,
+   "grow": 5,
+   "undo": 1,
+   "leak": 1,
+   "oc": 5,
+   "loop": 3,
+   "boost": 4,
+   "pull": 4,
+   "ff": 1
+  },
+  "hash": "60d8c420"
+ },
+ "5:Pyth Plateau:L2:s1": {
+  "order": [
+   "cpp",
+   "tux",
+   "swifty",
+   "ferris"
+  ],
+  "times": [
+   72.217,
+   75.517,
+   73.033,
+   73.817
+  ],
+  "picks": {
+   "undo": 2,
+   "sudo": 1,
+   "ghost": 3,
+   "panic": 1,
+   "grow": 7,
+   "thread": 5,
+   "shield": 5,
+   "tomato": 3,
+   "bubble": 4,
+   "duck": 3,
+   "pull": 4,
+   "boost": 4,
+   "mega": 2,
+   "leak": 1,
+   "oc": 2,
+   "ff": 1
+  },
+  "hash": "528d5d4a"
+ },
+ "5:Pyth Plateau:L2:s2": {
+  "order": [
+   "pyth",
+   "droid",
+   "cpp",
+   "duke"
+  ],
+  "times": [
+   74.833,
+   74.283,
+   78.117,
+   76.967
+  ],
+  "picks": {
+   "duck": 3,
+   "boost": 9,
+   "bubble": 5,
+   "undo": 2,
+   "mega": 4,
+   "sudo": 4,
+   "leak": 3,
+   "ghost": 4,
+   "shield": 1,
+   "oc": 1,
+   "loop": 2,
+   "pull": 2,
+   "grow": 5,
+   "panic": 3,
+   "tomato": 1,
+   "ff": 1
+  },
+  "hash": "a15c1acb"
+ },
+ "6:Merge Bay:L0:s1": {
+  "order": [
+   "gopher",
+   "swifty",
+   "octo",
+   "docky"
+  ],
+  "times": [
+   106.833,
+   105.75,
+   109.967,
+   113.05
+  ],
+  "picks": {
+   "duck": 9,
+   "bubble": 11,
+   "undo": 5,
+   "ghost": 10,
+   "pull": 7,
+   "thread": 9,
+   "leak": 2,
+   "oc": 5,
+   "sudo": 6,
+   "tomato": 3,
+   "panic": 2,
+   "boost": 13,
+   "grow": 5,
+   "fork": 3,
+   "mega": 3,
+   "ff": 2,
+   "loop": 1,
+   "shield": 2
+  },
+  "hash": "54f37b3c"
+ },
+ "6:Merge Bay:L0:s2": {
+  "order": [
+   "swifty",
+   "tux",
+   "cpp",
+   "ferris"
+  ],
+  "times": [
+   116.133,
+   116.583,
+   116.1,
+   115.483
+  ],
+  "picks": {
+   "grow": 5,
+   "mega": 6,
+   "sudo": 5,
+   "ghost": 9,
+   "oc": 7,
+   "boost": 9,
+   "duck": 8,
+   "pull": 3,
+   "tomato": 6,
+   "shield": 1,
+   "loop": 4,
+   "ff": 3,
+   "bubble": 10,
+   "panic": 3,
+   "leak": 2,
+   "thread": 5,
+   "undo": 2
+  },
+  "hash": "f7d6ed88"
+ },
+ "6:Merge Bay:L1:s1": {
+  "order": [
+   "swifty",
+   "tux",
+   "cpp",
+   "ferris"
+  ],
+  "times": [
+   106.783,
+   108.433,
+   104.717,
+   104.133
+  ],
+  "picks": {
+   "boost": 14,
+   "sudo": 13,
+   "grow": 4,
+   "undo": 4,
+   "bubble": 7,
+   "shield": 11,
+   "thread": 3,
+   "loop": 3,
+   "ghost": 6,
+   "oc": 6,
+   "mega": 4,
+   "pull": 3,
+   "fork": 2,
+   "panic": 3,
+   "duck": 4,
+   "tomato": 1,
+   "ff": 2,
+   "leak": 1
+  },
+  "hash": "65e1a3b5"
+ },
+ "6:Merge Bay:L1:s2": {
+  "order": [
+   "duke",
+   "cpp",
+   "pyth",
+   "droid"
+  ],
+  "times": [
+   97.7,
+   96.75,
+   95.2,
+   96.233
+  ],
+  "picks": {
+   "sudo": 11,
+   "duck": 4,
+   "bubble": 5,
+   "shield": 7,
+   "ghost": 10,
+   "boost": 10,
+   "tomato": 5,
+   "grow": 5,
+   "fork": 4,
+   "loop": 3,
+   "pull": 6,
+   "oc": 8,
+   "mega": 2,
+   "undo": 2,
+   "ff": 2,
+   "thread": 2,
+   "leak": 2,
+   "panic": 2
+  },
+  "hash": "7f6fa404"
+ },
+ "6:Merge Bay:L2:s1": {
+  "order": [
+   "droid",
+   "cpp",
+   "duke",
+   "pyth"
+  ],
+  "times": [
+   103.133,
+   109.8,
+   106.05,
+   104.717
+  ],
+  "picks": {
+   "sudo": 9,
+   "thread": 8,
+   "fork": 1,
+   "undo": 6,
+   "boost": 20,
+   "duck": 10,
+   "bubble": 11,
+   "shield": 3,
+   "mega": 3,
+   "panic": 6,
+   "tomato": 4,
+   "ghost": 8,
+   "grow": 7,
+   "pull": 3,
+   "leak": 3,
+   "loop": 1,
+   "oc": 4,
+   "ff": 2
+  },
+  "hash": "60bd5a7d"
+ },
+ "6:Merge Bay:L2:s2": {
+  "order": [
+   "gopher",
+   "octo",
+   "docky",
+   "droid"
+  ],
+  "times": [
+   102.883,
+   106.4,
+   107.083,
+   108.383
+  ],
+  "picks": {
+   "tomato": 5,
+   "leak": 4,
+   "loop": 5,
+   "bubble": 10,
+   "sudo": 16,
+   "mega": 8,
+   "oc": 7,
+   "ghost": 6,
+   "duck": 4,
+   "shield": 3,
+   "thread": 3,
+   "undo": 9,
+   "fork": 3,
+   "pull": 5,
+   "boost": 9,
+   "grow": 4,
+   "panic": 1
+  },
+  "hash": "452a41b1"
+ },
+ "7:Kernel Pretzel:L0:s1": {
+  "order": [
+   "tux",
+   "swifty",
+   "cpp",
+   "ferris"
+  ],
+  "times": [
+   140.25,
+   141.6,
+   138.45,
+   139.083
+  ],
+  "picks": {
+   "tomato": 4,
+   "sudo": 2,
+   "boost": 13,
+   "undo": 3,
+   "thread": 2,
+   "duck": 5,
+   "ghost": 5,
+   "fork": 1,
+   "oc": 3,
+   "leak": 3,
+   "bubble": 4,
+   "grow": 3,
+   "pull": 3,
+   "ff": 3,
+   "panic": 1
+  },
+  "hash": "94275a1c"
+ },
+ "7:Kernel Pretzel:L0:s2": {
+  "order": [
+   "duke",
+   "pyth",
+   "droid",
+   "cpp"
+  ],
+  "times": [
+   137.167,
+   136.333,
+   135.45,
+   138.983
+  ],
+  "picks": {
+   "boost": 13,
+   "sudo": 5,
+   "tomato": 1,
+   "duck": 3,
+   "oc": 4,
+   "mega": 4,
+   "leak": 2,
+   "thread": 4,
+   "ghost": 6,
+   "bubble": 5,
+   "undo": 2,
+   "grow": 2,
+   "shield": 1,
+   "panic": 3,
+   "loop": 1,
+   "pull": 1
+  },
+  "hash": "d8caa1c2"
+ },
+ "7:Kernel Pretzel:L1:s1": {
+  "order": [
+   "pyth",
+   "droid",
+   "duke",
+   "cpp"
+  ],
+  "times": [
+   128.933,
+   128.3,
+   134.233,
+   136.233
+  ],
+  "picks": {
+   "sudo": 2,
+   "undo": 3,
+   "grow": 8,
+   "ghost": 7,
+   "boost": 11,
+   "leak": 1,
+   "loop": 2,
+   "bubble": 2,
+   "duck": 4,
+   "oc": 6,
+   "shield": 2,
+   "pull": 2,
+   "panic": 2,
+   "thread": 2,
+   "ff": 1,
+   "mega": 1,
+   "tomato": 1
+  },
+  "hash": "23bad7c0"
+ },
+ "7:Kernel Pretzel:L1:s2": {
+  "order": [
+   "docky",
+   "octo",
+   "droid",
+   "gopher"
+  ],
+  "times": [
+   141.867,
+   140.8,
+   137.383,
+   140.8
+  ],
+  "picks": {
+   "bubble": 8,
+   "mega": 4,
+   "tomato": 1,
+   "ghost": 7,
+   "sudo": 7,
+   "leak": 2,
+   "boost": 7,
+   "panic": 4,
+   "undo": 2,
+   "pull": 1,
+   "oc": 2,
+   "loop": 3,
+   "shield": 4,
+   "duck": 1,
+   "thread": 1
+  },
+  "hash": "20e09767"
+ },
+ "7:Kernel Pretzel:L2:s1": {
+  "order": [
+   "octo",
+   "docky",
+   "gopher",
+   "droid"
+  ],
+  "times": [
+   135.7,
+   130.7,
+   135.317,
+   136.067
+  ],
+  "picks": {
+   "duck": 4,
+   "undo": 1,
+   "boost": 13,
+   "sudo": 10,
+   "shield": 2,
+   "ghost": 4,
+   "bubble": 6,
+   "ff": 5,
+   "panic": 3,
+   "pull": 3,
+   "thread": 5,
+   "leak": 2,
+   "grow": 1,
+   "mega": 2,
+   "oc": 1,
+   "loop": 1
+  },
+  "hash": "4ca64ed9"
+ },
+ "7:Kernel Pretzel:L2:s2": {
+  "order": [
+   "swifty",
+   "gopher",
+   "ferris",
+   "tux"
+  ],
+  "times": [
+   140.85,
+   141.983,
+   136.3,
+   136.55
+  ],
+  "picks": {
+   "leak": 5,
+   "sudo": 6,
+   "ghost": 4,
+   "duck": 6,
+   "undo": 5,
+   "pull": 2,
+   "boost": 8,
+   "mega": 2,
+   "grow": 3,
+   "bubble": 8,
+   "loop": 1,
+   "thread": 1,
+   "panic": 5,
+   "shield": 1,
+   "tomato": 1,
+   "fork": 1
+  },
+  "hash": "90eee8ee"
+ },
+ "8:Pipeline Pass:L0:s1": {
+  "order": [
+   "droid",
+   "duke",
+   "pyth",
+   "cpp"
+  ],
+  "times": [
+   64.45,
+   66.15,
+   65.317,
+   67.783
+  ],
+  "picks": {
+   "grow": 4,
+   "bubble": 3,
+   "ghost": 2,
+   "shield": 1,
+   "leak": 1,
+   "thread": 3,
+   "sudo": 1,
+   "loop": 2,
+   "tomato": 1,
+   "duck": 2,
+   "oc": 2,
+   "boost": 4,
+   "pull": 2
+  },
+  "hash": "1b1c6dd6"
+ },
+ "8:Pipeline Pass:L0:s2": {
+  "order": [
+   "gopher",
+   "docky",
+   "droid",
+   "octo"
+  ],
+  "times": [
+   66.233,
+   67.417,
+   66.9,
+   67.4
+  ],
+  "picks": {
+   "duck": 3,
+   "sudo": 6,
+   "undo": 2,
+   "boost": 3,
+   "pull": 3,
+   "loop": 1,
+   "shield": 1,
+   "bubble": 5,
+   "leak": 1,
+   "tomato": 1
+  },
+  "hash": "4ae22e18"
+ },
+ "8:Pipeline Pass:L1:s1": {
+  "order": [
+   "octo",
+   "gopher",
+   "docky",
+   "droid"
+  ],
+  "times": [
+   67.15,
+   64.517,
+   67.583,
+   72.217
+  ],
+  "picks": {
+   "boost": 2,
+   "duck": 3,
+   "thread": 1,
+   "grow": 5,
+   "ghost": 2,
+   "tomato": 2,
+   "sudo": 3,
+   "loop": 1,
+   "mega": 2,
+   "panic": 1,
+   "oc": 1,
+   "leak": 1,
+   "bubble": 1,
+   "undo": 1
+  },
+  "hash": "1fede9d1"
+ },
+ "8:Pipeline Pass:L1:s2": {
+  "order": [
+   "gopher",
+   "ferris",
+   "swifty",
+   "tux"
+  ],
+  "times": [
+   63.767,
+   65.117,
+   64.733,
+   63.05
+  ],
+  "picks": {
+   "boost": 5,
+   "bubble": 4,
+   "ghost": 3,
+   "fork": 1,
+   "shield": 2,
+   "duck": 3,
+   "thread": 3,
+   "grow": 3,
+   "undo": 2,
+   "sudo": 1,
+   "leak": 1,
+   "pull": 1
+  },
+  "hash": "180ca253"
+ },
+ "8:Pipeline Pass:L2:s1": {
+  "order": [
+   "ferris",
+   "swifty",
+   "tux",
+   "gopher"
+  ],
+  "times": [
+   60.6,
+   63.317,
+   62,
+   64.15
+  ],
+  "picks": {
+   "duck": 2,
+   "shield": 1,
+   "boost": 3,
+   "tomato": 2,
+   "oc": 1,
+   "grow": 5,
+   "leak": 1,
+   "mega": 1,
+   "bubble": 2,
+   "loop": 1,
+   "ghost": 3,
+   "sudo": 2,
+   "pull": 1,
+   "panic": 1,
+   "undo": 1,
+   "thread": 1
+  },
+  "hash": "237f3b10"
+ },
+ "8:Pipeline Pass:L2:s2": {
+  "order": [
+   "duke",
+   "ferris",
+   "cpp",
+   "pyth"
+  ],
+  "times": [
+   71.533,
+   64.633,
+   71.533,
+   70.717
+  ],
+  "picks": {
+   "bubble": 3,
+   "ghost": 4,
+   "grow": 5,
+   "boost": 2,
+   "leak": 2,
+   "pull": 3,
+   "duck": 4,
+   "shield": 2,
+   "sudo": 2,
+   "oc": 1,
+   "tomato": 1,
+   "panic": 2,
+   "thread": 1,
+   "loop": 1,
+   "undo": 1
+  },
+  "hash": "ceb412fb"
+ },
+ "9:Heap Space:L0:s1": {
+  "order": [
+   "gopher",
+   "droid",
+   "octo",
+   "docky"
+  ],
+  "times": [
+   118.55,
+   123.267,
+   125.683,
+   120.117
+  ],
+  "picks": {
+   "boost": 8,
+   "ghost": 3,
+   "panic": 4,
+   "sudo": 5,
+   "shield": 2,
+   "duck": 3,
+   "mega": 1,
+   "pull": 3,
+   "leak": 1,
+   "bubble": 3,
+   "oc": 6,
+   "ff": 1,
+   "thread": 1,
+   "loop": 2,
+   "tomato": 1,
+   "grow": 2
+  },
+  "hash": "ea6d61c3"
+ },
+ "9:Heap Space:L0:s2": {
+  "order": [
+   "swifty",
+   "gopher",
+   "tux",
+   "ferris"
+  ],
+  "times": [
+   133.3,
+   132.483,
+   130.683,
+   131.55
+  ],
+  "picks": {
+   "boost": 5,
+   "oc": 4,
+   "panic": 5,
+   "duck": 6,
+   "ghost": 4,
+   "loop": 2,
+   "sudo": 5,
+   "thread": 2,
+   "pull": 3,
+   "mega": 1,
+   "undo": 1,
+   "shield": 1,
+   "bubble": 3,
+   "leak": 1
+  },
+  "hash": "9dfc7b14"
+ },
+ "9:Heap Space:L1:s1": {
+  "order": [
+   "tux",
+   "gopher",
+   "swifty",
+   "ferris"
+  ],
+  "times": [
+   132,
+   118.85,
+   127,
+   125.75
+  ],
+  "picks": {
+   "duck": 3,
+   "pull": 3,
+   "ghost": 5,
+   "leak": 3,
+   "bubble": 2,
+   "tomato": 2,
+   "thread": 4,
+   "sudo": 4,
+   "oc": 5,
+   "boost": 7,
+   "grow": 6,
+   "fork": 1,
+   "undo": 1,
+   "mega": 2,
+   "loop": 2,
+   "ff": 1
+  },
+  "hash": "eb2343d5"
+ },
+ "9:Heap Space:L1:s2": {
+  "order": [
+   "ferris",
+   "duke",
+   "pyth",
+   "cpp"
+  ],
+  "times": [
+   124.517,
+   123.75,
+   125.483,
+   118.083
+  ],
+  "picks": {
+   "boost": 7,
+   "pull": 2,
+   "fork": 1,
+   "sudo": 2,
+   "tomato": 3,
+   "grow": 5,
+   "leak": 2,
+   "panic": 2,
+   "shield": 1,
+   "mega": 1,
+   "oc": 7,
+   "duck": 7,
+   "ghost": 6,
+   "bubble": 1,
+   "thread": 3
+  },
+  "hash": "53c59992"
+ },
+ "9:Heap Space:L2:s1": {
+  "order": [
+   "pyth",
+   "duke",
+   "cpp",
+   "ferris"
+  ],
+  "times": [
+   119.067,
+   121.683,
+   124,
+   125.3
+  ],
+  "picks": {
+   "duck": 3,
+   "grow": 4,
+   "thread": 4,
+   "sudo": 7,
+   "shield": 1,
+   "pull": 10,
+   "loop": 5,
+   "ghost": 5,
+   "boost": 7,
+   "panic": 2,
+   "bubble": 4,
+   "ff": 4,
+   "oc": 2,
+   "mega": 1,
+   "tomato": 1,
+   "undo": 1
+  },
+  "hash": "c8566d4e"
+ },
+ "9:Heap Space:L2:s2": {
+  "order": [
+   "droid",
+   "octo",
+   "pyth",
+   "docky"
+  ],
+  "times": [
+   115.1,
+   118.933,
+   114.733,
+   117.533
+  ],
+  "picks": {
+   "boost": 6,
+   "oc": 7,
+   "sudo": 8,
+   "ghost": 4,
+   "bubble": 2,
+   "pull": 6,
+   "shield": 2,
+   "grow": 2,
+   "tomato": 2,
+   "thread": 3,
+   "duck": 4,
+   "loop": 2,
+   "mega": 2,
+   "ff": 3,
+   "panic": 1
+  },
+  "hash": "23b1fad0"
+ },
+ "10:Assembly Line:L0:s1": {
+  "order": [
+   "gopher",
+   "ferris",
+   "tux",
+   "swifty"
+  ],
+  "times": [
+   115.3,
+   116.65,
+   117.25,
+   111.083
+  ],
+  "picks": {
+   "mega": 1,
+   "shield": 2,
+   "leak": 2,
+   "panic": 2,
+   "undo": 3,
+   "duck": 2,
+   "pull": 3,
+   "oc": 3,
+   "boost": 3,
+   "sudo": 4,
+   "tomato": 3,
+   "grow": 1,
+   "thread": 1
+  },
+  "hash": "ca63446c"
+ },
+ "10:Assembly Line:L0:s2": {
+  "order": [
+   "pyth",
+   "cpp",
+   "duke",
+   "ferris"
+  ],
+  "times": [
+   115.317,
+   120.4,
+   119.55,
+   121.017
+  ],
+  "picks": {
+   "boost": 4,
+   "panic": 1,
+   "ghost": 5,
+   "shield": 1,
+   "tomato": 1,
+   "bubble": 3,
+   "mega": 5,
+   "duck": 3,
+   "leak": 3,
+   "thread": 2,
+   "oc": 4,
+   "sudo": 3,
+   "undo": 1,
+   "ff": 1,
+   "loop": 2
+  },
+  "hash": "8181281"
+ },
+ "10:Assembly Line:L1:s1": {
+  "order": [
+   "duke",
+   "ferris",
+   "pyth",
+   "cpp"
+  ],
+  "times": [
+   120.4,
+   118.05,
+   123.333,
+   119.367
+  ],
+  "picks": {
+   "leak": 3,
+   "bubble": 5,
+   "boost": 5,
+   "grow": 5,
+   "oc": 3,
+   "shield": 3,
+   "tomato": 2,
+   "duck": 7,
+   "sudo": 2,
+   "thread": 1,
+   "panic": 1,
+   "loop": 1,
+   "undo": 1,
+   "ghost": 2
+  },
+  "hash": "1a627474"
+ },
+ "10:Assembly Line:L1:s2": {
+  "order": [
+   "octo",
+   "pyth",
+   "droid",
+   "docky"
+  ],
+  "times": [
+   113.617,
+   118.55,
+   115.983,
+   115.167
+  ],
+  "picks": {
+   "grow": 4,
+   "bubble": 3,
+   "ghost": 4,
+   "mega": 3,
+   "tomato": 2,
+   "panic": 4,
+   "boost": 6,
+   "duck": 4,
+   "sudo": 3,
+   "leak": 1,
+   "undo": 2,
+   "thread": 1,
+   "oc": 2,
+   "loop": 1,
+   "ff": 1
+  },
+  "hash": "aca2d289"
+ },
+ "10:Assembly Line:L2:s1": {
+  "order": [
+   "pyth",
+   "octo",
+   "droid",
+   "docky"
+  ],
+  "times": [
+   108.8,
+   114.95,
+   110.067,
+   107.817
+  ],
+  "picks": {
+   "sudo": 8,
+   "boost": 9,
+   "undo": 2,
+   "bubble": 4,
+   "oc": 3,
+   "shield": 2,
+   "panic": 2,
+   "leak": 3,
+   "pull": 4,
+   "grow": 3,
+   "ghost": 2,
+   "mega": 1,
+   "tomato": 1
+  },
+  "hash": "63ff5fab"
+ },
+ "10:Assembly Line:L2:s2": {
+  "order": [
+   "octo",
+   "tux",
+   "gopher",
+   "swifty"
+  ],
+  "times": [
+   113.35,
+   114.283,
+   114.217,
+   113.033
+  ],
+  "picks": {
+   "fork": 1,
+   "tomato": 1,
+   "pull": 3,
+   "panic": 4,
+   "undo": 2,
+   "thread": 1,
+   "loop": 2,
+   "bubble": 3,
+   "oc": 2,
+   "shield": 3,
+   "ghost": 4,
+   "boost": 10,
+   "grow": 1,
+   "duck": 3,
+   "sudo": 3,
+   "leak": 1,
+   "ff": 1
+  },
+  "hash": "c1610897"
+ },
+ "11:Cron Canyon:L0:s1": {
+  "order": [
+   "duke",
+   "pyth",
+   "ferris",
+   "cpp"
+  ],
+  "times": [
+   133.65,
+   132.667,
+   134.233,
+   133.883
+  ],
+  "picks": {
+   "boost": 6,
+   "duck": 6,
+   "sudo": 3,
+   "ghost": 3,
+   "panic": 1,
+   "loop": 1,
+   "shield": 2,
+   "bubble": 6,
+   "undo": 2,
+   "tomato": 2,
+   "thread": 3,
+   "leak": 1,
+   "grow": 1,
+   "pull": 1,
+   "oc": 2,
+   "mega": 2
+  },
+  "hash": "8708eb0d"
+ },
+ "11:Cron Canyon:L0:s2": {
+  "order": [
+   "docky",
+   "droid",
+   "pyth",
+   "octo"
+  ],
+  "times": [
+   130.667,
+   125.867,
+   126.35,
+   128.917
+  ],
+  "picks": {
+   "boost": 6,
+   "panic": 3,
+   "loop": 5,
+   "duck": 2,
+   "ghost": 4,
+   "oc": 5,
+   "shield": 2,
+   "thread": 1,
+   "grow": 3,
+   "mega": 2,
+   "undo": 1,
+   "sudo": 3,
+   "leak": 1,
+   "pull": 1
+  },
+  "hash": "76b81137"
+ },
+ "11:Cron Canyon:L1:s1": {
+  "order": [
+   "droid",
+   "octo",
+   "pyth",
+   "docky"
+  ],
+  "times": [
+   131.783,
+   133.9,
+   130.617,
+   132.383
+  ],
+  "picks": {
+   "sudo": 3,
+   "bubble": 6,
+   "fork": 3,
+   "loop": 2,
+   "undo": 2,
+   "boost": 10,
+   "grow": 3,
+   "ghost": 3,
+   "panic": 3,
+   "pull": 1,
+   "leak": 1,
+   "mega": 2,
+   "oc": 2,
+   "ff": 1,
+   "shield": 1,
+   "duck": 1
+  },
+  "hash": "5a9c2e3b"
+ },
+ "11:Cron Canyon:L1:s2": {
+  "order": [
+   "octo",
+   "gopher",
+   "tux",
+   "swifty"
+  ],
+  "times": [
+   124.817,
+   124.933,
+   124.7,
+   123.867
+  ],
+  "picks": {
+   "grow": 1,
+   "oc": 5,
+   "mega": 1,
+   "loop": 1,
+   "boost": 5,
+   "shield": 4,
+   "bubble": 1,
+   "panic": 2,
+   "ghost": 7,
+   "sudo": 4,
+   "duck": 5,
+   "thread": 3,
+   "undo": 3,
+   "pull": 2,
+   "tomato": 1,
+   "leak": 1
+  },
+  "hash": "cbb7963c"
+ },
+ "11:Cron Canyon:L2:s1": {
+  "order": [
+   "swifty",
+   "tux",
+   "gopher",
+   "octo"
+  ],
+  "times": [
+   127.767,
+   126.917,
+   129.5,
+   133.95
+  ],
+  "picks": {
+   "boost": 4,
+   "undo": 1,
+   "bubble": 4,
+   "thread": 6,
+   "duck": 3,
+   "leak": 4,
+   "grow": 5,
+   "mega": 1,
+   "tomato": 5,
+   "oc": 3,
+   "ghost": 3,
+   "sudo": 2,
+   "pull": 1,
+   "panic": 3,
+   "loop": 1,
+   "ff": 1
+  },
+  "hash": "cd810de7"
+ },
+ "11:Cron Canyon:L2:s2": {
+  "order": [
+   "tux",
+   "duke",
+   "ferris",
+   "cpp"
+  ],
+  "times": [
+   128.367,
+   129.85,
+   129.517,
+   121.2
+  ],
+  "picks": {
+   "duck": 4,
+   "fork": 1,
+   "mega": 3,
+   "boost": 8,
+   "undo": 1,
+   "ghost": 3,
+   "sudo": 2,
+   "loop": 5,
+   "grow": 4,
+   "oc": 6,
+   "shield": 1,
+   "panic": 3,
+   "bubble": 2,
+   "tomato": 1,
+   "ff": 2,
+   "leak": 1,
+   "thread": 1
+  },
+  "hash": "8e9c3727"
+ },
+ "12:Cryo Caldera:L0:s1": {
+  "order": [
+   "octo",
+   "pyth",
+   "droid",
+   "docky"
+  ],
+  "times": [
+   151.467,
+   155.067,
+   154.65,
+   152.5
+  ],
+  "picks": {
+   "loop": 3,
+   "sudo": 9,
+   "bubble": 5,
+   "duck": 7,
+   "undo": 1,
+   "thread": 3,
+   "boost": 11,
+   "tomato": 2,
+   "mega": 3,
+   "panic": 5,
+   "ghost": 8,
+   "grow": 4,
+   "shield": 2,
+   "leak": 2,
+   "oc": 2
+  },
+  "hash": "8a72ae91"
+ },
+ "12:Cryo Caldera:L0:s2": {
+  "order": [
+   "swifty",
+   "octo",
+   "gopher",
+   "tux"
+  ],
+  "times": [
+   159.467,
+   153.4,
+   158.183,
+   157.25
+  ],
+  "picks": {
+   "thread": 5,
+   "boost": 13,
+   "bubble": 4,
+   "undo": 2,
+   "panic": 4,
+   "tomato": 2,
+   "shield": 2,
+   "duck": 4,
+   "mega": 4,
+   "grow": 3,
+   "oc": 5,
+   "pull": 4,
+   "sudo": 4,
+   "leak": 2,
+   "ghost": 5,
+   "loop": 2
+  },
+  "hash": "96930ec3"
+ },
+ "12:Cryo Caldera:L1:s1": {
+  "order": [
+   "octo",
+   "gopher",
+   "tux",
+   "swifty"
+  ],
+  "times": [
+   151.283,
+   152.617,
+   151.233,
+   150.433
+  ],
+  "picks": {
+   "boost": 9,
+   "ghost": 2,
+   "duck": 8,
+   "panic": 4,
+   "shield": 3,
+   "tomato": 2,
+   "sudo": 4,
+   "oc": 3,
+   "grow": 3,
+   "thread": 5,
+   "pull": 2,
+   "bubble": 4,
+   "undo": 2,
+   "mega": 3,
+   "loop": 2,
+   "leak": 2
+  },
+  "hash": "db6c4c98"
+ },
+ "12:Cryo Caldera:L1:s2": {
+  "order": [
+   "ferris",
+   "tux",
+   "cpp",
+   "duke"
+  ],
+  "times": [
+   148.933,
+   147.65,
+   140.933,
+   144.983
+  ],
+  "picks": {
+   "boost": 12,
+   "mega": 3,
+   "ghost": 5,
+   "duck": 5,
+   "shield": 3,
+   "sudo": 5,
+   "bubble": 1,
+   "pull": 5,
+   "tomato": 4,
+   "thread": 1,
+   "grow": 8,
+   "leak": 2,
+   "undo": 1,
+   "oc": 4,
+   "panic": 1,
+   "ff": 1
+  },
+  "hash": "85fbd8"
+ },
+ "12:Cryo Caldera:L2:s1": {
+  "order": [
+   "duke",
+   "tux",
+   "ferris",
+   "cpp"
+  ],
+  "times": [
+   153.683,
+   157.15,
+   154.767,
+   153.8
+  ],
+  "picks": {
+   "boost": 8,
+   "thread": 3,
+   "tomato": 5,
+   "bubble": 7,
+   "grow": 5,
+   "undo": 4,
+   "mega": 2,
+   "duck": 6,
+   "oc": 4,
+   "ghost": 6,
+   "leak": 3,
+   "panic": 2,
+   "sudo": 4,
+   "pull": 2,
+   "loop": 3,
+   "shield": 3
+  },
+  "hash": "20992ee7"
+ },
+ "12:Cryo Caldera:L2:s2": {
+  "order": [
+   "duke",
+   "docky",
+   "pyth",
+   "droid"
+  ],
+  "times": [
+   144.6,
+   146.767,
+   145.733,
+   144.267
+  ],
+  "picks": {
+   "loop": 2,
+   "boost": 12,
+   "undo": 3,
+   "bubble": 9,
+   "thread": 3,
+   "mega": 3,
+   "shield": 5,
+   "tomato": 2,
+   "grow": 2,
+   "oc": 5,
+   "ff": 1,
+   "pull": 3,
+   "leak": 2,
+   "sudo": 5,
+   "ghost": 6,
+   "fork": 1,
+   "duck": 3,
+   "panic": 1
+  },
+  "hash": "2b3e017c"
+ },
+ "13:Async Atoll:L0:s1": {
+  "order": [
+   "tux",
+   "octo",
+   "gopher",
+   "swifty"
+  ],
+  "times": [
+   108.683,
+   110.35,
+   109.883,
+   109.167
+  ],
+  "picks": {
+   "undo": 2,
+   "thread": 1,
+   "bubble": 5,
+   "leak": 3,
+   "mega": 1,
+   "loop": 1,
+   "oc": 1,
+   "ghost": 5,
+   "boost": 5,
+   "panic": 1,
+   "shield": 3,
+   "duck": 2,
+   "grow": 4,
+   "sudo": 3,
+   "pull": 1,
+   "tomato": 1
+  },
+  "hash": "73ddeee6"
+ },
+ "13:Async Atoll:L0:s2": {
+  "order": [
+   "duke",
+   "ferris",
+   "cpp",
+   "tux"
+  ],
+  "times": [
+   102.8,
+   110.683,
+   109.65,
+   111.983
+  ],
+  "picks": {
+   "boost": 11,
+   "bubble": 3,
+   "undo": 2,
+   "grow": 3,
+   "sudo": 4,
+   "oc": 3,
+   "panic": 1,
+   "thread": 2,
+   "tomato": 2,
+   "shield": 1,
+   "ghost": 4,
+   "leak": 2,
+   "duck": 1,
+   "ff": 1,
+   "loop": 1,
+   "pull": 1
+  },
+  "hash": "aaf0c72d"
+ },
+ "13:Async Atoll:L1:s1": {
+  "order": [
+   "duke",
+   "ferris",
+   "tux",
+   "cpp"
+  ],
+  "times": [
+   105.417,
+   109.05,
+   105.683,
+   106.9
+  ],
+  "picks": {
+   "mega": 2,
+   "oc": 6,
+   "leak": 4,
+   "thread": 1,
+   "loop": 3,
+   "bubble": 3,
+   "ghost": 8,
+   "pull": 3,
+   "grow": 5,
+   "boost": 5,
+   "sudo": 2,
+   "panic": 1,
+   "undo": 1,
+   "tomato": 2,
+   "duck": 2
+  },
+  "hash": "b2d68409"
+ },
+ "13:Async Atoll:L1:s2": {
+  "order": [
+   "droid",
+   "duke",
+   "pyth",
+   "docky"
+  ],
+  "times": [
+   114.717,
+   107.6,
+   113.333,
+   110.45
+  ],
+  "picks": {
+   "undo": 3,
+   "boost": 8,
+   "shield": 2,
+   "thread": 2,
+   "loop": 4,
+   "mega": 4,
+   "panic": 1,
+   "leak": 2,
+   "grow": 3,
+   "ghost": 3,
+   "oc": 2,
+   "pull": 3,
+   "duck": 2,
+   "bubble": 4,
+   "sudo": 1
+  },
+  "hash": "621e39a5"
+ },
+ "13:Async Atoll:L2:s1": {
+  "order": [
+   "duke",
+   "droid",
+   "docky",
+   "pyth"
+  ],
+  "times": [
+   110.733,
+   110.383,
+   111.083,
+   110.017
+  ],
+  "picks": {
+   "duck": 6,
+   "tomato": 1,
+   "panic": 3,
+   "ghost": 3,
+   "undo": 5,
+   "loop": 3,
+   "oc": 1,
+   "bubble": 3,
+   "boost": 4,
+   "mega": 1,
+   "sudo": 8,
+   "leak": 2,
+   "shield": 1,
+   "thread": 2,
+   "pull": 1
+  },
+  "hash": "6dd18455"
+ },
+ "13:Async Atoll:L2:s2": {
+  "order": [
+   "swifty",
+   "docky",
+   "octo",
+   "gopher"
+  ],
+  "times": [
+   99.617,
+   106.383,
+   104.95,
+   101.733
+  ],
+  "picks": {
+   "boost": 10,
+   "sudo": 5,
+   "ghost": 2,
+   "panic": 1,
+   "duck": 3,
+   "oc": 3,
+   "loop": 2,
+   "mega": 2,
+   "grow": 3,
+   "thread": 2,
+   "ff": 1,
+   "bubble": 3,
+   "leak": 1,
+   "fork": 1,
+   "shield": 1,
+   "pull": 2
+  },
+  "hash": "1a5c45e5"
+ },
+ "14:Ruby Ruins:L0:s1": {
+  "order": [
+   "duke",
+   "ferris",
+   "cpp",
+   "tux"
+  ],
+  "times": [
+   112.683,
+   117.45,
+   115.267,
+   120.667
+  ],
+  "picks": {
+   "boost": 8,
+   "grow": 3,
+   "ghost": 5,
+   "sudo": 4,
+   "pull": 7,
+   "duck": 1,
+   "leak": 2,
+   "loop": 2,
+   "oc": 3,
+   "ff": 4,
+   "bubble": 2,
+   "thread": 1,
+   "panic": 1,
+   "shield": 1
+  },
+  "hash": "91351d68"
+ },
+ "14:Ruby Ruins:L0:s2": {
+  "order": [
+   "droid",
+   "docky",
+   "duke",
+   "pyth"
+  ],
+  "times": [
+   124.033,
+   120.767,
+   127.333,
+   125.883
+  ],
+  "picks": {
+   "undo": 4,
+   "boost": 7,
+   "bubble": 5,
+   "ghost": 2,
+   "sudo": 6,
+   "shield": 3,
+   "pull": 3,
+   "grow": 2,
+   "tomato": 2,
+   "thread": 1,
+   "leak": 2,
+   "oc": 3,
+   "duck": 2,
+   "panic": 2
+  },
+  "hash": "771ce0aa"
+ },
+ "14:Ruby Ruins:L1:s1": {
+  "order": [
+   "duke",
+   "docky",
+   "pyth",
+   "droid"
+  ],
+  "times": [
+   122.933,
+   126.167,
+   124.183,
+   121.65
+  ],
+  "picks": {
+   "sudo": 6,
+   "bubble": 6,
+   "boost": 8,
+   "grow": 5,
+   "tomato": 2,
+   "duck": 2,
+   "undo": 2,
+   "ghost": 5,
+   "shield": 4,
+   "thread": 2,
+   "oc": 2,
+   "pull": 1,
+   "loop": 2,
+   "leak": 1,
+   "mega": 1
+  },
+  "hash": "86c45f3b"
+ },
+ "14:Ruby Ruins:L1:s2": {
+  "order": [
+   "docky",
+   "gopher",
+   "octo",
+   "swifty"
+  ],
+  "times": [
+   121.717,
+   119.233,
+   119.517,
+   109.367
+  ],
+  "picks": {
+   "leak": 5,
+   "undo": 2,
+   "boost": 7,
+   "sudo": 3,
+   "thread": 4,
+   "tomato": 1,
+   "shield": 1,
+   "mega": 2,
+   "pull": 6,
+   "loop": 4,
+   "grow": 5,
+   "oc": 6,
+   "ff": 1,
+   "duck": 2,
+   "ghost": 2,
+   "panic": 1,
+   "bubble": 1
+  },
+  "hash": "a735fe0c"
+ },
+ "14:Ruby Ruins:L2:s1": {
+  "order": [
+   "swifty",
+   "docky",
+   "gopher",
+   "octo"
+  ],
+  "times": [
+   120.933,
+   124.567,
+   125.217,
+   122.35
+  ],
+  "picks": {
+   "undo": 1,
+   "ghost": 6,
+   "pull": 5,
+   "shield": 2,
+   "panic": 6,
+   "tomato": 1,
+   "thread": 4,
+   "mega": 7,
+   "bubble": 5,
+   "oc": 1,
+   "leak": 2,
+   "sudo": 3,
+   "loop": 3,
+   "duck": 2,
+   "boost": 4
+  },
+  "hash": "783099cf"
+ },
+ "14:Ruby Ruins:L2:s2": {
+  "order": [
+   "cpp",
+   "ferris",
+   "tux",
+   "swifty"
+  ],
+  "times": [
+   118.9,
+   120.5,
+   120.85,
+   122.4
+  ],
+  "picks": {
+   "mega": 3,
+   "leak": 3,
+   "sudo": 7,
+   "thread": 6,
+   "oc": 2,
+   "tomato": 3,
+   "ghost": 4,
+   "grow": 4,
+   "loop": 3,
+   "ff": 1,
+   "shield": 2,
+   "boost": 2,
+   "bubble": 3,
+   "duck": 2,
+   "panic": 1,
+   "pull": 2
+  },
+  "hash": "8cf462b5"
+ },
+ "15:Recursion Ridge:L0:s1": {
+  "order": [
+   "duke",
+   "pyth",
+   "docky",
+   "droid"
+  ],
+  "times": [
+   129.933,
+   131.133,
+   128.333,
+   128.15
+  ],
+  "picks": {
+   "duck": 12,
+   "boost": 12,
+   "leak": 7,
+   "ghost": 5,
+   "bubble": 6,
+   "sudo": 12,
+   "loop": 1,
+   "shield": 4,
+   "thread": 5,
+   "grow": 1,
+   "mega": 7,
+   "panic": 4,
+   "oc": 2,
+   "undo": 2,
+   "pull": 2,
+   "tomato": 2,
+   "ff": 2
+  },
+  "hash": "55301641"
+ },
+ "15:Recursion Ridge:L0:s2": {
+  "order": [
+   "gopher",
+   "octo",
+   "swifty",
+   "docky"
+  ],
+  "times": [
+   130.75,
+   128.033,
+   129.533,
+   131.65
+  ],
+  "picks": {
+   "thread": 7,
+   "boost": 12,
+   "mega": 2,
+   "bubble": 2,
+   "pull": 7,
+   "shield": 6,
+   "panic": 6,
+   "loop": 4,
+   "duck": 5,
+   "sudo": 7,
+   "oc": 2,
+   "tomato": 4,
+   "ff": 3,
+   "ghost": 7,
+   "grow": 6,
+   "leak": 2,
+   "undo": 4,
+   "fork": 1
+  },
+  "hash": "bf703918"
+ },
+ "15:Recursion Ridge:L1:s1": {
+  "order": [
+   "gopher",
+   "docky",
+   "swifty",
+   "octo"
+  ],
+  "times": [
+   122.267,
+   121.633,
+   123.05,
+   121.983
+  ],
+  "picks": {
+   "thread": 5,
+   "boost": 12,
+   "fork": 2,
+   "tomato": 3,
+   "ghost": 6,
+   "grow": 13,
+   "loop": 4,
+   "leak": 7,
+   "ff": 2,
+   "bubble": 6,
+   "shield": 1,
+   "duck": 6,
+   "mega": 1,
+   "oc": 5,
+   "sudo": 4,
+   "pull": 1,
+   "panic": 1,
+   "undo": 1
+  },
+  "hash": "4503fe08"
+ },
+ "15:Recursion Ridge:L1:s2": {
+  "order": [
+   "ferris",
+   "swifty",
+   "tux",
+   "cpp"
+  ],
+  "times": [
+   127.5,
+   125.883,
+   126.717,
+   126.7
+  ],
+  "picks": {
+   "duck": 8,
+   "thread": 3,
+   "mega": 4,
+   "bubble": 5,
+   "shield": 7,
+   "boost": 15,
+   "leak": 6,
+   "tomato": 3,
+   "sudo": 8,
+   "ghost": 5,
+   "pull": 3,
+   "oc": 6,
+   "undo": 2,
+   "loop": 3,
+   "grow": 3,
+   "panic": 1
+  },
+  "hash": "8c038bf"
+ },
+ "15:Recursion Ridge:L2:s1": {
+  "order": [
+   "swifty",
+   "tux",
+   "ferris",
+   "cpp"
+  ],
+  "times": [
+   131.4,
+   123.75,
+   122.267,
+   120.867
+  ],
+  "picks": {
+   "boost": 16,
+   "duck": 9,
+   "loop": 2,
+   "thread": 3,
+   "ghost": 6,
+   "tomato": 3,
+   "panic": 3,
+   "sudo": 8,
+   "oc": 5,
+   "bubble": 5,
+   "shield": 3,
+   "leak": 4,
+   "mega": 1,
+   "pull": 3,
+   "grow": 3,
+   "ff": 3,
+   "undo": 1
+  },
+  "hash": "64a10a5d"
+ },
+ "15:Recursion Ridge:L2:s2": {
+  "order": [
+   "duke",
+   "droid",
+   "pyth",
+   "cpp"
+  ],
+  "times": [
+   119.933,
+   121.433,
+   119.35,
+   124.05
+  ],
+  "picks": {
+   "grow": 4,
+   "ghost": 6,
+   "loop": 1,
+   "sudo": 6,
+   "shield": 6,
+   "bubble": 10,
+   "undo": 2,
+   "leak": 3,
+   "duck": 5,
+   "boost": 13,
+   "pull": 6,
+   "tomato": 6,
+   "ff": 3,
+   "panic": 3,
+   "oc": 1,
+   "mega": 3,
+   "thread": 2
+  },
+  "hash": "7087f83d"
+ },
+ "16:Race Condition:L0:s1": {
+  "order": [
+   "swifty",
+   "docky",
+   "gopher",
+   "octo"
+  ],
+  "times": [
+   109.2,
+   113.167,
+   115.617,
+   110.65
+  ],
+  "picks": {
+   "ghost": 6,
+   "loop": 2,
+   "bubble": 4,
+   "sudo": 9,
+   "boost": 7,
+   "grow": 11,
+   "mega": 1,
+   "tomato": 2,
+   "oc": 3,
+   "leak": 2,
+   "pull": 2,
+   "ff": 1,
+   "shield": 2,
+   "duck": 3,
+   "thread": 3,
+   "undo": 1,
+   "panic": 1
+  },
+  "hash": "45ec0fd"
+ },
+ "16:Race Condition:L0:s2": {
+  "order": [
+   "tux",
+   "ferris",
+   "cpp",
+   "swifty"
+  ],
+  "times": [
+   119.05,
+   118.333,
+   116.35,
+   119.167
+  ],
+  "picks": {
+   "duck": 6,
+   "thread": 3,
+   "ghost": 6,
+   "tomato": 3,
+   "boost": 9,
+   "sudo": 4,
+   "oc": 6,
+   "pull": 4,
+   "leak": 4,
+   "panic": 3,
+   "bubble": 2,
+   "mega": 3,
+   "shield": 3,
+   "loop": 2,
+   "fork": 1,
+   "ff": 1,
+   "grow": 1,
+   "undo": 2
+  },
+  "hash": "37ca60d5"
+ },
+ "16:Race Condition:L1:s1": {
+  "order": [
+   "ferris",
+   "swifty",
+   "cpp",
+   "tux"
+  ],
+  "times": [
+   113.167,
+   111.033,
+   115.467,
+   112.65
+  ],
+  "picks": {
+   "duck": 5,
+   "boost": 6,
+   "panic": 1,
+   "shield": 4,
+   "sudo": 5,
+   "undo": 5,
+   "thread": 5,
+   "mega": 4,
+   "leak": 2,
+   "grow": 4,
+   "ghost": 3,
+   "tomato": 6,
+   "ff": 2,
+   "bubble": 3,
+   "pull": 5,
+   "oc": 3
+  },
+  "hash": "ad406210"
+ },
+ "16:Race Condition:L1:s2": {
+  "order": [
+   "duke",
+   "droid",
+   "cpp",
+   "pyth"
+  ],
+  "times": [
+   115.567,
+   116.367,
+   113.85,
+   115.667
+  ],
+  "picks": {
+   "boost": 9,
+   "ghost": 7,
+   "panic": 3,
+   "bubble": 6,
+   "duck": 4,
+   "sudo": 6,
+   "grow": 3,
+   "oc": 6,
+   "pull": 1,
+   "leak": 2,
+   "loop": 2,
+   "shield": 1,
+   "thread": 3,
+   "mega": 2,
+   "tomato": 1,
+   "fork": 1,
+   "undo": 1
+  },
+  "hash": "dc6b30a7"
+ },
+ "16:Race Condition:L2:s1": {
+  "order": [
+   "duke",
+   "pyth",
+   "droid",
+   "cpp"
+  ],
+  "times": [
+   123.25,
+   118.55,
+   117.9,
+   124.267
+  ],
+  "picks": {
+   "duck": 7,
+   "undo": 4,
+   "leak": 1,
+   "mega": 4,
+   "panic": 3,
+   "shield": 3,
+   "thread": 5,
+   "bubble": 5,
+   "loop": 3,
+   "boost": 10,
+   "ghost": 7,
+   "ff": 1,
+   "pull": 4,
+   "oc": 2,
+   "grow": 1,
+   "tomato": 1
+  },
+  "hash": "93b3c5b3"
+ },
+ "16:Race Condition:L2:s2": {
+  "order": [
+   "droid",
+   "docky",
+   "octo",
+   "gopher"
+  ],
+  "times": [
+   115.467,
+   114.367,
+   113.7,
+   112.533
+  ],
+  "picks": {
+   "undo": 4,
+   "duck": 4,
+   "panic": 3,
+   "loop": 3,
+   "sudo": 7,
+   "grow": 4,
+   "mega": 3,
+   "leak": 2,
+   "ghost": 6,
+   "thread": 2,
+   "boost": 6,
+   "tomato": 1,
+   "bubble": 6,
+   "ff": 3,
+   "pull": 2,
+   "shield": 2,
+   "oc": 1
+  },
+  "hash": "49858cff"
+ },
+ "17:Neon Overflow:L0:s1": {
+  "order": [
+   "swifty",
+   "cpp",
+   "ferris",
+   "tux"
+  ],
+  "times": [
+   127.333,
+   128.467,
+   130.333,
+   123.45
+  ],
+  "picks": {
+   "leak": 2,
+   "grow": 7,
+   "sudo": 3,
+   "duck": 4,
+   "boost": 5,
+   "oc": 2,
+   "ghost": 3,
+   "pull": 3,
+   "tomato": 2,
+   "shield": 1,
+   "bubble": 1,
+   "thread": 2,
+   "loop": 1,
+   "ff": 1,
+   "mega": 1
+  },
+  "hash": "874e2ebf"
+ },
+ "17:Neon Overflow:L0:s2": {
+  "order": [
+   "pyth",
+   "droid",
+   "duke",
+   "cpp"
+  ],
+  "times": [
+   121.283,
+   117.333,
+   123.367,
+   126.05
+  ],
+  "picks": {
+   "sudo": 6,
+   "duck": 3,
+   "boost": 7,
+   "ghost": 2,
+   "bubble": 2,
+   "shield": 3,
+   "panic": 2,
+   "ff": 1,
+   "thread": 3,
+   "tomato": 2,
+   "oc": 1,
+   "grow": 3,
+   "pull": 4
+  },
+  "hash": "1adc9e10"
+ },
+ "17:Neon Overflow:L1:s1": {
+  "order": [
+   "droid",
+   "pyth",
+   "duke",
+   "cpp"
+  ],
+  "times": [
+   127.05,
+   128.183,
+   129.017,
+   131.1
+  ],
+  "picks": {
+   "bubble": 5,
+   "leak": 2,
+   "shield": 3,
+   "undo": 2,
+   "ghost": 2,
+   "duck": 4,
+   "fork": 1,
+   "mega": 3,
+   "sudo": 6,
+   "boost": 5,
+   "oc": 1,
+   "thread": 1,
+   "grow": 6,
+   "loop": 1,
+   "pull": 2,
+   "tomato": 1
+  },
+  "hash": "aa43fe17"
+ },
+ "17:Neon Overflow:L1:s2": {
+  "order": [
+   "octo",
+   "docky",
+   "gopher",
+   "droid"
+  ],
+  "times": [
+   135.533,
+   131.633,
+   134.917,
+   136.4
+  ],
+  "picks": {
+   "bubble": 5,
+   "shield": 1,
+   "oc": 1,
+   "boost": 8,
+   "mega": 4,
+   "leak": 3,
+   "grow": 2,
+   "panic": 1,
+   "duck": 6,
+   "ghost": 1,
+   "sudo": 3,
+   "thread": 2,
+   "undo": 3,
+   "loop": 2
+  },
+  "hash": "8ebc6d3"
+ },
+ "17:Neon Overflow:L2:s1": {
+  "order": [
+   "octo",
+   "gopher",
+   "docky",
+   "droid"
+  ],
+  "times": [
+   122.117,
+   120.017,
+   122.167,
+   124.1
+  ],
+  "picks": {
+   "duck": 6,
+   "grow": 8,
+   "tomato": 2,
+   "bubble": 1,
+   "sudo": 5,
+   "ghost": 3,
+   "mega": 4,
+   "panic": 3,
+   "boost": 7,
+   "oc": 4,
+   "loop": 2,
+   "thread": 3,
+   "pull": 1
+  },
+  "hash": "18e32972"
+ },
+ "17:Neon Overflow:L2:s2": {
+  "order": [
+   "tux",
+   "gopher",
+   "ferris",
+   "swifty"
+  ],
+  "times": [
+   125.717,
+   123.317,
+   127.1,
+   125.2
+  ],
+  "picks": {
+   "fork": 1,
+   "sudo": 4,
+   "tomato": 4,
+   "boost": 9,
+   "thread": 4,
+   "duck": 3,
+   "loop": 2,
+   "pull": 4,
+   "ghost": 4,
+   "bubble": 3,
+   "mega": 2,
+   "panic": 3,
+   "undo": 1,
+   "grow": 1,
+   "shield": 3,
+   "leak": 1,
+   "oc": 1
+  },
+  "hash": "b69a5a93"
+ },
+ "18:Gateway 8080:L0:s1": {
+  "order": [
+   "duke",
+   "pyth",
+   "droid",
+   "cpp"
+  ],
+  "times": [
+   106,
+   102.467,
+   100.25,
+   108.133
+  ],
+  "picks": {
+   "grow": 5,
+   "mega": 4,
+   "loop": 1,
+   "duck": 3,
+   "boost": 20,
+   "undo": 1,
+   "bubble": 5,
+   "ghost": 13,
+   "leak": 3,
+   "panic": 2,
+   "shield": 5,
+   "sudo": 8,
+   "thread": 2,
+   "pull": 1,
+   "oc": 2,
+   "ff": 2
+  },
+  "hash": "6ff59a80"
+ },
+ "18:Gateway 8080:L0:s2": {
+  "order": [
+   "octo",
+   "gopher",
+   "droid",
+   "docky"
+  ],
+  "times": [
+   112,
+   109.083,
+   113.9,
+   113.133
+  ],
+  "picks": {
+   "grow": 5,
+   "undo": 6,
+   "mega": 4,
+   "panic": 2,
+   "shield": 2,
+   "boost": 10,
+   "ghost": 14,
+   "bubble": 6,
+   "oc": 6,
+   "loop": 3,
+   "tomato": 3,
+   "ff": 2,
+   "duck": 3,
+   "sudo": 2,
+   "pull": 2,
+   "leak": 1,
+   "thread": 1
+  },
+  "hash": "63c93523"
+ },
+ "18:Gateway 8080:L1:s1": {
+  "order": [
+   "octo",
+   "gopher",
+   "droid",
+   "docky"
+  ],
+  "times": [
+   107.2,
+   106.4,
+   111.75,
+   109.417
+  ],
+  "picks": {
+   "bubble": 6,
+   "shield": 4,
+   "sudo": 5,
+   "duck": 7,
+   "boost": 10,
+   "grow": 7,
+   "fork": 1,
+   "panic": 5,
+   "ghost": 3,
+   "tomato": 3,
+   "leak": 2,
+   "thread": 3,
+   "oc": 7,
+   "mega": 2,
+   "ff": 2,
+   "pull": 5,
+   "loop": 1,
+   "undo": 1
+  },
+  "hash": "e3897cf6"
+ },
+ "18:Gateway 8080:L1:s2": {
+  "order": [
+   "ferris",
+   "swifty",
+   "gopher",
+   "tux"
+  ],
+  "times": [
+   108.667,
+   111.683,
+   110.05,
+   111.45
+  ],
+  "picks": {
+   "grow": 5,
+   "undo": 3,
+   "mega": 5,
+   "thread": 6,
+   "leak": 3,
+   "boost": 12,
+   "ghost": 8,
+   "shield": 3,
+   "pull": 1,
+   "duck": 4,
+   "bubble": 9,
+   "sudo": 6,
+   "tomato": 5,
+   "oc": 4,
+   "panic": 1,
+   "ff": 1,
+   "fork": 1
+  },
+  "hash": "c514a138"
+ },
+ "18:Gateway 8080:L2:s1": {
+  "order": [
+   "gopher",
+   "tux",
+   "swifty",
+   "ferris"
+  ],
+  "times": [
+   109.1,
+   106.083,
+   106.933,
+   105.9
+  ],
+  "picks": {
+   "fork": 1,
+   "thread": 7,
+   "undo": 3,
+   "loop": 5,
+   "leak": 5,
+   "duck": 6,
+   "sudo": 7,
+   "pull": 5,
+   "ghost": 6,
+   "grow": 8,
+   "shield": 4,
+   "bubble": 4,
+   "boost": 10,
+   "oc": 7,
+   "panic": 5,
+   "tomato": 2,
+   "ff": 1
+  },
+  "hash": "a609631d"
+ },
+ "18:Gateway 8080:L2:s2": {
+  "order": [
+   "pyth",
+   "ferris",
+   "duke",
+   "cpp"
+  ],
+  "times": [
+   99.35,
+   103.133,
+   106.2,
+   102.95
+  ],
+  "picks": {
+   "mega": 1,
+   "panic": 4,
+   "leak": 7,
+   "shield": 7,
+   "undo": 1,
+   "loop": 2,
+   "boost": 11,
+   "sudo": 7,
+   "duck": 2,
+   "ff": 6,
+   "bubble": 3,
+   "tomato": 3,
+   "pull": 9,
+   "ghost": 6,
+   "oc": 3,
+   "grow": 3,
+   "thread": 1
+  },
+  "hash": "d19c5d98"
+ },
+ "19:Gradient Descent:L0:s1": {
+  "order": [
+   "docky",
+   "droid",
+   "octo",
+   "gopher"
+  ],
+  "times": [
+   127,
+   120.617,
+   117.517,
+   119.017
+  ],
+  "picks": {
+   "loop": 2,
+   "duck": 2,
+   "boost": 7,
+   "panic": 1,
+   "grow": 3,
+   "oc": 3,
+   "ghost": 2,
+   "pull": 2,
+   "leak": 1,
+   "thread": 1,
+   "sudo": 2,
+   "shield": 1,
+   "ff": 1
+  },
+  "hash": "5270494c"
+ },
+ "19:Gradient Descent:L0:s2": {
+  "order": [
+   "tux",
+   "swifty",
+   "ferris",
+   "gopher"
+  ],
+  "times": [
+   122.183,
+   120.817,
+   121.45,
+   122.767
+  ],
+  "picks": {
+   "tomato": 2,
+   "undo": 2,
+   "panic": 1,
+   "bubble": 2,
+   "sudo": 2,
+   "thread": 3,
+   "ghost": 4,
+   "boost": 2,
+   "leak": 2,
+   "duck": 2,
+   "pull": 2
+  },
+  "hash": "86271445"
+ },
+ "19:Gradient Descent:L1:s1": {
+  "order": [
+   "ferris",
+   "tux",
+   "swifty",
+   "gopher"
+  ],
+  "times": [
+   113.133,
+   114.05,
+   117.25,
+   121.717
+  ],
+  "picks": {
+   "sudo": 4,
+   "undo": 1,
+   "loop": 2,
+   "mega": 1,
+   "ghost": 4,
+   "tomato": 1,
+   "grow": 1,
+   "bubble": 3,
+   "duck": 4,
+   "ff": 1,
+   "boost": 2,
+   "thread": 1,
+   "oc": 2,
+   "panic": 1
+  },
+  "hash": "4c407416"
+ },
+ "19:Gradient Descent:L1:s2": {
+  "order": [
+   "pyth",
+   "duke",
+   "cpp",
+   "ferris"
+  ],
+  "times": [
+   118.117,
+   120.05,
+   120.633,
+   121.25
+  ],
+  "picks": {
+   "sudo": 4,
+   "boost": 6,
+   "undo": 2,
+   "pull": 2,
+   "loop": 2,
+   "shield": 3,
+   "panic": 3,
+   "grow": 2,
+   "tomato": 1,
+   "leak": 1,
+   "bubble": 1,
+   "ff": 1,
+   "oc": 1
+  },
+  "hash": "b6811773"
+ },
+ "19:Gradient Descent:L2:s1": {
+  "order": [
+   "duke",
+   "ferris",
+   "cpp",
+   "pyth"
+  ],
+  "times": [
+   114.433,
+   112.4,
+   114.4,
+   113.7
+  ],
+  "picks": {
+   "thread": 3,
+   "ghost": 3,
+   "bubble": 3,
+   "grow": 1,
+   "leak": 2,
+   "boost": 1,
+   "undo": 1,
+   "pull": 2,
+   "panic": 1,
+   "shield": 1,
+   "duck": 2,
+   "mega": 1,
+   "oc": 1,
+   "tomato": 1
+  },
+  "hash": "c6e593d9"
+ },
+ "19:Gradient Descent:L2:s2": {
+  "order": [
+   "octo",
+   "pyth",
+   "droid",
+   "docky"
+  ],
+  "times": [
+   109.917,
+   115.817,
+   115.617,
+   114.15
+  ],
+  "picks": {
+   "undo": 2,
+   "thread": 1,
+   "boost": 7,
+   "ghost": 2,
+   "panic": 1,
+   "loop": 2,
+   "mega": 2,
+   "pull": 1,
+   "oc": 1,
+   "tomato": 1,
+   "shield": 1,
+   "duck": 1,
+   "bubble": 2,
+   "grow": 1,
+   "ff": 1
+  },
+  "hash": "c28c7210"
+ }
+}

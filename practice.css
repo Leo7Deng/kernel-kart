@@ -1,0 +1,134 @@
+/* Fight's training room overlay (js/fight-practice-ui.js): two columns of small panels over the fight, under the HUD
+   cards. Classic's palette, flat (solid fills, soft shadows) in both looks; sized for 1280x800 and an iPad. */
+.fp{position:fixed;inset:0;pointer-events:none;z-index:3;font:500 13px/1.3 Fredoka,system-ui,sans-serif;color:#f4f2ff;
+  --fp-top:calc(118px + env(safe-area-inset-top));--fp-w:clamp(220px,21vw,272px)}
+.fp-col{position:absolute;top:var(--fp-top);width:var(--fp-w);display:flex;flex-direction:column;gap:8px;max-height:calc(100% - var(--fp-top) - 12px)}
+.fp-l{left:12px;max-height:calc(100% - var(--fp-top) - 290px);overflow:hidden}   /* (the key legend and the keys sit under it) */
+.fp-r{right:12px}
+.fp-touch .fp-l{max-height:calc(100% - var(--fp-top) - 12px)}
+.fp-touch .fp-r{top:calc(var(--fp-top) + 46px);max-height:calc(100% - var(--fp-top) - 296px)}   /* (the pause button over it, the touch buttons under it) */
+.fp-touch .fp-show{top:calc(var(--fp-top) + 46px)}
+.fp-p{pointer-events:auto;background:rgba(28,24,70,.88);border-radius:14px;padding:8px 10px 9px;box-shadow:0 1px 0 rgba(0,0,0,.4),0 8px 20px rgba(0,0,0,.28);min-height:0}
+.fp-l .fp-p:first-child{flex:0 0 auto}
+.fp-p h3{margin:0 0 6px;font:700 12px/1 Fredoka,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#bdb7ec;display:flex;align-items:baseline;gap:6px}
+.fp-p h3 small{font-weight:600;letter-spacing:0;text-transform:none;color:#fff;font-size:13px;margin-left:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fp kbd{display:inline-block;min-width:18px;padding:1px 4px;margin-right:5px;border-radius:5px;background:#f4f2ff;color:#1c1846;font:700 11px/1.3 Fredoka,system-ui,sans-serif;text-align:center;box-shadow:0 2px 0 #8b86c4}
+.fp-touch kbd{display:none}
+.fp ul{list-style:none;margin:0;padding:0}
+/* the moves */
+.fp-mvs{display:flex;flex-direction:column;gap:5px}
+.fp-mv{display:grid;grid-template-columns:auto 1fr auto;gap:7px;align-items:center;padding:4px 5px;border-radius:10px;background:rgba(255,255,255,.04)}
+.fp-mv.now{background:rgba(255,255,255,.13)}
+.fp-key{display:flex;align-items:center}
+.fp-key kbd{margin-right:4px}
+.fp-key canvas{width:26px;height:26px;opacity:.45;transition:opacity .15s}
+.fp-mv.on .fp-key canvas{opacity:1}
+.fp-mvb{min-width:0;display:flex;flex-direction:column}
+.fp-mvb b{font-weight:700;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fp-mvb small{color:#c9c5ee;font-size:11.5px;display:flex;gap:6px;flex-wrap:wrap}
+.fp-mvb em{font-style:normal;color:#9a95cc;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fp-f{color:#ffd23c;font-variant-numeric:tabular-nums}
+.fp i{font-style:normal}
+.fp-f i,.fp-frames i{opacity:.6;font-size:.8em;margin-left:1px}
+.fp-cd{display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:42px}
+.fp-cdv{font-size:11.5px;font-weight:700;color:#ff8f80;font-variant-numeric:tabular-nums}
+.fp-mv.on .fp-cdv{color:#7ee2a8}
+.fp-cdbar{display:block;width:40px;height:4px;border-radius:2px;background:rgba(0,0,0,.4);overflow:hidden}
+.fp-cdbar>i{display:block;height:100%;width:var(--w,100%);background:var(--c0)}
+/* the checklist and the combo trials: two tabs */
+.fp-tr{overflow:auto;scrollbar-width:thin;flex:0 1 auto;-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 10px),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 10px),transparent)}   /* (a fade where it scrolls on, not a cut-off button) */
+.fp-r>.fp-p:not(.fp-tr){flex-shrink:0}   /* (only the tabs scroll when it gets tight) */
+.fp-tabh{gap:4px!important}
+.fp .fp-tab{all:unset;cursor:pointer;padding:4px 8px;border-radius:8px;color:#bdb7ec;display:flex;align-items:baseline;gap:5px}
+.fp .fp-tab small{margin:0!important;font-size:11px!important;color:#9a95cc!important}
+.fp .fp-tab[aria-pressed=true]{background:rgba(255,255,255,.12);color:#fff}
+.fp .fp-tab[aria-pressed=true] small{color:#fff!important}
+.fp-fold{all:unset;cursor:pointer;margin-left:auto;padding:2px 6px;color:#bdb7ec}
+.fp-fold::after{content:'▾'}
+.fp-tr.fold .fp-fold::after{content:'▸'}
+.fp-tr.fold .fp-trl,.fp-tr.fold .fp-cl,.fp-tr.tab-trials .fp-trl,.fp-tr.tab-list .fp-cl{display:none}
+.fp-tr.fold h3{margin:0}
+.fp-trl li{display:flex;gap:7px;align-items:center;padding:2px 0;color:#c9c5ee;font-size:12px}
+.fp-trl li>i,.fp-ch>i{flex:0 0 14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 2px #5c568f}
+.fp-trl li.ok{color:#fff}
+.fp-trl li.ok>i,.fp-c.ok .fp-ch>i{background:#3ccf7e;box-shadow:none;position:relative}
+.fp-trl li.ok>i::after,.fp-c.ok .fp-ch>i::after{content:'';position:absolute;left:4.5px;top:2px;width:3px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(40deg)}
+/* a combo trial: its row, and the picked one open (how, the steps, the hint, Watch) */
+.fp-cl{display:flex;flex-direction:column;gap:3px}
+.fp-c{border-radius:10px}
+.fp-c.on{background:rgba(255,255,255,.06)}
+.fp-c.won{animation:fpWon 1.2s ease-out}
+@keyframes fpWon{0%{background:rgba(60,207,126,.55)}100%{background:rgba(255,255,255,.06)}}
+.fp .fp-ch{all:unset;cursor:pointer;display:flex;align-items:center;gap:7px;width:100%;box-sizing:border-box;padding:4px 6px;border-radius:10px;color:#d9d6f5;font-size:12.5px}
+.fp-ch b{font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fp-ch small{color:#9a95cc;font-size:10.5px}
+.fp-c.on .fp-ch{color:#fff}.fp-c.on .fp-ch b{font-weight:700}
+.fp-cb{display:none;padding:0 7px 7px}
+.fp-c.on .fp-cb{display:block}
+.fp-how{margin:0 0 5px;font-size:11.5px;color:#c9c5ee;line-height:1.3}
+.fp-how em{font-style:normal;color:#ffd23c}
+.fp-st,.fp-dst{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px;counter-reset:st}
+.fp-st li,.fp-dst li{display:flex;align-items:center;gap:6px;padding:2px 5px 2px 3px;border-radius:8px;font-size:12px;color:#c9c5ee;background:rgba(0,0,0,.16)}
+.fp-st li::before,.fp-dst li::before{counter-increment:st;content:counter(st);flex:0 0 15px;height:15px;border-radius:50%;font:700 10px/15px Fredoka,system-ui,sans-serif;text-align:center;background:rgba(255,255,255,.12);color:#bdb7ec}
+.fp-st li.now,.fp-dst li.now{background:rgba(255,210,60,.16);color:#fff}
+.fp-st li.now::before,.fp-dst li.now::before{background:#ffd23c;color:#2b2456}
+.fp-st li.ok,.fp-dst li.ok{color:#fff;background:rgba(60,207,126,.2)}
+.fp-st li.ok::before,.fp-dst li.ok::before{content:'✓';background:#3ccf7e;color:#fff}
+.fp-sk{display:flex;align-items:center;gap:3px;flex:0 0 auto}
+.fp-sk kbd{margin:0!important;min-width:14px;padding:0 3px;font-size:10px}
+.fp-sk canvas{width:20px;height:20px}
+li.auto .fp-sk canvas{opacity:.55}
+.fp-ht{margin:5px 0 0;font-size:11.5px;color:#d9d6f5;min-height:1.3em;line-height:1.3}
+.fp-ht.bad{color:#ffb3a8}.fp-ht.good{color:#7ee2a8;font-weight:700}
+.fp .fp-watch{pointer-events:auto;width:100%;margin-top:5px;font:600 12px/1.1 Fredoka,system-ui,sans-serif;color:#fff;background:var(--c0);border:0;border-radius:9px;padding:6px 4px;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:30px;box-shadow:0 2px 0 rgba(0,0,0,.3)}
+/* the demo: a card over the middle, the clip and its steps */
+.fp-demo{position:absolute;left:50%;top:var(--fp-top);transform:translateX(-50%);width:min(440px,calc(100% - 2 * var(--fp-w) - 48px));min-width:260px;pointer-events:auto;background:rgba(28,24,70,.94);border-radius:16px;padding:8px 10px 10px;box-shadow:0 1px 0 rgba(0,0,0,.4),0 12px 30px rgba(0,0,0,.4)}
+.fp-demo[hidden]{display:none}
+.fp-dh{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.fp-dh b{flex:1;font:700 14px/1.1 Fredoka,system-ui,sans-serif}
+.fp .fp-dh button{font:600 12px/1.1 Fredoka,system-ui,sans-serif;color:#fff;background:rgba(255,255,255,.1);border:0;border-radius:9px;padding:5px 9px;cursor:pointer;display:flex;align-items:center;min-height:28px}
+.fp-dcv{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;background:#1c1846}
+.fp-dst{margin-top:6px}
+.fp-touch .fp-demo{top:calc(var(--fp-top) + 46px)}
+.fp-touch.fp-tron .fp-fd,.fp-touch.fp-tron .fp-hit{display:none}
+@media (max-width:900px){.fp-demo{width:calc(100% - 24px);top:auto;bottom:calc(230px + env(safe-area-inset-bottom))}}
+/* the dummy */
+.fp-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.fp .fp-modes button{white-space:nowrap} .fp .fp-modes button:nth-child(4){grid-column:span 2}   /* (Fight back on one line) */
+.fp .fp-modes button,.fp .fp-btns button,.fp .fp-rec,.fp .fp-show{pointer-events:auto;font:600 12px/1.1 Fredoka,system-ui,sans-serif;color:#fff;background:rgba(255,255,255,.08);border:0;border-radius:9px;padding:6px 4px;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:30px}
+.fp .fp-modes button[aria-pressed=true]{background:var(--c1);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+.fp-modes kbd{min-width:14px;padding:0 3px;margin-right:4px;font-size:10px}
+.fp-hint{margin:6px 0 0;color:#c9c5ee;font-size:11.5px;min-height:2.6em}
+.fp .fp-rec{width:100%;margin-top:6px;background:rgba(255,77,58,.22)}
+.fp .fp-rec.live{background:#ff4d3a}
+.fp-rec.off,.fp-recbar.off{display:none}
+.fp-recbar{display:block;height:4px;margin-top:5px;border-radius:2px;background:rgba(0,0,0,.4);overflow:hidden}
+.fp-recbar>i{display:block;height:100%;width:var(--w,0);background:#ff4d3a}
+/* the last move, the last hit */
+.fp-frames{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;text-align:center}
+.fp-frames span{background:rgba(255,255,255,.05);border-radius:8px;padding:4px 0}
+.fp-frames b{display:block;font:400 18px/1.1 Bungee,Fredoka,sans-serif;color:#ffd23c;font-variant-numeric:tabular-nums}
+.fp-frames small{color:#9a95cc;font-size:10.5px}
+.fp-adv{margin:6px 0 0;font-size:12px;color:#d9d6f5;min-height:1.3em}
+.fp-adv .good{color:#7ee2a8;font-weight:700}.fp-adv .bad{color:#ff8f80;font-weight:700}
+.fp-hrow{display:flex;align-items:center;gap:8px}
+.fp-dmg{font:400 26px/1 Bungee,Fredoka,sans-serif;color:#fff;min-width:56px}
+.fp-tags{display:flex;flex-wrap:wrap;gap:3px;flex:1}
+.fp-tags i{font-size:10.5px;font-weight:700;padding:2px 6px;border-radius:7px;background:rgba(255,255,255,.12)}
+.fp-tags .t-ctr{background:#ffd23c;color:#2b2456}.fp-tags .t-kd{background:#ff4d3a}.fp-tags .t-gnd{background:#7fa8ff;color:#1c1846}
+.fp-combo{display:flex;flex-direction:column;align-items:center;min-width:52px;padding:3px 6px;border-radius:9px;background:rgba(255,255,255,.05)}
+.fp-combo b{font:400 22px/1 Bungee,Fredoka,sans-serif;color:#9a95cc}
+.fp-combo small{font-size:10px;color:#9a95cc;white-space:nowrap}
+.fp-combo.live{background:var(--c0)}.fp-combo.live b,.fp-combo.live small{color:#fff}
+.fp-hsub{margin:5px 0 0;font-size:11.5px;color:#c9c5ee;min-height:1.3em}
+.fp-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.fp .fp-btns button{background:rgba(28,24,70,.92);box-shadow:0 1px 0 rgba(0,0,0,.4)}
+.fp .fp-show{position:absolute;right:12px;top:var(--fp-top);padding:6px 10px;background:rgba(28,24,70,.88);display:none}
+.fp-hid .fp-col{display:none}.fp-hid .fp-show{display:flex}
+@media (hover:hover){.fp-modes button:hover,.fp-btns button:hover,.fp-rec:hover{filter:brightness(1.2)}}
+/* a short or narrow screen: tighter */
+@media (max-height:720px){.fp-mvb em{display:none}.fp-hint{min-height:0}.fp{--fp-top:calc(108px + env(safe-area-inset-top))}}
+@media (max-width:760px){.fp{--fp-w:200px}.fp-mvb em,.fp-tr{display:none}}
+/* the pause card's dummy modes: fight.css .fz-dummy */
+/* upright (an iPad or a phone held up): compact, so the arena shows between the two columns */
+@media (orientation:portrait){.fp{--fp-w:clamp(170px,26vw,220px);font-size:12px}.fp-mvb em,.fp-hint{display:none}.fp-frames b{font-size:15px}.fp-dmg{font-size:20px;min-width:44px}.fp-mvb small{gap:3px}}

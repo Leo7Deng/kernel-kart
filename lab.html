@@ -1,0 +1,161 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Art lab</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap">
+<style>body{margin:0;background:#6d8f5a;font-family:Fredoka,sans-serif}canvas{display:block}</style></head>
+<body><canvas id="c"></canvas><script type="module">
+import { CHARACTERS, BODIES } from './js/core.js';
+import { drawCar, drawCarShadow } from './js/art/cars.js';
+import { drawMascot } from './js/art/mascots.js';
+import { ICONS } from './js/art/icons.js';
+import { ITEMS } from './js/items/index.js';
+import { drawCrossing, drawGarbageTruck, drawTrain } from './js/art/vehicles.js';
+import { drawItemIcon } from './js/art.js';
+import { setLook } from './js/look.js';
+import { drawMascot3D, has3D, modelSheet, poses3D, queueFight3D, walkPose } from './js/art/model3d.js';
+import { RIDE_UP } from './js/art/cars.js';
+import { car3DSheet, car3DStats, drawCar3D, seatUp3D } from './js/art/car3d.js';
+import { penguin } from './js/art/fauna.js';
+const LOOK = new URLSearchParams(location.search).get('look');   // ?look=bold: the icons as the bold style draws them (js/look.js)
+if (LOOK) setLook(LOOK);
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const Z = +(new URLSearchParams(location.search).get('z') || 3), mode = new URLSearchParams(location.search).get('m') || 'all';
+const mood = new URLSearchParams(location.search).get('mood') || null;   // ?mood=dizzy | ko | happy
+function frame(ms) {
+  const t = ms / 1000, W = innerWidth, H = innerHeight; cv.width = W * 2; cv.height = H * 2; cv.style.width = W + 'px'; cv.style.height = H + 'px';
+  ctx.setTransform(2, 0, 0, 2, 0, 0); ctx.fillStyle = '#7a9a62'; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#6b6f78'; ctx.fillRect(0, H * 0.08, W, H * 0.84);
+  if (mode === 'traffic') {
+    ctx.save(); ctx.scale(3, 3);
+    drawGarbageTruck(ctx, { x: 70, y: 60, ang: t * 0.3, phase: 0 }, t, false); drawGarbageTruck(ctx, { x: 190, y: 60, ang: 0, phase: 1 }, t, true);
+    ctx.restore();
+    ctx.save(); ctx.scale(1.2, 1.2); drawTrain(ctx, { ax: 0, ay: 400, ux: 1, uy: 0 }, { head: 760 + (t * 40) % 200, dir: 1 }, t);
+    drawCrossing(ctx, { halfW: 70 }, { x: 900, y: 300, tx: 0, ty: 1 }, { warn: true }, t); ctx.restore();
+    requestAnimationFrame(frame); return;
+  }
+  if (mode === 'penguins') {   // ?m=penguins: the snow tracks' penguin (art/fauna.js) big in every pose, then at race size on snow
+    ctx.fillStyle = '#e9f1f8'; ctx.fillRect(0, 0, W, H);
+    const P = [[{}], [{ wad: t * 9 }], [{ flap: true, wad: t * 12 }], [{ lie: true, k: 0.8, wad: t * 9 }], [{ lie: true }], [{ chick: true, wad: t * 9 }]];
+    P.forEach(([o], i) => { penguin(ctx, W * (0.09 + i * 0.16), H * 0.36, Z * 1.6, i % 2 ? -1 : 1, o); });
+    for (const z of [0.6, 0.4]) P.forEach(([o], i) => penguin(ctx, W * (0.05 + i * 0.07) + (z < 0.5 ? W * 0.45 : 0), H * 0.75, 1.6 * z, i % 2 ? -1 : 1, o));
+    requestAnimationFrame(frame); return;
+  }
+  if (mode === 'icons') {   // each icon big, then at in-game sizes: menu list (22), HUD slot on dark (16), the odds chart (15), second-item badge (9), touch button on its own colour (22)
+    const only = new URLSearchParams(location.search).get('only'), ks = only ? only.split(',') : Object.keys(ICONS), cols = 4, cw = W / cols, ch = 150;
+    const at = (k, x, y, r) => { ctx.save(); ctx.translate(x, y); ctx.lineJoin = 'round'; ctx.lineCap = 'round'; if (LOOK === 'bold') drawItemIcon(ctx, k, r); else ICONS[k](ctx, r, t); ctx.restore(); };
+    ks.forEach((k, i) => {
+      const x0 = (i % cols) * cw, y0 = 20 + Math.floor(i / cols) * ch, col = ITEMS[k] ? ITEMS[k].col : '#9d7bff';
+      ctx.fillStyle = '#ffffffdd'; ctx.beginPath(); ctx.arc(x0 + 70, y0 + 62, 60, 0, 7); ctx.fill(); at(k, x0 + 70, y0 + 62, 46);
+      ctx.fillStyle = '#f4f1ea'; ctx.beginPath(); ctx.roundRect(x0 + 140, y0 + 10, 52, 52, 8); ctx.fill(); at(k, x0 + 166, y0 + 36, 22);
+      ctx.fillStyle = '#141826'; ctx.beginPath(); ctx.roundRect(x0 + 200, y0 + 10, 110, 52, 10); ctx.fill();
+      ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.roundRect(x0 + 206, y0 + 16, 40, 40, 10); ctx.stroke(); at(k, x0 + 226, y0 + 36, 16);
+      ctx.beginPath(); ctx.arc(x0 + 268, y0 + 46, 13, 0, 7); ctx.fillStyle = '#141826'; ctx.fill(); ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.stroke(); at(k, x0 + 268, y0 + 46, 9);
+      at(k, x0 + 296, y0 + 30, 15 * 0.66);
+      ctx.fillStyle = col; ctx.strokeStyle = '#ff5d73'; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(x0 + 166, y0 + 100, 30, 0, 7); ctx.fill(); ctx.stroke(); at(k, x0 + 166, y0 + 100, 22);
+      ctx.fillStyle = '#6b6f78'; ctx.fillRect(x0 + 206, y0 + 72, 100, 56); at(k, x0 + 256, y0 + 100, 17);
+      ctx.fillStyle = '#fff'; ctx.font = '600 14px Fredoka'; ctx.textAlign = 'center'; ctx.fillText(k, x0 + 70, y0 + 140);
+    });
+    requestAnimationFrame(frame); return;
+  }
+  if (mode === 'car3d') {   // ?m=car3d: the 3D cars (art/car3d.js) at 8 headings, the 2D car at the left of each row, the front wheels steering and the brake lights blinking; &mascots=2d: 2D riders (none: no riders); &view=table: the menu turntable's view; &sheet=ferris: the sprite sheet
+    const Q = new URLSearchParams(location.search), ids = Q.get('ids') ? Q.get('ids').split(',') : CHARACTERS.map(c => c.id), view = Q.get('view') || 'race', m3 = Q.get('mascots') !== '2d';
+    if (Q.get('sheet')) { const S = car3DSheet(CHARACTERS.find(c => c.id === Q.get('sheet')), view); ctx.fillStyle = '#5c6068'; ctx.fillRect(0, 0, W, H); if (S) ctx.drawImage(S, 0, 0, Math.min(W, S.width / 2), Math.min(W, S.width / 2) * S.height / S.width); requestAnimationFrame(frame); return; }
+    const steer = Math.sin(t * 1.6) * 0.5, brake = Math.sin(t * 1.3) > 0;
+    const kart = (ch, x, y, head, z, three) => {
+      ctx.save(); ctx.translate(x, y); ctx.scale(z, z); if (view === 'table') ctx.scale(1, 0.62); drawCarShadow(ctx, ch, head); if (view === 'table') ctx.scale(1, 1 / 0.62);
+      const on = three && drawCar3D(ctx, ch, { yaw: head, steer, brake, view });
+      if (!on) { ctx.save(); if (view === 'table') ctx.scale(1, 0.62); ctx.rotate(head); drawCar(ctx, ch, { steer, brake }); ctx.restore(); }
+      const s = BODIES[ch.body].seat; ctx.translate(Math.cos(head) * s, Math.sin(head) * s * (view === 'table' ? 0.62 : 1) - (on ? seatUp3D(ch, view) : RIDE_UP[ch.body] || 0));
+      const o = { t, scale: 0.92, look: [Math.cos(head), Math.sin(head)], yaw: head };
+      if (Q.get('mascots') !== 'none' && !(m3 && drawMascot3D(ctx, ch, o))) drawMascot(ctx, ch, o);
+      ctx.restore();
+    };
+    ids.forEach((cid, r) => {
+      const ch = CHARACTERS.find(c => c.id === cid), y = H * (r + 0.6) / (ids.length + 0.1), z = Math.min(Z * 0.5, H * 0.8 / ids.length / 70, W / 10 / 70);
+      kart(ch, W * 0.06, y, -Math.PI / 4, z, false);
+      for (let k = 0; k < 8; k++) kart(ch, W * (0.17 + k * 0.105), y, k * Math.PI / 4, z, true);
+    });
+    ctx.fillStyle = '#fff'; ctx.font = '500 12px Fredoka'; ctx.textAlign = 'left';
+    car3DStats().forEach((s, i) => ctx.fillText(`${s.key}: ${s.size} px (${s.fill}% used), ${s.mb} MB, ${s.ms} ms`, 8, 14 + i * 14));
+    requestAnimationFrame(frame); return;
+  }
+  if (mode === 'poses') {   // ?m=poses: Fight mode's poses (art/model3d.js), Tux and Duke side by side (&id=gopher, or any racer: one), a row a pose: front, three-quarter, side, back, then the front with ko, dizzy and happy faces and the side at fight size; &id=tux: one; &spin=1: every one turning; &now=1: made on the spot; &anim=1: walking; &p=stand,walk0: only those poses
+    const Q = new URLSearchParams(location.search), ids = Q.get('id') ? [Q.get('id')] : ['tux', 'duke'], spin = Q.get('spin') ? t * 0.8 : 0;
+    const POSES = Object.fromEntries(ids.map(id => [id, poses3D(id)]));   // (every racer's: stand, the shared moves, its two signature poses, the walk)
+    const COLS = [['front', Math.PI / 2], ['3/4', Math.PI / 4], ['side', 0], ['back', -Math.PI / 2], ['ko', Math.PI / 2, 'ko'], ['dizzy', Math.PI / 2, 'dizzy'], ['happy', Math.PI / 4, 'happy'], ['small', 0, null, 0.45]];
+    if (Q.get('p')) for (const id of ids) POSES[id] = Q.get('p').split(',').filter(p => p === 'stand' || p.startsWith('walk') || POSES[id].includes(p));   // &p=stand,walk0: only those rows
+    if (Q.get('now') && !window.posesMade) { window.posesMade = 1; for (const id of ids) for (const p of POSES[id]) for (const m of Q.get('faces') === '0' ? [''] : ['', 'ko', 'dizzy', 'happy']) modelSheet(id, p ? p + '/' + m : m); }   // (&now=1: every sheet made on the spot, for a screenshot; &faces=0: only the plain ones, quicker)
+    ctx.fillStyle = '#cfe3ef'; ctx.fillRect(0, 0, W, H);
+    if (Q.get('anim')) {   // &anim=1: walking; &p=stand,walk0: only those poses (walkPose from the distance walked) at front, 3/4, side and back, then turning
+      const hs = [Math.PI / 2, Math.PI / 4, 0, -Math.PI / 2, t * 0.7], z = Math.min(W / (hs.length * 70), H / (ids.length * 75));
+      ids.forEach((id, b) => hs.forEach((yaw, k) => {
+        ctx.save(); ctx.translate((k + 0.5) * W / hs.length, (b + 0.75) * H / ids.length); ctx.scale(z, z);
+        const ch = CHARACTERS.find(c => c.id === id);
+        if (!drawMascot3D(ctx, ch, { t, yaw, fight: true, pose: walkPose(t * 1.6 + b * 0.3) })) { ctx.fillStyle = '#c33'; ctx.fillRect(-3, -3, 6, 6); }
+        ctx.restore();
+      }));
+      requestAnimationFrame(frame); return;
+    }
+    const bw = W / ids.length, cw = bw / (COLS.length + 0.6), rows = Math.max(...ids.map(id => POSES[id].length)), rh = (H - 30) / rows, z = Math.min(+(Q.get('z') || 99), rh / 62, cw / 64);
+    ids.forEach((id, b) => {
+      const ch = CHARACTERS.find(c => c.id === id), x0 = b * bw + cw * 0.6;
+      ctx.fillStyle = '#e9f2e0'; ctx.fillRect(b * bw + 4, 24, bw - 8, H - 28);
+      ctx.fillStyle = '#334'; ctx.font = '600 12px Fredoka'; ctx.textAlign = 'center';
+      COLS.forEach(([name], k) => ctx.fillText(k ? name : id + ' ' + name, x0 + (k + 0.5) * cw, 16));
+      POSES[id].forEach((pose, r) => {
+        const y = 30 + (r + 0.78) * rh;
+        ctx.fillStyle = '#556'; ctx.textAlign = 'left'; ctx.fillText(pose || 'idle', b * bw + 8, y - rh * 0.3);
+        COLS.forEach(([, yaw, m, s], k) => {
+          ctx.save(); ctx.translate(x0 + (k + 0.5) * cw, y); ctx.scale(z * (s || 1), z * (s || 1));
+          if (!drawMascot3D(ctx, ch, { t, yaw: yaw + spin, pose, mood: m || null })) { ctx.fillStyle = '#c33'; ctx.fillRect(-3, -3, 6, 6); }
+          ctx.restore();
+        });
+      });
+    });
+    requestAnimationFrame(frame); return;
+  }
+  if (mode === '3d' || mode === 'sheet') {   // ?m=3d: the 3D models (art/model3d.js) on their karts at 8 headings, the 2D one at the left of each row; &id=tux: one, its 2D under it, one spinning; &ids=ferris,pyth: some of them; ?m=sheet&id=: the sprite sheet
+    const Q = new URLSearchParams(location.search), id = Q.get('id'), ids = id ? [id] : Q.get('ids') ? Q.get('ids').split(',') : CHARACTERS.filter(c => has3D(c.id)).map(c => c.id);
+    if (mode === 'sheet') { const S = modelSheet(ids[0], mood || ''); ctx.fillStyle = '#5c6068'; ctx.fillRect(0, 0, W, H); if (S) ctx.drawImage(S.sheet, 0, 0, Math.min(W, S.sheet.width / 2), Math.min(W, S.sheet.width / 2) * S.sheet.height / S.sheet.width); requestAnimationFrame(frame); return; }
+    const kart = (ch, x, y, head, z, three) => {
+      ctx.save(); ctx.translate(x, y); ctx.scale(z, z); drawCarShadow(ctx, ch, head);
+      ctx.save(); ctx.rotate(head); drawCar(ctx, ch, { steer: 0 }); ctx.restore();
+      const s = BODIES[ch.body].seat; ctx.translate(Math.cos(head) * s, Math.sin(head) * s - (RIDE_UP[ch.body] || 0));
+      const o = { t, scale: 0.92, look: [Math.cos(head), Math.sin(head)], mood, yaw: head, sudo: mood === 'sudo' };
+      if (o.sudo) o.mood = null;
+      if (!(three && drawMascot3D(ctx, ch, o))) drawMascot(ctx, ch, o);
+      ctx.restore();
+    };
+    if (id) {
+      const ch = CHARACTERS.find(c => c.id === id);
+      for (let k = 0; k < 8; k++) { const head = k * Math.PI / 4, x = W * (0.07 + k * 0.12); kart(ch, x, H * 0.24, head, Z * 0.7, true); kart(ch, x, H * 0.58, head, Z * 0.7, false); }
+      kart(ch, W * 0.5, H * 0.86, t * 0.8, Z * 0.55, true);
+    } else ids.forEach((cid, r) => {
+      const ch = CHARACTERS.find(c => c.id === cid), y = H * (r + 0.62) / (ids.length + 0.15), z = Math.min(Z * 0.5, H * 0.9 / ids.length / 75);
+      kart(ch, W * 0.06, y, Math.PI / 2, z, false);
+      for (let k = 0; k < 8; k++) kart(ch, W * (0.17 + k * 0.105), y, Math.PI / 2 + k * Math.PI / 4, z, true);
+    });
+    requestAnimationFrame(frame); return;
+  }
+  CHARACTERS.forEach((ch, i) => {
+    const col = i % 5, row = Math.floor(i / 5), cx = W * (0.1 + col * 0.2), cy = H * (0.3 + row * 0.42);
+    ctx.save(); ctx.translate(cx, cy); ctx.scale(Z, Z);
+    const head = mode === 'spin' ? t * 0.6 + i : -Math.PI / 2 * (mode === 'up' ? 1 : 0);
+    drawCarShadow(ctx, ch, head);
+    ctx.save(); ctx.rotate(head); drawCar(ctx, ch, { steer: Math.sin(t * 2) * 0.4, brake: Math.sin(t * 1.3) > 0 }); ctx.restore();
+    if (mode !== 'cars') { const s = BODIES[ch.body].seat; ctx.translate(Math.cos(head) * s, Math.sin(head) * s); drawMascot(ctx, ch, { t, look: [Math.cos(head), Math.sin(head)], face: Math.cos(head) < 0 ? -1 : 1, mood }); }
+    ctx.restore();
+    ctx.fillStyle = '#fff'; ctx.font = '600 14px Fredoka'; ctx.textAlign = 'center'; ctx.fillText(ch.name + ' · ' + ch.body, cx, cy + 34 * Z + 20);
+  });
+  requestAnimationFrame(frame);
+}
+if (mode === 'covers') {   // ?m=covers: the map covers (art/covers.js), every track at card size (150x90) and then at 3x; &only=Crab Harbor,Moonshot: some of them
+  const { drawCover, coverThumb } = await import('./js/art/covers.js'), { TRACKS } = await import('./js/tracks.js');
+  const only = new URLSearchParams(location.search).get('only'), names = TRACKS.map(t => t.name).filter(n => !only || only.split(',').includes(n));
+  cv.remove(); document.body.style.cssText = 'margin:0;padding:16px;background:#1d1640;color:#fff;font-family:Fredoka,sans-serif';
+  const sec = (h, cls) => { const d = document.createElement('div'); d.innerHTML = `<h3 style="margin:8px 0">${h}</h3>`; const grid = document.createElement('div'); grid.style.cssText = `display:flex;flex-wrap:wrap;gap:${cls}px`; d.append(grid); document.body.append(d); return grid; };
+  const card = (grid, n, c) => { const f = document.createElement('figure'); f.style.cssText = 'margin:0;background:#2a2050;border-radius:12px;overflow:hidden'; c.style.display = 'block'; f.append(c); const l = document.createElement('figcaption'); l.textContent = n; l.style.cssText = 'padding:4px 8px;font-weight:600;font-size:14px'; f.append(l); grid.append(f); };
+  const small = sec('Card size (150x90)', 10);
+  for (const n of names) { const c = coverThumb(n, 150, 90); c.style.width = '150px'; c.style.height = '90px'; card(small, n, c); }
+  const big = sec('3x (450x270)', 14);
+  for (const n of names) { const c = document.createElement('canvas'); c.width = 900; c.height = 540; c.style.width = '450px'; c.style.height = '270px'; drawCover(c.getContext('2d'), n, 900, 540); card(big, n, c); }
+} else { if (mode === 'poses') queueFight3D(new URLSearchParams(location.search).get('id') ? [new URLSearchParams(location.search).get('id')] : ['tux', 'duke']); requestAnimationFrame(frame); }
+</script></body></html>

@@ -1,0 +1,250 @@
+/* Kernel Kart's results screens (ui.js showResults, cupBoard, showPodium; timetrial-ui.js; net-ui.js), in the menu's
+   .mscreen frame, Classic Flat in every look. The frame is see-through over the race still finishing; the cards are
+   solid. Sizes in rem, targets 44 px or more, no motion under html.kk-still. Loaded after menu.css and before the
+   look-*.css files (they only restyle the old class names, so nothing here is overridden). */
+
+/* ---------- the frame: the race shows through round the cards */
+#ui>.screen.rscreen{background:rgba(12,10,36,.8)}
+.rscreen .m-mode{color:#dcd9f5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.rscreen .m-head{flex:0 1 auto;min-width:0} .rscreen .m-util .whatsnew{white-space:nowrap}
+.r-tt .r-hero{align-self:start}
+.rscreen .m-mode .trophy{width:20px;height:20px;flex:none}
+
+.rscreen .m-top.r-top{background:#120f33;border-bottom:1px solid rgba(255,255,255,.12);box-shadow:0 8px 22px rgba(0,0,0,.22);margin-bottom:12px}
+.r-pips{list-style:none;display:flex;gap:7px;margin:0 auto;padding:9px 12px;border-radius:999px;background:var(--m-well);border:1px solid var(--m-line)}
+.r-pips li{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.2)}
+.r-pips li.done{background:var(--gold)} .r-pips li.now{background:var(--m-red);box-shadow:0 0 0 3px rgba(255,90,60,.35)}
+.r-pips+.m-util{margin-left:0}
+
+/* ---------- the body: the winner, the order (a cup: and the standings), the chat online */
+.m-body.r-body{display:grid;gap:14px;width:100%;max-width:1180px;margin:0 auto;align-content:start;
+  grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);grid-template-rows:max-content max-content;grid-auto-rows:max-content;grid-template-areas:"hero list" "chat list"}
+.r-cup .m-body.r-body{max-width:1360px;grid-template-columns:minmax(230px,.72fr) minmax(0,1fr) minmax(0,1fr);grid-template-areas:"hero list board" "chat list board"}
+@media (min-width:641px){.r-online.r-race:not(.r-cup) .m-body.r-body{grid-template-areas:"hero list" "hero chat"}}
+@media (min-width:1001px) and (min-height:561px){.r-online.r-cup .m-body.r-body{grid-template-areas:"hero list board" "hero chat chat"}}
+.r-tt .m-body.r-body{grid-template-areas:"hero sect" "hero list" "hero lb";grid-template-rows:auto auto 1fr}
+.r-tt.no-sect .m-body.r-body{grid-template-areas:"hero list" "hero lb";grid-template-rows:auto 1fr}
+.r-podium .m-body.r-body{max-width:1240px;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"pod board" "chat board"}
+.r-order,.r-laps,.r-board,.r-sect{align-self:start}
+.r-body>.r-card,.r-body>.r-chat{min-height:min-content}   /* (the body scrolls when it must: never squash a card) */
+.r-lb{grid-area:lb;align-self:start} .r-card.r-lb{border-top:1px solid var(--m-line);padding-top:14px;gap:6px} .r-lb .lb-h{margin-bottom:4px} .r-hero{grid-area:hero} .r-order,.r-laps{grid-area:list} .r-board{grid-area:board} .r-chat{grid-area:chat;min-width:0} .r-sect{grid-area:sect} .r-pod{grid-area:pod}
+@media (min-height:700px) and (min-width:1001px){.m-body.r-body{align-content:safe center}}   /* (safe: a taller body scrolls from its top) */
+
+.r-card{position:relative;min-width:0;padding:14px;border-radius:22px;background:var(--m-card);border:1px solid var(--m-line);box-shadow:var(--m-sh);container-type:inline-size;
+  animation:rCard .22s var(--ease) both}
+.r-card+.r-card{animation-delay:60ms} .r-card+.r-card+.r-card{animation-delay:120ms}
+@keyframes rCard{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.r-h{margin:0 2px 10px;display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 10px;font-family:var(--body);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.r-h small{font-size:.8rem;font-weight:600;letter-spacing:0;text-transform:none;color:#cfcbef}
+
+/* ---------- the winner (a time trial: you), big on their turntable in their colour */
+.r-hero{--pc:#ffc93c;display:flex;flex-direction:column;gap:4px;padding:12px 16px 16px;border:3px solid color-mix(in srgb,var(--pc) 45%,transparent);
+  }
+.r-hero.mine{border-color:var(--pc);box-shadow:0 0 0 4px color-mix(in srgb,var(--pc) 26%,transparent),var(--m-sh)}
+.rh-stage{position:relative;flex:none;height:clamp(150px,30vh,280px);min-width:0;margin:0 -6px 6px;border-radius:16px;background:color-mix(in srgb,var(--pc) 20%,#1b1745)}
+.rh-tt{position:absolute;inset:0;width:100%;height:100%;display:block}
+.rh-medal{position:absolute;top:8px;left:8px;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:1.6rem;line-height:1;
+  color:#3a2a00;background:var(--gold);box-shadow:0 0 0 4px var(--ink),0 4px 0 4px rgba(0,0,0,.28);transform:rotate(-8deg);animation:rPop .3s var(--pop) .15s both}
+.rh-medal.sw{background:#231e57;padding:7px} .rh-medal.sw .trophy{width:100%;height:100%}
+@keyframes rPop{from{transform:rotate(-8deg) scale(.3);opacity:0}to{transform:rotate(-8deg) scale(1);opacity:1}}
+.rh-info{display:flex;flex-direction:column;gap:5px;min-width:0}
+.rh-kick{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(1.35rem,2.6vw,2.05rem);line-height:1.08;color:#fff;letter-spacing:.02em;transform:skewX(-6deg);transform-origin:left bottom;text-shadow:2px 3px 0 #8a1f2a}
+.r-hero.mine .rh-kick{color:var(--gold);text-shadow:2px 3px 0 #7a3c00}
+.rh-name{margin:0;display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;font-family:var(--body);font-size:1.15rem;font-weight:700;color:#fff;line-height:1.2}
+.rh-time{margin:2px 0 0;display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 12px}
+.rh-time>b{font-family:var(--display);font-weight:400;font-size:1.65rem;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.rh-time>span{font-size:.92rem;color:#d6d3f2;font-variant-numeric:tabular-nums}
+.rh-you,.rh-pb,.rh-cmp{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.rh-you li{--pc:#cfcbef;display:flex;align-items:center;gap:10px;min-height:44px;padding:4px 12px;border-radius:14px;background:var(--m-well);border:2px solid var(--pc);font-size:.95rem}
+.rh-you b{font-family:var(--display);font-weight:400;font-size:1.15rem;color:#fff}
+.rh-you li>span:last-child{margin-left:auto;color:#dcd9f5;font-variant-numeric:tabular-nums}
+.rh-pb li{display:block;padding:7px 12px;border-radius:14px;background:#3a3317;border:1.5px solid rgba(255,201,60,.6);font-size:.92rem;color:#fff;line-height:1.3}
+.rh-pb li::before{content:"★";color:var(--gold);font-size:1rem;margin-right:6px} .rh-pb .rr-tag{margin-right:6px}
+.rh-pb b{color:var(--gold);font-variant-numeric:tabular-nums}
+.rh-cmp li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:0 10px;padding:7px 12px;border-radius:14px;background:var(--m-well);border:1px solid var(--m-line)}
+.rh-cmp li>span{font-size:.85rem;font-weight:700;color:#dcd9f5} .rh-cmp li>b{font-family:var(--display);font-weight:400;font-size:1.15rem;color:#fff;font-variant-numeric:tabular-nums}
+.rh-cmp li>b.best{color:var(--gold)} .rh-cmp li>small{grid-column:1/-1;font-size:.82rem;color:#cfcbef}
+.rh-cmp li.rival{border-color:color-mix(in srgb,var(--rv) 60%,transparent)} .rh-cmp li.rival>span{color:color-mix(in srgb,var(--rv) 55%,#fff)}
+.rscreen b.good{color:#5ef0a6} .rscreen b.bad{color:#ff9d8f} .rscreen b.even{color:#dcd9f5}
+
+/* tags: YOU, P1-P4 or a name, in the player's colour; a bot's quieter */
+.rr-tag{display:inline-block;font-family:var(--body);font-weight:800;font-size:.78rem;line-height:1;letter-spacing:.03em;color:#14102a;background:var(--pc,#cfcbef);padding:4px 8px 3px;border-radius:7px;
+  transform:skewX(-8deg);white-space:nowrap;max-width:10em;overflow:hidden;text-overflow:ellipsis;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.rr-tag.left{background:rgba(255,255,255,.14);color:#dcd9f5;box-shadow:none}
+.rr-bot{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#bdb9e4}
+.r-new{display:inline-block;margin-top:2px;padding:2px 7px;border-radius:6px;background:var(--gold);color:#3a2a00;font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;line-height:1.3}
+
+/* ---------- the finishing order: a row per kart */
+.r-list,.sb-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;position:relative}
+.rr{--pc:transparent;position:relative;display:grid;align-items:center;gap:2px 10px;min-height:58px;padding:5px 14px 5px 8px;border-radius:16px;background:var(--m-card2);border:2px solid transparent;
+  grid-template-columns:2.6rem 50px minmax(0,1fr) auto minmax(4.6rem,auto);grid-template-areas:"pos port who time lap";
+  animation:rIn .2s var(--ease) both;animation-delay:calc(var(--d) * 45ms + 90ms)}
+.r-cup .rr{grid-template-columns:2.6rem 50px minmax(0,1fr) auto minmax(4.6rem,auto) 2.4rem;grid-template-areas:"pos port who time lap gain"}
+@keyframes rIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.rr-pos{grid-area:pos} .rr-port{grid-area:port} .rr-who{grid-area:who} .rr-time{grid-area:time} .rr-lap{grid-area:lap} .rr .gain{grid-area:gain}
+.rr.bot{background:rgba(255,255,255,.035)} .rr.bot .rr-nm{color:#dcd9f5;font-weight:600} .rr.bot .rr-port{opacity:.78}
+.rr.human{border-color:color-mix(in srgb,var(--pc) 45%,transparent)}
+.rr.me{background:color-mix(in srgb,var(--pc) 18%,var(--m-card));border-color:var(--pc);box-shadow:0 0 0 3px color-mix(in srgb,var(--pc) 22%,transparent)}
+.rr-pos,.sb .pos{display:flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border-radius:12px;background:rgba(255,255,255,.1);font-family:var(--display);font-weight:400;font-size:1.2rem;line-height:1;color:#fff;transform:skewX(-8deg)}
+.rr-pos small{font-size:.55em;margin:.35em 0 0 1px}
+.rr.first .rr-pos,.sb.lead .pos{background:var(--gold);color:#3a2a00;box-shadow:0 2px 0 #8a5a00}
+.rr-port,.sb-port{width:50px;height:50px;display:block} .rr-port canvas,.sb-port canvas{width:100%;height:100%;display:block}
+.rr-who{display:flex;align-items:center;flex-wrap:wrap;gap:3px 8px;min-width:0}
+.rr-who small{width:100%;font-size:.8rem;color:#cfcbef}
+.rr-nm{font-size:1.06rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.rr-time,.rr-lap{display:flex;flex-direction:column;align-items:flex-end;line-height:1.2;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rr-time b{font-size:1.12rem;font-weight:700;color:#fff} .rr-time b.run{font-size:.95rem;font-weight:600;color:#e4e1fb}
+.rr-time small,.rr-lap small{font-size:.76rem;color:#cfcbef}
+.rr-lap b{font-size:.94rem;font-weight:600;color:#e4e1fb}
+.rr.first .rr-time b,.rr-lap b.pb{color:var(--gold)}
+.rr.just{animation:rFin .6s ease-out} @keyframes rFin{from{background:#5a4a14}}
+.rr .gain{font-family:var(--display);font-weight:400;font-size:1.15rem;color:var(--gold);text-align:right;opacity:0;display:inline-block}
+.rr .gain.on{opacity:1}
+.tt-list{max-height:min(420px,46vh);overflow-y:auto;padding:2px;scrollbar-width:thin;scrollbar-color:#ffffff26 transparent}
+.tt-list .rr{grid-template-columns:2.6rem minmax(0,1fr) auto minmax(5rem,auto);grid-template-areas:"pos who time lap";min-height:50px}
+.tt-list .rr.none{grid-template-columns:2.6rem minmax(0,1fr);grid-template-areas:"pos who"}
+.tt-list .rr:not(.first){background:var(--m-card2);border-color:transparent;box-shadow:none}
+.tt-list .rr.first{background:color-mix(in srgb,var(--gold) 16%,var(--m-card));border-color:rgba(255,201,60,.7);box-shadow:none}
+
+/* narrow cards (a cup's columns, an iPad upright, a phone): the best lap folds under the name */
+@container (max-width:470px){
+  .rr{grid-template-columns:2.3rem 42px minmax(0,1fr) auto;grid-template-areas:"pos port who time" "pos port lap time";padding:4px 10px 4px 6px;gap:0 8px}
+  .r-cup .rr{grid-template-columns:2.3rem 42px minmax(0,1fr) auto 2.1rem;grid-template-areas:"pos port who time gain" "pos port lap time gain"}
+  .rr-port{width:42px;height:42px} .rr-pos{width:2.2rem;height:2.2rem;font-size:1.05rem}
+  .rr-lap{flex-direction:row;align-items:baseline;gap:5px;justify-self:start;min-width:0;max-width:100%;overflow:hidden} .rr-lap b{font-size:.8rem} .rr-lap .r-new{display:none}
+  .tt-list .rr{grid-template-columns:2.3rem minmax(0,1fr) auto;grid-template-areas:"pos who time" "pos lap time"}
+}
+
+@container (max-width:330px){
+  .rr .rr-lap,.rr .rr-bot{display:none} .rr{grid-template-areas:"pos port who time"} .r-cup .rr{grid-template-areas:"pos port who time gain"}
+  .rr-time small{font-size:.7rem} .rr-time .r-new{font-size:.58rem;padding:1px 5px}
+}
+
+/* ---------- the cup standings: place, movement, racer, places so far, the race's points, total */
+.sb{--pc:transparent;position:relative;display:grid;align-items:center;gap:2px 8px;min-height:54px;padding:4px 12px 4px 6px;border-radius:16px;background:var(--m-card2);border:2px solid transparent;
+  grid-template-columns:2.5rem 1.9rem 42px minmax(0,1fr) auto 2.2rem 2.6rem;animation:rIn .2s var(--ease) both;animation-delay:calc(var(--d) * 45ms + 120ms)}
+.board.final .sb{grid-template-columns:2.5rem 42px minmax(0,1fr) auto 2.6rem} .board.final .mv,.board.final .sb-gain{display:none}
+.sb.bot{background:rgba(255,255,255,.035)} .sb.bot .nm{color:#dcd9f5;font-weight:600} .sb.bot .sb-port{opacity:.78}
+.sb.human{border-color:color-mix(in srgb,var(--pc) 45%,transparent)}
+.sb.me{background:color-mix(in srgb,var(--pc) 18%,var(--m-card));border-color:var(--pc)}
+.sb.lead:not(.me){border-color:rgba(255,201,60,.6)}
+.sb-port{width:42px;height:42px}
+.sb .who{display:flex;align-items:center;flex-wrap:wrap;gap:3px 8px;min-width:0;margin:0;padding:0;background:none;border:0;border-radius:0;box-shadow:none}
+.sb .nm{font-size:1rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.sb .mv{text-align:center} .sb .mv b{font-size:.82rem;font-weight:800;display:inline-block} .sb .mv .up{color:#5ef0a6} .sb .mv .down{color:#ff9d8f} .sb .mv .same{color:#bdb9e4}
+.sb .chips{display:flex;gap:3px;justify-content:flex-end;white-space:nowrap}
+.sb .cup-chip{margin:0;font-size:.68rem;padding:2px 5px;border-radius:6px;background:rgba(255,255,255,.12);color:#dcd9f5}
+.sb .cup-chip.p1{background:var(--gold);color:#3a2a00} .sb .cup-chip.p2{background:#d5dbe8;color:#2a2f3d} .sb .cup-chip.p3{background:#d08a4f;color:#2d1806}
+.sb-gain{font-weight:800;font-size:.9rem;color:var(--gold);text-align:right;font-variant-numeric:tabular-nums;display:inline-block}
+.sb .pts{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--gold);text-align:right;font-variant-numeric:tabular-nums;display:inline-block}
+.sb .flash{position:absolute;inset:0;border-radius:inherit;background:rgba(255,201,60,.3);opacity:0;pointer-events:none}
+.r-board .board-wait{padding:24px 10px;text-align:center;color:#dcd9f5;font-size:.95rem}
+.r-board .board-skip{margin:8px 0 0;text-align:center;font-size:.8rem;color:#cfcbef;transition:opacity .3s}
+.board-done .r-board .board-skip{opacity:0}
+.instant .rr,.instant .sb,.instant .r-card{animation:none}
+@container (max-width:400px){
+  .sb{grid-template-columns:2.2rem 1.6rem 36px minmax(0,1fr) 2rem 2.4rem;padding:4px 10px 4px 5px;gap:0 6px} .sb .chips{display:none}
+  .board.final .sb{grid-template-columns:2.2rem 36px minmax(0,1fr) 2.4rem}
+  .sb-port{width:36px;height:36px} .sb .pos{width:2.1rem;height:2.1rem;font-size:1rem}
+}
+
+/* ---------- a time trial's sectors */
+.r-tablewrap{overflow-x:auto}
+.r-table{width:100%;border-collapse:separate;border-spacing:0 4px;font-variant-numeric:tabular-nums}
+.r-table th,.r-table td{padding:6px 8px;text-align:right;white-space:nowrap}
+.r-table thead th{font-size:.78rem;font-weight:700;letter-spacing:.06em;color:#cfcbef}
+.r-table tbody th{text-align:left;font-size:.85rem;font-weight:700;color:#dcd9f5;max-width:9em;overflow:hidden;text-overflow:ellipsis}
+.r-table tbody tr{background:var(--m-card2)} .r-table tbody tr>:first-child{border-radius:10px 0 0 10px} .r-table tbody tr>:last-child{border-radius:0 10px 10px 0}
+.r-table tr.yours td{font-size:1.02rem;font-weight:700;color:#fff}
+.r-table td b{font-weight:700}
+.r-ideal{margin:8px 2px 0;font-size:.88rem;color:#dcd9f5} .r-ideal b{color:var(--gold);font-variant-numeric:tabular-nums}
+
+/* ---------- the podium in the frame (the steps and figures are style.css's .pod-*, Classic Flat's from look-flat.css) */
+.r-pod{display:flex;flex-direction:column;padding-bottom:0} .r-pod .pod-stage{overflow:clip}
+.rp-sum{margin:2px 0 4px;text-align:center;font-family:var(--body);font-size:1.05rem;font-weight:600;color:#e4e1fb;text-transform:none;letter-spacing:0;line-height:1.35}
+.rp-sum b{font-family:var(--display);font-weight:400;font-size:1.45rem;color:var(--gold);display:block;transform:skewX(-6deg);text-shadow:2px 3px 0 #7a3c00}
+.r-pod .pod-stage{margin:auto 0 0;padding-top:8px}
+.r-pod .podium{max-width:560px}
+.r-pod .pod-col.me .pod-step{box-shadow:inset 0 0 0 3px var(--pc,#fff)}
+.r-pod .pod-tag{overflow:visible;margin-top:4px;line-height:1} .r-pod .pod-tag .rr-tag{font-size:.72rem} .r-pod .pod-tag .rr-bot{display:none}
+.r-pod .pod1 .pod-step{height:184px} .r-pod .pod2 .pod-step{height:148px} .r-pod .pod3 .pod-step{height:124px}
+.r-board .pod-trail{display:flex;justify-content:center;align-items:center;margin:14px auto 2px;max-width:420px} .r-board .pod-trail .mini{flex:0 1 64px;min-width:0;aspect-ratio:64/40} .r-board .pod-trail canvas{width:100%;height:auto;border-radius:6px;display:block}
+.r-podium .confetti{z-index:6}
+
+/* ---------- the chat, online (chat-ui.js's panel) */
+.r-chat>.chat-panel{margin:0;padding:14px;border-radius:22px;background:var(--m-card);border:1px solid var(--m-line);box-shadow:var(--m-sh)}
+.r-chat>.chat-panel::before,.r-chat .chat-panel>h2::after{display:none}
+.r-chat .chat-panel>h2{margin:0 0 8px;font-family:var(--body);font-size:.82rem;font-weight:700;letter-spacing:.1em;color:var(--gold)}
+.r-chat .chat-log{height:120px}
+.r-chat .chat-row button,.r-chat .chat-in{min-height:44px} .r-chat .chat-quick button{min-height:44px;padding:0 16px}
+
+/* ---------- the footer: what's next in a cup, then the buttons, the big one last */
+.r-foot{flex-wrap:wrap}
+.r-next{display:flex;align-items:center;gap:12px;min-width:0;flex:0 1 auto}
+.r-next .mini,.r-nexttrack .mini{flex:none;width:96px;aspect-ratio:96/58;line-height:0} .r-next .mini canvas,.r-nexttrack .mini canvas{width:100%;height:100%;border-radius:10px;display:block}
+.r-next .ms-t small{color:#cfcbef} .r-next .ms-t b{font-size:1.05rem;color:#fff}
+.r-next-trophy{width:52px;height:52px;flex:none}
+.r-btns{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:10px 12px;margin-left:auto;min-width:0}
+.r-btns .big{order:9}
+.mscreen button.r-btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:4px 16px;border-radius:16px;background:#1c1846;border:1.5px solid rgba(255,255,255,.18);box-shadow:var(--m-sh);font-size:1rem;font-weight:700;text-align:left}
+.mscreen button.r-btn:hover{background:#2a2563;transform:none}
+.mscreen button.r-nexttrack{padding:4px 14px 4px 4px}
+.r-nexttrack .mini{width:76px} .r-nexttrack .ms-t b{max-width:12em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r-btn kbd{font-size:.75rem;margin-left:2px}
+.r-btn .ic{width:20px;height:20px;flex:none}
+.mscreen button.r-btn.go{border-color:var(--gold);background:#3a3317}
+.r-wait{min-height:44px;display:flex;align-items:center;font-weight:700;color:#e4e1fb}
+
+/* ---------- motion off: reduced effects (Settings) or the OS's reduced motion */
+html.kk-still .rscreen .r-card,html.kk-still .rscreen .rr,html.kk-still .rscreen .sb,html.kk-still .rscreen .rh-medal{animation:none}
+html.kk-still .r-podium .confetti{display:none} html.kk-still .r-podium .pod-art,html.kk-still .r-podium .pod-step{animation:none}
+
+/* ---------- an iPad upright, a narrow window: a cup's three columns become the winner over two */
+@media (max-width:1000px){
+  .r-cup .m-body.r-body{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:none;grid-template-areas:"hero hero" "list board" "chat chat"}
+  .r-cup .r-hero{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center;gap:0 14px}
+  .r-cup .rh-stage{height:170px}
+  .r-podium .m-body.r-body{grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-template-areas:"pod" "board" "chat"}
+}
+
+/* ---------- a phone upright: one column; the winner's card side by side */
+@media (max-width:640px){
+  .r-next .ms-t small,.r-nexttrack .ms-t small{display:block}
+  .m-body.r-body,.r-cup .m-body.r-body,.r-tt .m-body.r-body,.r-tt.no-sect .m-body.r-body,.r-podium .m-body.r-body{grid-template-columns:minmax(0,1fr);grid-template-areas:none;grid-template-rows:none;gap:12px}
+  .r-body>*{grid-area:auto}
+  .r-hero,.r-cup .r-hero{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:center;gap:2px 12px;padding:10px 12px 12px} .rh-info{display:contents}
+  .rh-stage,.r-cup .rh-stage{grid-column:1;grid-row:1/span 3;height:132px;margin:0} .rh-medal{width:36px;height:36px;font-size:1.1rem;top:4px;left:4px}
+  .rh-kick,.rh-name,.rh-time{grid-column:2} .rh-kick{font-size:1.3rem;align-self:end} .rh-time{align-self:start} .rh-time>b{font-size:1.35rem} .rh-you,.rh-pb,.rh-cmp{grid-column:1/-1}
+  .r-pips{display:none}
+  .r-foot{gap:8px} .r-next{flex:1 1 100%} .r-next .mini{width:72px}
+  .r-btns{flex:1 1 100%;justify-content:stretch} .r-btns>*{flex:1 1 auto} .r-btns .big{flex:1 1 100%}
+  .mscreen button.r-nexttrack .mini{width:56px}
+  .r-pod .pod-art canvas{width:96px;height:96px} .r-pod .pod1 .pod-art canvas{width:136px;height:136px}
+}
+
+/* ---------- a phone on its side (short and wide): compact rows, the winner smaller, nothing wasted */
+@media (max-height:560px) and (min-width:641px){
+  .r-race:not(.r-cup) .r-hero,.r-tt .r-hero{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:0 10px}
+  .r-race:not(.r-cup) .r-hero .rh-stage,.r-tt .r-hero .rh-stage{height:150px;margin:0}
+  .rh-you{display:none} .rh-cmp li>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .rh-cmp li>b{font-size:1rem}
+  .m-body.r-body{gap:10px;padding-bottom:10px}
+  .r-cup .m-body.r-body{grid-template-columns:minmax(0,.66fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:max-content max-content;grid-template-areas:"hero list board" "chat list board"}
+  .r-podium .m-body.r-body{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:max-content max-content;grid-template-areas:"pod board" "chat board"}
+  .r-cup .r-hero{display:flex;align-items:stretch}
+  .r-card{padding:10px;border-radius:18px} .r-h{margin-bottom:6px;font-size:.74rem}
+  .r-hero{padding:4px 12px 10px;gap:2px}
+  .rh-stage,.r-cup .rh-stage{height:min(112px,26vh)} .rh-medal{width:36px;height:36px;font-size:1.1rem;top:2px}
+  .rh-kick{font-size:1.15rem} .rh-name{font-size:.98rem} .rh-time>b{font-size:1.2rem} .rh-time>span{font-size:.8rem}
+  .rh-you li,.rh-pb li,.rh-cmp li{min-height:0;padding:4px 10px;font-size:.82rem} .rh-you,.rh-pb,.rh-cmp{gap:4px;margin-top:2px}
+  .r-list,.sb-list{gap:5px}
+  .rr,.sb{min-height:44px;padding-top:2px;padding-bottom:2px}
+  .rr-port,.sb-port{width:38px;height:38px} .rr-pos,.sb .pos{width:2.1rem;height:2.1rem;font-size:1rem}
+  .tt-list{max-height:none}
+  .r-next .mini{width:72px} .r-next .ms-t small:last-child{display:none}
+  .mscreen button.r-btn{min-height:46px} .mscreen button.r-nexttrack .mini{width:58px}
+  .r-pod .pod-art canvas{width:74px;height:74px} .r-pod .pod1 .pod-art canvas{width:104px;height:104px}
+  .r-pod .pod1 .pod-step{height:96px} .r-pod .pod2 .pod-step{height:78px} .r-pod .pod3 .pod-step{height:64px}
+  .r-pod .pod-num{font-size:1.4rem} .r-pod .pod1 .pod-num{font-size:1.8rem} .r-pod .pod-step{padding-top:8px} .r-pod .pod-tag{display:none}
+  .rp-sum{font-size:.88rem} .rp-sum b{font-size:1.1rem}
+  .r-chat .chat-log{height:90px}
+}

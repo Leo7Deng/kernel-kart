@@ -1,0 +1,27 @@
+{
+  "name": "kernel-kart",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "play": "node scripts/play.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "vite build && node server/net.mjs",
+    "test": "node test/sim.test.mjs && node test/determinism.test.mjs && node test/mega.test.mjs && node test/net.test.mjs && node test/timetrial.test.mjs && node test/ghost-share.test.mjs && node test/board.test.mjs && node test/fight.test.mjs && node test/fight-net.test.mjs && node test/fight-stats.test.mjs && node test/fight-practice.test.mjs && npm run typecheck",
+    "typecheck": "tsc -p jsconfig.json --noEmit",
+    "fight": "nice -n 19 node test/fight.test.mjs",
+    "balance": "nice -n 19 node test/balance.mjs",
+    "items": "nice -n 19 node test/items.mjs",
+    "odds": "node test/odds.mjs",
+    "boxes": "nice -n 19 node test/boxes.mjs",
+    "frontrun": "nice -n 19 node test/frontrun.mjs",
+    "matchups": "nice -n 19 node test/fight-odds.mjs",
+    "publish:web": "node scripts/publish-web.mjs"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vite": "^6.3.5",
+    "ws": "^8.22.0"
+  }
+}

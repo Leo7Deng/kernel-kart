@@ -1,0 +1,384 @@
+/* Kernel Kart: Fight's screens (fight-ui.js fightScreen, openCard), in the canvas HUD's palette (draw-fight.js): PCOL
+   red and blue, gold for rounds won, deep indigo panels. Loaded after style.css; look-flat.css only calms the gradients. */
+
+/* ---------- who plays a side (whoCtl): Player | Bot, then the bot's level */
+.fx-who{display:flex;align-items:center;gap:6px;flex:1 1 auto;min-width:0;flex-wrap:wrap}
+.fx-who .seg{display:flex;flex-wrap:nowrap;min-width:0}
+.mscreen .fx-who .seg button{min-height:34px;padding:0 12px;font-size:.86rem;white-space:nowrap}
+.fx-who .fx-pb{flex:none}
+.fx-who .fx-lv{flex:1 1 auto}
+.mscreen .fx-who .fx-lv button{flex:1 1 0;padding:0 8px;font-size:.8rem;min-height:30px}
+.fx-who .fx-lv[hidden]{display:none}
+.fsx .fs-h{gap:8px;flex-wrap:nowrap}
+.fsx .fs-h .seg{flex:0 1 auto}
+.fsx .fs-h .fx-lv{flex:1 1 auto}
+
+/* ---------- the select screen (fight-ui.js fightScreen): the two stages facing off either side of the matchup, the roster
+   and the match button; a fighter's details and the match's settings in sheets (.fv-sheet). Upright/narrow: the stages
+   side by side on top */
+.m-body.fv{display:flex;flex-direction:column;padding-top:2px;padding-bottom:12px}
+.fv-main{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);gap:16px}
+.fv-side{display:flex;min-width:0;min-height:0}
+.fv-card{container:fvc/inline-size;position:relative;flex:1;display:flex;flex-direction:column;min-width:0;border-radius:var(--kk-r);background:var(--kk-panel);overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),var(--kk-edge)}
+.fv-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 3px transparent;transition:box-shadow .2s}
+.fv-card.on::after{box-shadow:inset 0 0 0 3px var(--pc)}
+.fv-stagebox{position:relative;flex:1 1 auto;min-height:180px;cursor:pointer;outline:none}
+.fv-stagebox:focus-visible{box-shadow:inset 0 0 0 3px var(--kk-gold)}
+.fv-stagebox .fs-stage{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fv-p{position:absolute;top:12px;left:12px;display:inline-grid;place-items:center;min-width:42px;height:30px;padding:0 9px;border-radius:9px;background:var(--pc);color:#fff;font-family:var(--display);font-weight:400;font-size:1.05rem;transform:skewX(var(--kk-skew));box-shadow:0 3px 0 rgba(0,0,0,.3)}
+.fv-side[data-side="1"] .fv-stagebox .fv-p{left:auto;right:12px}
+.fv-p.sm{position:static;min-width:0;height:20px;padding:0 6px;font-size:.72rem;border-radius:6px;margin-right:4px;vertical-align:1px}
+.mscreen button.fv-info,.fv-info{position:absolute;top:10px;right:10px;display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px 0 9px;border:0;border-radius:999px;background:rgba(14,11,40,.62);color:#fff;font:inherit;font-weight:700;font-size:.86rem;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);cursor:pointer;backdrop-filter:blur(4px)}
+.fv-side[data-side="1"] .fv-info{right:auto;left:10px}
+.mscreen button.fv-info:hover,.fv-info:hover{background:rgba(14,11,40,.85);box-shadow:inset 0 0 0 2px var(--pc);transform:none}
+.fv-info svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.fv-info svg circle:last-child{fill:currentColor}
+.fv-plate{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;display:flex;flex-direction:column;align-items:flex-start;gap:2px;background:linear-gradient(0deg,rgba(14,11,40,.72),transparent);pointer-events:none}
+.fv-side[data-side="1"] .fv-plate{align-items:flex-end;text-align:right}
+.fv-n{margin:0;max-width:100%;font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,2.7vw,2.4rem);line-height:1.05;letter-spacing:.03em;text-transform:uppercase;color:#fff;transform:skewX(var(--kk-skew));text-shadow:2px 3px 0 var(--kk-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 4px}
+.fv-plate small{font-weight:700;font-size:.82rem;color:rgba(255,255,255,.86);text-shadow:0 1px 0 var(--kk-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.fv-picking{position:absolute;top:50px;left:12px;padding:2px 8px;border-radius:999px;background:var(--pc);color:#fff;font-size:.66rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:0;transform:translateY(-4px);transition:opacity .2s,transform .2s;pointer-events:none}
+.fv-side[data-side="1"] .fv-picking{left:auto;right:12px}
+.fv-card.on .fv-picking{opacity:1;transform:none}
+.fv-randtag{position:absolute;top:56px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;padding:4px 12px;border-radius:12px;background:rgba(14,11,40,.8);color:#fff;font-family:var(--display);font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;pointer-events:none}
+.fv-randtag small{font-family:var(--body);font-size:.66rem;font-weight:800;letter-spacing:.04em;text-transform:none;color:var(--kk-gold)}
+.fv-card.on .fv-randtag{top:80px}
+/* who plays it, under the stage */
+.fv-who{flex:none;padding:10px 12px 12px;background:var(--kk-panel)}
+.fv-who .fx-who{gap:6px;flex-wrap:wrap}
+.fv-who .fx-who .seg{flex:1 1 auto}
+.fv-who .fx-who .fx-pb{flex:1 1 40%}
+.fv-who .fx-who .fx-lv{flex:1 1 55%}
+.mscreen .fv-who .fx-who .seg button{flex:1 1 0;min-width:0;min-height:34px;padding:0 6px;font-size:.84rem}
+@container fvc (max-width:340px){ .fv-who .fx-who{flex-direction:column;align-items:stretch} .mscreen .fv-who .fx-who .fx-lv button{min-height:30px;font-size:.78rem} }
+/* the middle: the matchup, who a click picks for, the roster, the match button */
+.fv-mid{display:flex;flex-direction:column;justify-content:center;gap:12px;min-width:0;min-height:0}
+.fv-mu{padding:10px 16px 10px;border-radius:var(--kk-r);background:var(--kk-panel);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),var(--kk-edge)}
+.fv-mutop{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+.fv-mutop b{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,2.4vw,2rem);line-height:1;text-shadow:0 2px 0 rgba(0,0,0,.3)}
+.fv-mutop b small{font-size:.55em;margin-left:1px;opacity:.85}
+.fv-mutop .a{color:#ff7d8f} .fv-mutop .b{color:#6cbcff;text-align:right}
+.fv-vs{font-family:var(--display);font-size:clamp(1.3rem,2vw,1.7rem);line-height:1;color:var(--kk-gold);transform:skewX(-10deg);text-shadow:2px 3px 0 var(--kk-ink)}
+.fv-mubar{position:relative;height:10px;margin-top:8px;border-radius:999px;background:var(--kk-p2);overflow:hidden}
+.fv-mubar i{position:absolute;inset:0 auto 0 0;background:var(--kk-p1);transition:width .35s var(--kk-pop)}
+.fv-mubar i::after{content:"";position:absolute;right:-2px;top:0;bottom:0;width:4px;background:#fff}
+.fv-muw{margin:7px 0 0;display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:2px 10px;text-align:center;font-weight:800;font-size:.92rem;line-height:1.3;color:#fff}
+.fv-musrc{font-weight:700;font-size:.74rem;color:var(--kk-dim);cursor:help}
+.fv-musrc.old{color:var(--kk-gold)}
+.fv-pickfor{margin:0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 10px;font-size:.82rem;font-weight:700;color:var(--kk-dim)}
+.fv-pf{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:999px;background:color-mix(in srgb,var(--pc) 24%,var(--kk-panel));box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--pc) 70%,transparent);color:#fff}
+.fv-pf b{color:var(--pc);font-family:var(--display);font-weight:400;letter-spacing:.03em}
+.fv-roster{--cols:6;--gap:8px;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--gap)}
+.mscreen button.fv-tile,.fv-tile{position:relative;flex:0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 3px 6px;border-radius:16px;background:var(--kk-panel2);border:3px solid transparent;box-shadow:0 3px 0 rgba(0,0,0,.32);color:#fff;font:inherit;cursor:pointer;transition:transform .12s var(--kk-ease),background .12s,border-color .12s}
+.mscreen button.fv-tile:hover,.fv-tile:hover{transform:translateY(-2px);background:#352e78}
+.fv-roster[data-on="0"] .fv-tile:hover{border-color:color-mix(in srgb,var(--kk-p1) 55%,transparent)}
+.fv-roster[data-on="1"] .fv-tile:hover{border-color:color-mix(in srgb,var(--kk-p2) 55%,transparent)}
+.fv-tile:focus-visible{outline:3px solid var(--kk-gold);outline-offset:2px}
+.fv-tile canvas{width:100%;max-width:74px;aspect-ratio:1;display:block;border-radius:50%;background:rgba(255,255,255,.06)}
+.fv-tn{max-width:100%;font-size:.76rem;font-weight:700;line-height:1.2;color:var(--kk-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mscreen button.fv-tile.p0,.fv-tile.p0{border-color:var(--kk-p1);background:color-mix(in srgb,var(--kk-p1) 26%,var(--kk-panel2))}
+.mscreen button.fv-tile.p1,.fv-tile.p1{border-color:var(--kk-p2);background:color-mix(in srgb,var(--kk-p2) 26%,var(--kk-panel2))}
+.mscreen button.fv-tile.p0.p1,.fv-tile.p0.p1{border-color:var(--kk-p1) var(--kk-p2) var(--kk-p2) var(--kk-p1);background:linear-gradient(135deg,color-mix(in srgb,var(--kk-p1) 26%,var(--kk-panel2)) 50%,color-mix(in srgb,var(--kk-p2) 26%,var(--kk-panel2)) 50%)}
+.fv-tile.p0 .fv-tn,.fv-tile.p1 .fv-tn{color:#fff}
+.fv-cur{position:absolute;top:-10px;display:none;padding:1px 6px;border-radius:7px;font-style:normal;font-family:var(--display);font-size:.66rem;line-height:1.35;color:#fff;box-shadow:0 2px 0 rgba(0,0,0,.3);transform:skewX(var(--kk-skew))}
+.fv-cur.c0{left:-4px;background:var(--kk-p1)} .fv-cur.c1{right:-4px;background:var(--kk-p2)}
+.fv-tile.p0 .fv-cur.c0,.fv-tile.p1 .fv-cur.c1{display:block}
+.fv-roster[data-on="0"] .fv-tile.p0 .fv-cur.c0,.fv-roster[data-on="1"] .fv-tile.p1 .fv-cur.c1{animation:fscur 1.2s ease-in-out infinite}
+.fv-tile.wip canvas,.fv-tile.soon canvas{filter:grayscale(.85) brightness(.8)}
+.mscreen button.fv-tile.soon{cursor:default;opacity:.5;box-shadow:none;transform:none}
+.fv-wip{position:absolute;left:5px;top:5px;font-style:normal;font-size:.56rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:1px 5px;border-radius:6px;background:rgba(0,0,0,.45);color:#d8d4f0}
+/* a tile's share against the other side's pick: only while pointed at (the sheet's matchups list them all) */
+.fv-mut{position:absolute;top:5px;right:5px;padding:2px 5px;border-radius:7px;font-style:normal;font-size:.66rem;font-weight:800;line-height:1;background:var(--kk-ink);color:var(--kk-muted);opacity:0;transform:scale(.8);transition:opacity .12s,transform .12s;pointer-events:none}
+.fv-mut[data-k=up]{color:var(--kk-good)} .fv-mut[data-k=dn]{color:var(--kk-bad)}
+@media (hover:hover){ .fv-tile:hover .fv-mut{opacity:1;transform:none} }
+.fv-tile:focus-visible .fv-mut{opacity:1;transform:none}
+.fv-dice{background:none!important}
+/* the match button */
+.mscreen button.fv-match,.fv-match{display:flex;align-items:center;gap:12px;width:100%;min-height:0;padding:8px 14px 8px 8px;border:0;border-radius:var(--kk-r-sm);background:var(--kk-panel);color:#fff;font:inherit;text-align:left;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),var(--kk-edge);transition:background .12s,transform .12s var(--kk-ease)}
+.mscreen button.fv-match:hover,.fv-match:hover{background:var(--kk-panel2);transform:translateY(-1px)}
+.fv-match canvas{flex:none;width:72px;height:48px;border-radius:9px;box-shadow:0 2px 0 rgba(0,0,0,.3)}
+.fv-mt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.fv-mt small{font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--kk-dim)}
+.fv-mt b{font-family:var(--display);font-weight:400;font-size:1.1rem;letter-spacing:.02em;line-height:1.1}
+.fv-mt span{font-size:.8rem;font-weight:700;color:var(--kk-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fv-chev{flex:none;width:30px;height:30px;border-radius:50%;background:var(--kk-panel2);position:relative}
+.fv-chev::after{content:"";position:absolute;left:10px;top:10px;width:8px;height:8px;border:solid var(--kk-text);border-width:2.5px 2.5px 0 0;transform:rotate(45deg)}
+/* the footer: the keys on the left, Practice and FIGHT */
+.fv-foot{gap:12px}
+.fv-hint{margin:0;min-width:0;font-size:.78rem;font-weight:600;color:var(--kk-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fv-hint kbd{font-size:.68rem;margin:0 1px;padding:0 5px}
+.fv-hs{margin:0 3px;opacity:.6}
+.fv-gos{display:flex;align-items:center;gap:12px;flex:none;margin-left:auto}
+.kk button.kk-btn.fv-prac{min-height:52px;padding:0 22px}
+
+/* the sheets: a fighter's (from its side, a drawer) and the match's (centred); a bottom sheet on a phone */
+.fv-back{padding:16px;background:rgba(6,4,22,.6);animation:fadein .16s ease-out}
+.fv-back.at0{justify-content:flex-start} .fv-back.at1{justify-content:flex-end}
+.fv-back.out{opacity:0;transition:opacity .15s}
+.fv-sheet{display:flex;flex-direction:column;width:min(780px,100%);max-height:min(92vh,100%);border-radius:var(--kk-r);background:var(--kk-panel);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),var(--kk-lift);overflow:hidden;animation:fv-pop .24s var(--kk-ease) both}
+.fv-dsheet{width:min(440px,100%);height:100%;max-height:100%}
+.fv-back.at0 .fv-sheet{animation-name:fv-left} .fv-back.at1 .fv-sheet{animation-name:fv-right}
+@keyframes fv-pop{from{opacity:0;transform:translateY(12px) scale(.98)}}
+@keyframes fv-left{from{opacity:0;transform:translateX(-40px)}}
+@keyframes fv-right{from{opacity:0;transform:translateX(40px)}}
+.fv-sh,.fv-dh{flex:none;display:flex;align-items:center;gap:12px;padding:14px 14px 12px 18px}
+.fv-sh>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.fv-st{margin:0;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.05;letter-spacing:.03em;text-transform:uppercase;transform:skewX(var(--kk-skew));text-shadow:2px 3px 0 var(--kk-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:4px}
+.fv-sheet button.fv-x{flex:none;align-self:flex-start;display:grid;place-items:center;width:40px;height:40px;min-height:0;padding:0;border:0;border-radius:50%;background:var(--kk-panel2);color:var(--kk-text);cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.3)}
+.fv-sheet button.fv-x:hover{background:#352e78}
+.fv-x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round}
+.fv-sb{flex:1 1 auto;min-height:0;overflow:auto;padding:0 18px 16px;scrollbar-width:thin;scrollbar-color:#ffffff26 transparent;overscroll-behavior:contain}
+.fv-sf{flex:none;display:flex;justify-content:flex-end;padding:12px 18px 16px;border-top:1px solid var(--kk-line)}
+.fv-sf .kk-btn.go{min-width:150px}
+.fv-ol{margin:0;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--kk-dim)}
+.fv-ol small{font-size:1em;font-weight:700;letter-spacing:.04em;text-transform:none;opacity:.8;margin-left:6px}
+/* the match sheet */
+.fv-maps{display:grid;grid-template-columns:repeat(auto-fill,minmax(124px,1fr));gap:10px}
+.fv-sheet button.fv-map{display:flex;flex-direction:column;align-items:stretch;gap:6px;min-width:0;padding:6px 6px 9px;border-radius:15px;border:3px solid transparent;background:var(--kk-panel2);color:#fff;font:inherit;text-align:left;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.3)}
+.fv-sheet button.fv-map:hover{background:#352e78;transform:none}
+.fv-sheet button.fv-map[aria-pressed=true]{border-color:var(--kk-gold);background:color-mix(in srgb,var(--kk-gold) 14%,var(--kk-panel2))}
+.fv-map:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.fv-map canvas{width:100%;height:auto;aspect-ratio:3/2;border-radius:10px;display:block}
+.fv-mapt{display:flex;flex-direction:column;gap:2px;padding:0 4px;min-width:0}
+.fv-mapt b{font-weight:800;font-size:.92rem}
+.fv-mapt small{font-size:.72rem;line-height:1.35;color:var(--kk-muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.fv-len{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,3fr);gap:12px 16px;margin-top:16px}
+.fv-mset{display:flex;flex-direction:column;gap:6px;min-width:0}
+.fv-mset .seg{display:flex}
+.fv-sheet .fv-mset .seg button{flex:1 1 0;min-width:0;min-height:42px;padding:0 6px;font-size:1rem}
+.fv-rules{margin:14px 0 0;font-size:.82rem;line-height:1.5;color:var(--kk-muted)}
+/* a fighter's sheet */
+.fv-dh{padding:14px 14px 10px;background-color:color-mix(in srgb,var(--pc) 30%,var(--kk-panel));background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 22px,transparent 22px 62px)}
+.fv-dface{flex:none;width:64px;height:64px;border-radius:50%;background:color-mix(in srgb,var(--pc) 40%,#1b1742);box-shadow:0 0 0 3px var(--pc),0 3px 0 4px rgba(0,0,0,.25)}
+.fv-dt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.fv-dt .kk-kicker{color:#fff;opacity:.9;letter-spacing:.1em}
+.fv-dt>small{font-weight:700;font-size:.82rem;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fv-badges{flex:none;display:flex;flex-wrap:wrap;gap:8px;padding:12px 18px 2px}
+.fv-badge{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:999px;background:var(--kk-well);box-shadow:inset 0 0 0 1px var(--kk-line);cursor:help}
+.fv-badge small{font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--kk-dim)}
+.fv-badge b{font-weight:800;font-size:.86rem}
+.fv-badge[data-d=easy] b{color:var(--kk-good)} .fv-badge[data-d=medium] b{color:var(--kk-gold)} .fv-badge[data-d=hard] b{color:#ff8f6b}
+.fv-pips{display:inline-flex;gap:3px}
+.fv-pips i{width:14px;height:8px;border-radius:3px;background:rgba(255,255,255,.14)}
+.fv-pips i.on{background:var(--kk-gold)}
+.fv-tabs{flex:none;display:flex;gap:4px;margin:12px 18px 12px;padding:4px;border-radius:14px;background:var(--kk-well);box-shadow:inset 0 0 0 1px var(--kk-line)}
+.fv-sheet .fv-tabs button{flex:1 1 0;min-width:0;min-height:36px;padding:0 8px;border:0;border-radius:10px;background:transparent;color:var(--kk-muted);font:inherit;font-weight:800;font-size:.9rem;box-shadow:none;cursor:pointer}
+.fv-sheet .fv-tabs button:hover{background:rgba(255,255,255,.06);color:#fff;transform:none}
+.fv-sheet .fv-tabs button.sel{background:var(--pc);color:#fff;box-shadow:0 2px 0 rgba(0,0,0,.28)}
+.fv-pane{display:flex;flex-direction:column;gap:14px}
+.fv-pane[hidden]{display:none}
+.fv-blurb{margin:0;font-size:.95rem;line-height:1.5;color:var(--kk-text)}
+.fv-pass{margin:0;padding:9px 12px;border-radius:var(--kk-r-sm);background:var(--kk-well);font-size:.86rem;line-height:1.45;color:var(--kk-muted)}
+.fv-pass b{margin-right:6px;color:var(--pc);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+.fv-sec{display:flex;flex-direction:column;gap:8px}
+.fv-stats{display:flex;flex-direction:column;gap:7px}
+.fv-stat{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:center;gap:10px;font-size:.84rem;font-weight:700;color:var(--kk-muted);cursor:help}
+.fv-sbar{position:relative;height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.fv-sbar i{position:absolute;inset:0 auto 0 0;border-radius:999px;background:var(--pc)}
+.fv-vsl{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:center;gap:10px}
+.fv-vsl .fv-ol{letter-spacing:.06em}
+.fv-vsl.up .fv-ol{color:var(--kk-good)} .fv-vsl.dn .fv-ol{color:var(--kk-bad)}
+.fv-vhs{display:flex;flex-wrap:wrap;gap:6px}
+.fv-vh{position:relative;display:flex;flex-direction:column;align-items:center;cursor:help}
+.fv-vh canvas{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.07)}
+.fv-vh b{margin-top:-6px;padding:0 5px;border-radius:999px;background:var(--kk-ink);font-size:.64rem;font-weight:800;line-height:1.5}
+.fv-vsl.up .fv-vh b{color:var(--kk-good)} .fv-vsl.dn .fv-vh b{color:var(--kk-bad)}
+.fv-none{color:var(--kk-dim);font-weight:700}
+.fv-smh{margin:0;font-size:.8rem;font-weight:700;color:var(--kk-dim)}
+.fv-sheet .fs-mlist{display:flex;flex-direction:column;gap:8px}
+.fv-sheet button.fs-mrow{width:100%;min-height:56px;background:var(--kk-well);border-color:var(--kk-line);box-shadow:none}
+.fv-sheet button.fs-mrow:hover,.fv-sheet button.fs-mrow:focus-visible{background:rgba(255,255,255,.07);border-color:var(--pc);transform:none}
+.fv-sheet .fs-mtx small{white-space:normal}
+.fv-sheet .fs-kb{align-items:center;padding-top:4px} .fv-sheet .fs-kb .fs-keys{text-align:center;color:var(--kk-muted)}
+
+/* an iPad-sized window: the middle a bit narrower, the roster four across */
+@media (max-width:1180px){ .fv-main{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr);gap:12px} .fv-roster{--cols:4} }
+@media (max-height:640px) and (min-width:761px){ .fv-roster{--cols:6} .fv-tile canvas{max-width:56px} .fv-mid{gap:8px} .fv-pickfor{display:none} }
+/* upright or narrow: the two stages side by side on top, then the matchup, the roster, the match */
+@media (max-width:760px){
+  .m-body.fv{display:block}
+  .fv-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+  .fv-mid{grid-column:1/-1;grid-row:2;justify-content:flex-start;gap:10px}
+  .fv-stagebox{flex:1 1 auto;min-height:clamp(150px,24vh,240px)}
+  .fv-card{flex:1}
+  .fv-n{font-size:1.25rem}
+  .fv-plate{padding:16px 10px 7px} .fv-plate small{font-size:.7rem}
+  .fv-p{top:8px;left:8px;min-width:34px;height:24px;font-size:.85rem}
+  .fv-side[data-side="1"] .fv-stagebox .fv-p{right:8px}
+  .mscreen button.fv-info,.fv-info{top:7px;right:7px;min-height:30px;width:30px;padding:0;justify-content:center}
+  .fv-side[data-side="1"] .fv-info{left:7px}
+  .fv-info span{display:none}
+  .fv-picking{top:38px;left:8px} .fv-side[data-side="1"] .fv-picking{right:8px}
+  .fv-randtag{top:40px;font-size:.75rem} .fv-card.on .fv-randtag{top:60px}
+  .fv-who{padding:8px}
+  .fv-who .fx-who{flex-direction:column;align-items:stretch}
+  .mscreen .fv-who .fx-who .seg button{min-height:32px;font-size:.8rem;padding:0 2px}
+  .mscreen .fv-who .fx-who .fx-lv button{min-height:28px;font-size:.72rem}
+  .fv-roster{--cols:6;--gap:6px}
+  .mscreen button.fv-tile,.fv-tile{padding:5px 2px 4px;border-radius:13px;border-width:2px}
+  .fv-tile canvas{max-width:50px}
+  .fv-tn{font-size:.62rem}
+  .fv-cur{font-size:.56rem;top:-9px}
+  .fv-pfo{display:none}
+  .fv-hint{display:none}
+  .fv-gos{flex:1;gap:10px} .fv-gos .m-go{flex:1}
+  .kk button.kk-btn.fv-prac{min-height:48px;padding:0 16px}
+  .fv-back,.fv-back.at0,.fv-back.at1{padding:0;align-items:flex-end;justify-content:center}
+  .fv-sheet,.fv-dsheet{width:100%;height:auto;max-height:90vh;border-radius:var(--kk-r) var(--kk-r) 0 0}
+  .fv-back .fv-sheet,.fv-back.at0 .fv-sheet,.fv-back.at1 .fv-sheet{animation-name:fv-up}
+  .fv-maps{grid-template-columns:minmax(0,1fr);gap:6px}
+  .fv-sheet button.fv-map{flex-direction:row;align-items:center;gap:10px;padding:5px 8px 5px 5px}
+  .fv-map canvas{width:84px;flex:none}
+  .fv-mapt small{-webkit-line-clamp:2}
+  .fv-len{grid-template-columns:minmax(0,1fr)}
+  .fv-sb{padding:0 14px 14px}
+}
+@keyframes fv-up{from{transform:translateY(40%)}}
+@media (max-width:760px) and (max-height:500px){ .fv-stagebox{height:110px} .fv-roster{--cols:6} }
+html.kk-still .fv-sheet,html.kk-still .fv-back{animation:kk-fade .15s linear both}
+@media (prefers-reduced-motion:reduce){ .fv-sheet{animation:kk-fade .15s linear both} }
+:root:not([data-look=flat]) .fv-card,:root:not([data-look=flat]) .fv-mu,:root:not([data-look=flat]) .fv-sheet{background:linear-gradient(180deg,#26215c,#1a1646)}
+:root:not([data-look=flat]) .fv-who{background:transparent}
+
+/* ---------- the match's end (fight-ui.js openCard 'results'): full screen, the panel sized off its own box (container
+   fzp, cqw/cqh) so it fits without scrolling; body.fz-out zooms and blurs the fight behind as it comes in */
+.fz-screen{position:fixed;inset:0;z-index:30;display:grid;grid-template-columns:minmax(0,45fr) minmax(0,55fr);background:var(--kk-bg);overflow:hidden;animation:fz-bg .5s var(--kk-ease) both;pointer-events:auto}
+@keyframes fz-bg{from{background-color:rgba(18,15,48,0)}}
+canvas#game{transition:transform .7s var(--kk-ease),filter .7s var(--kk-ease)}
+body.fz-out canvas#game{transform:scale(1.1);filter:blur(5px) brightness(.55)}
+.fz-hero{position:relative;min-width:0;min-height:0;overflow:hidden;clip-path:polygon(0 0,100% 0,calc(100% - 7vh) 100%,0 100%);animation:fz-hero .65s var(--kk-ease) .12s both}
+@keyframes fz-hero{from{transform:translateX(-35%);opacity:0}}
+.fz-stage{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fz-plate{position:absolute;left:max(20px,env(safe-area-inset-left));top:max(18px,env(safe-area-inset-top));right:22%;display:flex;flex-direction:column;align-items:flex-start;gap:6px;animation:kk-in .45s var(--kk-ease) .45s both}
+.fz-pn{display:block;max-width:100%;font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,7vh,3.6rem);line-height:1.05;text-transform:uppercase;letter-spacing:.03em;color:#fff;transform:skewX(-8deg);text-shadow:3px 4px 0 var(--kk-ink);white-space:nowrap;overflow:hidden}
+.fz-plate small{font-weight:700;font-size:clamp(.72rem,2vh,.95rem);color:rgba(255,255,255,.85);text-shadow:0 1px 0 var(--kk-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.fz-plate .kk-tag{max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.fz-panel{container:fzp/size;min-width:0;min-height:0;position:relative;animation:fz-panel .55s var(--kk-ease) .28s both}
+@keyframes fz-panel{from{transform:translateX(12%);opacity:0}}
+.fz-in{height:100%;width:100%;max-width:700px;margin:0 auto;display:flex;flex-direction:column;justify-content:center;gap:clamp(7px,2.6cqh,22px);
+  padding:max(clamp(10px,3.4cqh,34px),env(safe-area-inset-top)) max(clamp(14px,5cqw,48px),env(safe-area-inset-right)) max(clamp(10px,3.4cqh,34px),env(safe-area-inset-bottom)) clamp(14px,4cqw,40px)}
+/* who won and how */
+.fz-top{display:flex;flex-direction:column;align-items:center;gap:clamp(3px,1cqh,8px);text-align:center;min-width:0}
+.fz-top .kk-kicker{color:var(--kk-gold)}
+.fz-screen.lost .fz-top .kk-kicker{color:var(--kk-muted)}
+.fz-h{display:block;max-width:100%;padding:0 6px 4px;font-size:clamp(1.3rem,min(9.5cqw,10cqh),4rem);color:var(--pc);white-space:nowrap;overflow:hidden}
+.fz-screen.lost .fz-h{color:var(--kk-text)}
+.fz-how{margin:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px;min-width:0}
+.fz-how .kk-chip{padding:2px 12px;background:var(--kk-ink);color:var(--kk-gold);font-size:clamp(.66rem,2cqh,.82rem);letter-spacing:.12em;text-transform:uppercase;font-weight:800;white-space:nowrap}
+.fz-how small{font-size:clamp(.7rem,2.1cqh,.88rem);font-weight:700;color:var(--kk-dim);white-space:nowrap}
+/* the score: both faces, their names and who played them, the stars; the score between */
+.fz-vs{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px;padding:clamp(8px,2.4cqh,18px) 10px;border-radius:var(--kk-r);background:var(--kk-panel);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),var(--kk-edge)}
+.fz-side{display:flex;flex-direction:column;align-items:center;min-width:0;gap:clamp(2px,.7cqh,5px)}
+.fz-head{--hs:clamp(40px,min(13cqh,15cqw),92px);width:var(--hs);height:var(--hs);border-radius:50%;background:color-mix(in srgb,var(--c) 30%,#1b1742);box-shadow:0 0 0 3px var(--c)}
+.fz-side:not(.win) .fz-head{filter:saturate(.6) brightness(.85)}
+.fz-side.win .fz-head{box-shadow:0 0 0 3px var(--c),0 0 0 7px var(--kk-gold)}
+.fz-sn{max-width:100%;margin-top:4px;font-family:var(--display);font-weight:400;font-size:clamp(.8rem,min(4cqw,3.6cqh),1.25rem);line-height:1.1;color:var(--c);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fz-who.kk-tag{--c:var(--kk-panel2);max-width:100%;height:auto;min-height:18px;padding:2px 7px;font-family:var(--body);font-weight:700;font-size:clamp(.62rem,1.9cqh,.78rem);overflow:hidden;text-overflow:ellipsis;display:block;text-align:center}
+.fz-side.win .fz-who.kk-tag{--c:var(--c)}
+.fz-stars i{width:clamp(11px,3.2cqh,18px);height:clamp(11px,3.2cqh,18px)}
+.fz-side.win .fz-stars i.on{animation:fz-star .5s var(--kk-pop) calc(.9s + var(--k) * .12s) both}
+@keyframes fz-star{from{transform:scale(0) rotate(-40deg)}}
+.fz-score{margin:0;display:flex;align-items:center;gap:clamp(4px,1.5cqw,12px);font-family:var(--display);font-size:clamp(1.8rem,min(12cqh,11cqw),4.6rem);line-height:1;text-shadow:2px 3px 0 var(--kk-ink)}
+.fz-score i{font-style:normal;color:var(--kk-dim);font-size:.55em}
+/* each round: who took it, how long it ran */
+.fz-rounds{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(4px,1.2cqh,8px)}
+.fz-rounds li{display:flex;align-items:center;gap:5px;padding:2px 9px 2px 4px;border-radius:999px;background:color-mix(in srgb,var(--c) 20%,var(--kk-panel));box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--c) 70%,transparent);font-size:clamp(.66rem,2cqh,.8rem)}
+.fz-rounds li b{font-weight:800;color:#fff;padding-left:4px}
+.fz-rounds li small{font-variant-numeric:tabular-nums;color:var(--kk-muted);font-weight:700;font-size:1em}
+.fz-rh{width:clamp(16px,4.6cqh,24px);height:clamp(16px,4.6cqh,24px);border-radius:50%}
+.fz-dbl{font-weight:800;color:var(--kk-muted);padding:0 3px}
+/* the numbers head to head: a panel of rows, each value in a chip (the leader's in its colour), the label over a track
+   whose halves grow out from the middle */
+.fz-stats{display:grid;grid-template-columns:1fr 1fr;gap:clamp(4px,1.3cqh,10px) clamp(12px,3.6cqw,26px);padding:clamp(6px,1.7cqh,12px) clamp(8px,2.4cqw,16px);border-radius:var(--kk-r);background:var(--kk-panel);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),var(--kk-edge)}
+.fz-stats .fz-stat:first-child{grid-column:1/-1}
+.fz-stat{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(6px,1.6cqw,10px);font-size:clamp(.72rem,2.3cqh,.92rem);min-width:0}
+.fz-v{min-width:2.6em;padding:.14em .5em;border-radius:999px;background:var(--kk-well);box-shadow:inset 0 0 0 1px var(--kk-line);text-align:center;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.25;color:var(--kk-muted)}
+.fz-stat.l0 .fz-v.a{background:var(--c0);box-shadow:0 2px 0 rgba(0,0,0,.3);color:#fff}
+.fz-stat.l1 .fz-v.b{background:var(--c1);box-shadow:0 2px 0 rgba(0,0,0,.3);color:#fff}
+.fz-sm{display:flex;flex-direction:column;gap:clamp(2px,.8cqh,5px);min-width:0}
+.fz-sl{text-align:center;font-weight:800;font-size:.78em;letter-spacing:.08em;text-transform:uppercase;color:var(--kk-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fz-stat.l0 .fz-sl,.fz-stat.l1 .fz-sl{color:var(--kk-muted)}
+.fz-tr{display:flex;gap:4px;height:clamp(6px,1.6cqh,9px)}
+.fz-tr>i{flex:1;display:flex;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+.fz-tr>i.a{justify-content:flex-end}
+.fz-tr>i>i{display:block;height:100%;border-radius:999px;min-width:0;transform-origin:var(--o,left);animation:fz-bar .7s var(--kk-ease) 1s both}
+.fz-tr>i.a>i{--o:right;background:var(--c0)} .fz-tr>i.b>i{background:var(--c1)}
+.fz-stat.l0 .fz-tr>i.b>i,.fz-stat.l1 .fz-tr>i.a>i{opacity:.55}
+@keyframes fz-bar{from{transform:scaleX(0)}}
+/* what next */
+.fz-act{display:flex;flex-direction:column;gap:clamp(5px,1.4cqh,10px)}
+.fz-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(6px,1.6cqh,10px)}
+.fz-btns:has(>.kk-btn:nth-child(3):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
+.fz-btns.two{grid-template-columns:minmax(0,1fr)}
+.fz-btns .fz-main{grid-column:1/-1}
+.fz-screen .fz-btns .kk-btn{min-height:clamp(36px,9cqh,56px);font-size:clamp(.8rem,2.6cqh,1rem);padding:0 10px}
+.fz-screen .fz-btns .kk-btn.go{min-height:clamp(40px,11cqh,66px);font-size:clamp(1rem,4cqh,1.45rem)}
+.fz-screen .kk-btn>.s{display:none}
+.fz-keys{margin:0;text-align:center;font-size:.74rem;font-weight:600;color:var(--kk-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fz-keys kbd{font-size:.68rem;padding:0 5px;margin:0 1px}
+.fz-wait{margin:0;display:flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:6px 14px;border-radius:var(--kk-r-sm);background:var(--kk-well);font-weight:700;color:var(--kk-muted);text-align:center;font-size:clamp(.78rem,2.4cqh,.95rem)}
+.fz-spin{flex:none;width:16px;height:16px;border-radius:50%;border:3px solid rgba(255,255,255,.18);border-top-color:var(--kk-gold);animation:fz-spin .9s linear infinite}
+@keyframes fz-spin{to{transform:rotate(360deg)}}
+/* a narrow panel: shorter labels */
+@container fzp (max-width:440px){
+  .fz-keys{display:none} .fz-sl{font-size:.7em;letter-spacing:.03em} .fz-stat{gap:5px} .fz-v{min-width:2.2em;padding:.12em .4em}
+  .fz-screen .kk-btn>.l{display:none} .fz-screen .kk-btn>.s{display:inline}
+}
+/* a short panel (a phone on its side, a small window): the numbers three across, the faces beside their names */
+@container fzp (max-height:560px){ .fz-keys{display:none} }
+@container fzp (max-height:560px) and (min-width:500px){
+  .fz-stats{grid-template-columns:repeat(3,minmax(0,1fr))} .fz-stats .fz-stat:first-child{grid-column:auto}
+}
+@container fzp (max-height:430px){
+  .fz-rounds li small{display:none} .fz-rounds li{padding-right:4px}
+  .fz-btns{grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr))} .fz-btns .fz-main{grid-column:auto}
+  .fz-btns:has(>.kk-btn:nth-child(3):last-child){grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,1fr))}
+  .fz-btns.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .fz-screen .fz-btns .kk-btn,.fz-screen .fz-btns .kk-btn.go{min-height:40px;font-size:.84rem}
+  .fz-screen .fz-btns .kk-btn kbd{display:none}
+  .fz-screen .kk-btn>.l{display:none} .fz-screen .kk-btn>.s{display:inline}
+}
+/* a narrow panel (a phone held upright): the numbers two across so their labels fit (after the short-panel rules, so it wins) */
+@container fzp (max-width:440px){ .fz-stats{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} .fz-stats .fz-stat:first-child{grid-column:1/-1} }
+/* upright (a phone, an iPad held tall): the stage on top, the rest under it, filling the screen */
+@media (max-aspect-ratio:5/6){
+  .fz-screen{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,33fr) minmax(0,67fr)}
+  .fz-hero{clip-path:polygon(0 0,100% 0,100% calc(100% - 5vw),0 100%);animation-name:fz-hero-up}
+  .fz-panel{animation-name:fz-panel-up}
+}
+@keyframes fz-hero-up{from{transform:translateY(-30%);opacity:0}}
+@keyframes fz-panel-up{from{transform:translateY(10%);opacity:0}}
+html.kk-still .fz-screen,html.kk-still .fz-hero,html.kk-still .fz-panel,html.kk-still .fz-plate{animation:kk-fade .3s linear both}
+html.kk-still .fz-tr>i>i,html.kk-still .fz-side.win .fz-stars i.on{animation:none}
+html.kk-still body.fz-out canvas#game{transform:none;filter:brightness(.55)}
+@media (prefers-reduced-motion:reduce){.fz-screen,.fz-hero,.fz-panel,.fz-plate{animation:kk-fade .3s linear both} .fz-tr>i>i,.fz-side.win .fz-stars i.on{animation:none}}
+:root:not([data-look=flat]) .fz-vs{background:linear-gradient(180deg,#2a2463,#1f1a4d)}
+
+/* ---------- the pause cards (fight-ui.js openCard 'pause', and the training room's): kk-ui.css's panel, title and buttons;
+   the score with both faces; the dummy's five modes */
+.fight-back .fz-pbox{position:relative;width:min(420px,100%);padding:20px 20px 12px;border:0;border-radius:var(--kk-r);background:var(--kk-panel);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),var(--kk-lift);text-align:center}
+.fight-back .fz-pbox::before{display:none}
+.fz-pbox>.kk-kicker{display:block;margin-bottom:2px;color:var(--kk-gold)}
+.fz-pbox>h2.pause-h{display:block;margin:0 0 14px;font-size:2rem;color:#fff}
+.fz-pbox>h2.pause-h::after{display:none}
+.fz-pscore{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:6px 10px;margin:0 0 16px;padding:12px 10px 10px;border-radius:var(--kk-r-sm);background:var(--kk-well);box-shadow:inset 0 0 0 1px var(--kk-line)}
+.fz-psd{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.fz-psd b{max-width:100%;font-family:var(--display);font-weight:400;font-size:.95rem;color:var(--c);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fz-pface{width:48px;height:48px;border-radius:50%;background:color-mix(in srgb,var(--c) 30%,#1b1742)}
+.fz-pnum{display:flex;align-items:center;gap:6px}
+.fz-pnum b{display:grid;place-items:center;min-width:44px;height:48px;border-radius:12px;background:var(--c);font-family:var(--display);font-weight:400;font-size:1.7rem;color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.3)}
+.fz-pnum i{font-style:normal;font-family:var(--display);color:var(--kk-dim)}
+.fz-pscore small{grid-column:1/-1;font-size:.78rem;font-weight:700;color:var(--kk-muted)}
+.fz-pbox .pause-btns{gap:10px;margin-bottom:10px}
+.fz-pbox .pause-btns .kk-btn{width:100%}
+.fz-pbox .pause-btns .kk-btn kbd{margin-left:2px}
+.fz-dummy{display:flex;flex-direction:column;gap:6px;padding:10px;border-radius:var(--kk-r-sm);background:var(--kk-well);box-shadow:inset 0 0 0 1px var(--kk-line)}
+.fz-dummy .fz-modes{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:0}
+.fz-dummy .fz-modes .kk-btn{grid-column:span 2;min-height:40px;padding:0 6px;font-size:.88rem}
+.fz-dummy .fz-modes .kk-btn:nth-child(4){grid-column:2/span 2}
+.kk .fz-dummy .fz-modes button.kk-btn[aria-pressed=true]{background:var(--kk-p2);color:#fff}
+.fz-dummy .fz-modes kbd{display:none}
+.fz-pbox .pause-set{border-top:1px solid var(--kk-line);text-align:left}
+@media (max-height:560px){ .fight-back .fz-pbox{width:min(640px,100%);display:grid;grid-template-columns:1fr 1fr;column-gap:18px;padding:12px 16px} .fz-pbox>h2.pause-h,.fz-pbox>.kk-kicker{grid-column:1/-1;margin-bottom:8px;font-size:1.5rem} .fz-pscore{margin:0} .fz-pbox .pause-set{border-top:0} }
+:root:not([data-look=flat]) .fight-back .fz-pbox{background:linear-gradient(180deg,#26215c,#1a1646)}
+

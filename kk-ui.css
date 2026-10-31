@@ -1,0 +1,46 @@
+/* Kernel Kart's shared screen look (Fight's screens; the menu can follow). Designed for Classic Flat; Classic gets a
+   little depth at the bottom. Tokens on :root (--kk-*); classes only apply inside a `.kk` root, so older screens are
+   untouched and style.css's generic button rules lose. Classes: .kk-panel .kk-well .kk-chip .kk-title .kk-kicker
+   .kk-tag (badge in var(--c)) .kk-stars (<i class=on>) button.kk-btn[.go] (a <kbd> inside: its key hint) .kk-stripes
+   .kk-in (entrance after var(--d); html.kk-still: a fade) */
+:root{
+  --kk-ink:#14102a; --kk-bg:#120f30; --kk-panel:#1f1a4d; --kk-panel2:#2a2463; --kk-well:rgba(6,5,24,.42); --kk-line:rgba(255,255,255,.1);
+  --kk-text:#f6f5ff; --kk-muted:#c4c0ea; --kk-dim:#8f8bbd;
+  --kk-p1:#ff5d73; --kk-p2:#3fa7ff; --kk-gold:#ffd23c; --kk-good:#4ff0a4; --kk-bad:#ff8a8a;
+  --kk-hot:#ff4d3a; --kk-hot-edge:#8e1233;
+  --kk-r:22px; --kk-r-sm:13px; --kk-edge:0 4px 0 rgba(0,0,0,.3); --kk-lift:0 14px 34px rgba(0,0,0,.36);
+  --kk-skew:-8deg; --kk-ease:cubic-bezier(.2,.8,.2,1); --kk-pop:cubic-bezier(.3,1.45,.5,1);
+}
+.kk{color:var(--kk-text);font-family:var(--body)}
+.kk .kk-panel{background:var(--kk-panel);border-radius:var(--kk-r);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),var(--kk-edge)}
+.kk .kk-well{background:var(--kk-well);border:1px solid var(--kk-line);border-radius:var(--kk-r-sm)}
+.kk .kk-chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:var(--kk-panel2);box-shadow:0 2px 0 rgba(0,0,0,.28);font-weight:700}
+.kk .kk-title{margin:0;font-family:var(--display);font-weight:400;line-height:1;letter-spacing:.03em;text-transform:uppercase;transform:skewX(var(--kk-skew));text-shadow:2px 3px 0 var(--kk-ink),3px 5px 0 rgba(0,0,0,.25)}
+.kk .kk-kicker{font-weight:800;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--kk-muted)}
+.kk .kk-tag{display:inline-flex;align-items:center;justify-content:center;height:22px;padding:0 8px;border-radius:7px;font-family:var(--display);font-weight:400;font-size:.74rem;line-height:1;color:#fff;background:var(--c,var(--kk-p1));transform:skewX(var(--kk-skew));box-shadow:0 2px 0 rgba(0,0,0,.3);white-space:nowrap}
+.kk .kk-stars{display:inline-flex;gap:3px}
+.kk .kk-stars i{width:16px;height:16px;background:rgba(255,255,255,.16);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.kk .kk-stars i.on{background:var(--kk-gold)}
+.kk button.kk-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:0;min-height:48px;padding:0 16px;border:0;border-radius:15px;
+  background:var(--kk-panel2);color:var(--kk-text);font-family:var(--body);font-weight:700;font-size:1rem;line-height:1.1;text-align:center;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 4px 0 rgba(0,0,0,.34);transition:transform .12s var(--kk-ease),background .12s}
+.kk button.kk-btn:hover{background:#352e78;transform:translateY(-1px)}
+.kk button.kk-btn:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 2px 0 rgba(0,0,0,.34)}
+.kk button.kk-btn:focus-visible{outline:3px solid var(--kk-gold);outline-offset:2px}
+.kk button.kk-btn.go{background:var(--kk-hot);color:#fff;font-family:var(--display);font-weight:400;letter-spacing:.06em;font-size:1.2rem;text-transform:uppercase;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 5px 0 var(--kk-hot-edge)}
+.kk button.kk-btn.go:hover{background:#ff5d48}
+.kk button.kk-btn.go:active{box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 2px 0 var(--kk-hot-edge)}
+.kk .kk-btn>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kk .kk-btn kbd{flex:none;font-family:var(--body);font-size:.68rem;letter-spacing:0;text-transform:none;line-height:1.5;padding:0 6px}
+.kk .kk-btn.go kbd{background:rgba(20,16,42,.28);border-color:rgba(20,16,42,.3)}
+.kk .kk-stripes{background-color:color-mix(in srgb,var(--c,var(--kk-p1)) 32%,#1b1742);
+  background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 26px,transparent 26px 74px)}
+.kk .kk-in{animation:kk-in .42s var(--kk-ease) var(--d,0s) both}
+@keyframes kk-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+html.kk-still .kk .kk-in{animation:kk-fade .2s linear both}
+@keyframes kk-fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.kk .kk-in{animation:kk-fade .2s linear both}}
+
+/* Classic (the default look): a little more depth, the flat look stays as above */
+:root:not([data-look=flat]) .kk .kk-panel{background:linear-gradient(180deg,#26215c,#1a1646)}
+:root:not([data-look=flat]) .kk button.kk-btn.go{background:var(--hot)}

@@ -1,0 +1,128 @@
+/* Kernel Kart's Racing style (js/look.js 'racing', on look-modern.css): black and carbon panels, racing red for what's
+   picked, signal yellow for firsts and number plates, Barlow Condensed italic capitals over Barlow, square corners,
+   skewed plates, stripes and chequers. Flat colours. */
+:root[data-look=racing]{
+  --ground:#0b0b0d; --veil:rgba(9,9,11,.84); --bg0:#0b0b0d; --bg1:#0b0b0d; --bg2:#0b0b0d;
+  --panel:#141416; --panel-solid:#141416; --panel-bg:linear-gradient(180deg,#19191c,#121214 240px); --panel2:#1c1c20;
+  --card:#1c1c20; --card2:#27272c; --card3:#313137; --well:#09090a;
+  --line:#2a2a30; --line2:#3a3a41; --line3:#4c4c55;
+  --text:#ffffff; --muted:#9d9da7; --soft:#d0d0d7;
+  --accent:#e8141c; --accent-h:#ff252c; --accent-d:#bf0d14; --accent-soft:rgba(232,20,28,.14); --accent-soft2:rgba(232,20,28,.38); --accent2:#ffd400; --on-accent:#ffffff;
+  --gold:#ffd400; --gold-soft:rgba(255,212,0,.11); --gold-line:rgba(255,212,0,.5); --on-gold:#0b0b0d;
+  --green:#19c25e; --red:#e8141c; --red-soft:rgba(232,20,28,.16); --red-text:#ff6464; --cyan:#19c3e6; --violet:#8b5cf6; --coral:#ff6a2b; --mint:#19c25e;
+  --ink:#0b0b0d; --deep:rgba(0,0,0,.75); --hot:#e8141c; --hot-edge:#7d080d;
+  --p1:#ff5d73; --p2:#3fa7ff; --p3:#2fc27a; --p4:#f5a524;
+  --hi:inset 0 1px 0 rgba(255,255,255,.05);
+  --sh1:0 1px 2px rgba(0,0,0,.4),0 3px 10px rgba(0,0,0,.24);
+  --sh2:0 2px 4px rgba(0,0,0,.4),0 10px 24px rgba(0,0,0,.34);
+  --shadow:0 2px 6px rgba(0,0,0,.3),0 18px 44px rgba(0,0,0,.4);
+  --display:"Barlow Condensed","Barlow",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --mono:var(--body);
+  --logo-a:#ffffff; --logo-b:#ffd400;
+  --st1:#1e8bff; --st2:#e8141c; --st3:#19c25e; --st4:#ffd400;
+  --band:rgba(9,9,11,.9); --bar:rgba(9,9,11,.95); --link:#ffd400; --silver:#c9ccd3; --bronze:#d0844a; --scrim:rgba(0,0,0,.76);
+  --big-bg:#e8141c; --big-bg-h:#ff222a; --big-ts:0 2px 0 rgba(0,0,0,.22);
+  --r-panel:6px; --r-card:4px; --r-card-in:3px; --r-btn:3px; --r-big:4px;
+  --chev:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Cpath d='M3 3l7 7-7 7M15 3l7 7-7 7' fill='none' stroke='%23ffd400' stroke-width='4.5' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+  --chq:repeating-conic-gradient(#ffffff 0 25%,#0b0b0d 0 50%);
+}
+/* italic heavy capitals for everything that's a title or a number */
+[data-look=racing] .panel h2,[data-look=racing] .mc-t,[data-look=racing] .char .n,[data-look=racing] .track>.n,[data-look=racing] .cc-name,[data-look=racing] .net-way>b,
+[data-look=racing] .cl-head h2,[data-look=racing] .clip-head h2,[data-look=racing] .cl-ver-sec h3,[data-look=racing] .net-curname,[data-look=racing] .loading-racer-name,
+[data-look=racing] .res-card h2,[data-look=racing] .pod-name,[data-look=racing] .res-cup{font-family:var(--display);font-style:italic;font-weight:800;text-transform:uppercase;letter-spacing:.3px}
+
+/* ---------- the logo: white and yellow block letters with their black outline, no extrusion or gloss; red speed lines */
+[data-look=racing] .kk-logo{filter:drop-shadow(0 4px 0 rgba(0,0,0,.55)) drop-shadow(0 14px 22px rgba(0,0,0,.4))}
+[data-look=racing] .kk-logo text{font-family:var(--display);font-weight:900;font-style:normal}
+[data-look=racing] .kk-logo .kk-ol{display:inline}
+[data-look=racing] .kk-logo .kk-w,[data-look=racing] .kk-logo .kk-g{stroke-width:0}
+[data-look=racing] .kk-logo .kk-speed{stroke:var(--accent);opacity:1}
+[data-look=racing] h1.logo{font-family:var(--display);font-style:italic;font-weight:900;text-transform:uppercase;letter-spacing:.5px;font-size:clamp(36px,6vw,60px);text-shadow:0 3px 0 rgba(0,0,0,.6)}
+[data-look=racing] h1.logo::after{display:block;height:6px;width:min(200px,46%);margin-top:10px;border-radius:0;transform:skewX(-30deg);background:linear-gradient(90deg,var(--accent) 0 64%,transparent 64% 70%,var(--gold) 70%)}
+[data-look=racing] .results h1.logo::after,[data-look=racing] .loading-header h1.logo::after{margin:10px auto 0}
+
+/* ---------- panels: a red and yellow stripe on the top edge; the header a skewed red plate, a chequered strip fading out */
+[data-look=racing] .panel{border-top:1px solid #33333a}
+[data-look=racing] .panel::before{display:block;top:-1px;left:22px;width:110px;height:4px;border-radius:0;transform:skewX(-35deg);background:linear-gradient(90deg,var(--accent) 0 70%,transparent 70% 76%,var(--gold) 76%)}
+[data-look=racing] .panel h2{font-size:22px;letter-spacing:.4px}
+[data-look=racing] .panel>h2::after{height:8px;border-radius:0;background:var(--chq) 0 0/8px 8px;opacity:.16;-webkit-mask-image:linear-gradient(90deg,#000,transparent 70%);mask-image:linear-gradient(90deg,#000,transparent 70%)}
+[data-look=racing] .panel h2 .num{min-width:42px;height:28px;border-radius:2px;background:var(--accent);color:#fff;transform:skewX(-14deg);font:italic 800 18px/1 var(--display);box-shadow:3px 3px 0 rgba(0,0,0,.45)}
+
+/* ---------- buttons */
+[data-look=racing] button{font-weight:600}
+[data-look=racing] .seg button{font-family:var(--display);font-style:italic;font-weight:700;text-transform:uppercase;letter-spacing:.4px;font-size:16px;padding:6px 15px}
+[data-look=racing] .seg button.sel{box-shadow:inset 0 -3px 0 rgba(0,0,0,.25)}
+[data-look=racing] .lbl{font-family:var(--display);font-style:italic;font-weight:700;letter-spacing:1px;font-size:12.5px}
+[data-look=racing] button.big{font:italic 800 26px/1.1 var(--display);text-transform:uppercase;letter-spacing:1px;padding:15px 66px 15px 48px;transform:skewX(-12deg);
+  box-shadow:inset 0 -4px 0 rgba(0,0,0,.2),5px 5px 0 rgba(0,0,0,.55),0 14px 30px rgba(0,0,0,.4)}
+[data-look=racing] button.big::after{background:var(--chev) center/contain no-repeat;width:26px;height:18px;margin-top:-9px}
+[data-look=racing] button.big:hover{transform:skewX(-12deg) translateY(-1px);box-shadow:inset 0 -4px 0 rgba(0,0,0,.2),6px 6px 0 rgba(0,0,0,.55),0 16px 32px rgba(0,0,0,.42)}
+[data-look=racing] button.big:active{transform:skewX(-12deg) translateY(2px);box-shadow:inset 0 2px 3px rgba(0,0,0,.25),2px 2px 0 rgba(0,0,0,.55)}
+[data-look=racing] button.big:disabled,[data-look=racing] button.big:disabled:hover{transform:skewX(-12deg)}
+[data-look=racing] button.whatsnew:not(.settings-btn)::before{color:var(--gold)}
+[data-look=racing] .wn-dot{border-radius:2px;transform:skewX(-10deg)}
+
+/* 1 Mode: an edge in the mode's colour, the icon on a skewed tile */
+[data-look=racing] #p-mode{--sc:var(--accent)} [data-look=racing] #p-racers{--sc:var(--accent)} [data-look=racing] #p-track{--sc:var(--accent)}
+[data-look=racing] button.mode-card{--mc:var(--accent);border-left:4px solid var(--mc)}
+[data-look=racing] button.mode-card[data-m=cup]{--mc:var(--gold)} [data-look=racing] button.mode-card[data-m=tt]{--mc:#ffffff} [data-look=racing] button.mode-card[data-m=online]{--mc:var(--cyan)}
+[data-look=racing] button.mode-card .trophy{border-radius:2px;transform:skewX(-10deg)}
+[data-look=racing] .mc-t{font-size:19px}
+[data-look=racing] button.mode-card.sel{border-left-color:var(--mc)}
+[data-look=racing] button.mode-card.sel::before{border-radius:2px;transform:skewX(-10deg);background:var(--mc) var(--check-ink) center/80% no-repeat}
+[data-look=racing] button.mode-card[data-m=single].sel::before{background:var(--mc) var(--check) center/80% no-repeat}
+
+/* 2 racers: racing stripes across the racer's backdrop, a skewed yellow plate for the trait */
+@supports (background:color-mix(in srgb,red 50%,blue)){
+  [data-look=racing] .char::before{background:linear-gradient(112deg,transparent 0 63%,rgba(255,255,255,.13) 63% 67%,transparent 67% 70%,rgba(255,255,255,.13) 70% 74%,transparent 74%),color-mix(in srgb,var(--rc) 32%,var(--card));border-bottom:3px solid var(--rc)}
+}
+[data-look=racing] .char .n{font-size:21px;margin-top:5px}
+[data-look=racing] .char .l{border-radius:2px;font-family:var(--display);font-style:italic;font-weight:700;letter-spacing:.8px}
+[data-look=racing] .char .trait{color:var(--on-gold);background:var(--gold);border-radius:2px;transform:skewX(-10deg);font-weight:700}
+[data-look=racing] .char .stats{font-family:var(--display);font-style:italic;font-weight:700;font-size:11px}
+[data-look=racing] .char .bar,[data-look=racing] .char .bar i{border-radius:0}
+[data-look=racing] .char .tag,[data-look=racing] .who-chips i{border-radius:2px;transform:skewX(-10deg);font-family:var(--display);font-style:italic;font-weight:800}
+
+/* 3 tracks: a black name band, red when picked, a yellow plate with the tick */
+[data-look=racing] .track>.n{font-size:17px;padding:7px 12px}
+[data-look=racing] .track.sel::after{border-radius:2px;background:var(--gold) var(--check-ink) center/75% no-repeat;transform:skewX(-10deg)}
+[data-look=racing] .cupnum{border-radius:2px;transform:skewX(-10deg);font:italic 800 17px/1 var(--display)}
+/* the Random card: a chequered flag face, a big yellow ? on it */
+[data-look=racing] .track.random .rnd-face,[data-look=racing] .net-cur.random .rnd-face{background:repeating-conic-gradient(#202024 0 25%,#2c2c31 0 50%) 0 0/34px 34px}
+[data-look=racing] .track.random .rnd-face span,[data-look=racing] .net-cur.random .rnd-face span{font:italic 900 66px/1 var(--display);color:var(--gold);text-shadow:4px 4px 0 rgba(0,0,0,.6)}
+[data-look=racing] .track.random:hover .rnd-face span{color:#fff}
+
+/* 4 START and the rest */
+[data-look=racing] .start-bar{border-top:2px solid var(--accent)}
+[data-look=racing] .learn summary{font-family:var(--display);font-style:italic;font-weight:700;text-transform:uppercase;font-size:18px}
+[data-look=racing] .cup-lbl,[data-look=racing] .loading-subheading{font-family:var(--display);font-style:italic;font-weight:800;font-size:13.5px;color:var(--gold)}
+[data-look=racing] button.cup-card{border-top-width:4px}
+[data-look=racing] .slot .sb,[data-look=racing] .ct-b,[data-look=racing] .slot .sx{border-radius:2px;transform:skewX(-10deg)}
+[data-look=racing] .tt-rec b,[data-look=racing] .tt-big b,[data-look=racing] .net-code{font-style:italic;font-weight:800}
+[data-look=racing] .net-code{font-size:clamp(52px,10vw,88px);text-shadow:4px 4px 0 var(--accent),8px 8px 0 rgba(0,0,0,.6)}
+[data-look=racing] .net-way{border-left:4px solid var(--accent)} [data-look=racing] .net-way+.net-way{border-left-color:var(--gold)}
+[data-look=racing] .loading-top-badge,[data-look=racing] .tip-pill,[data-look=racing] .loading-slot-badge{border-radius:2px;transform:skewX(-10deg);font-family:var(--display);font-style:italic;font-weight:800}
+[data-look=racing] .loading-progress-track{border-radius:0;transform:skewX(-20deg)}
+[data-look=racing] .loading-progress-bar{border-radius:0;background:var(--accent)}
+
+/* ---------- results: number plates for the places, a yellow one for the winner */
+[data-look=racing] .rrow .pos,[data-look=racing] .brow .pos{justify-self:start;min-width:36px;padding:3px 6px 2px;text-align:center;color:var(--ink);background:#fff;border-radius:2px;transform:skewX(-12deg);font:italic 800 21px/1 var(--display)}
+[data-look=racing] .rrow.first .pos,[data-look=racing] .brow.lead .pos{color:var(--ink);background:var(--gold)}
+[data-look=racing] .cup-res .rrow .pos{min-width:30px;font-size:18px}
+[data-look=racing] .rrow.first,[data-look=racing] .brow.lead{box-shadow:inset 4px 0 0 var(--gold)}
+[data-look=racing] .gain,[data-look=racing] .brow .pts{font-style:italic;font-weight:800}
+[data-look=racing] .cup-chip{border-radius:2px;transform:skewX(-10deg)}
+
+/* ---------- the podium: the steps under a chequered band, the places on plates */
+[data-look=racing] .pod-step{border-radius:3px 3px 0 0}
+[data-look=racing] .pod-step::before{display:block;height:10px;background:var(--chq) 0 0/10px 10px;opacity:.85}
+[data-look=racing] .pod-num{font-style:italic;font-weight:900;margin-top:12px;text-shadow:none}
+[data-look=racing] .pod1 .pod-step{background:var(--gold)} [data-look=racing] .pod2 .pod-step{background:#dcdde2} [data-look=racing] .pod3 .pod-step{background:#e0763a}
+[data-look=racing] .confetti i:nth-child(4n){background:#0b0b0d!important}
+
+/* ---------- dialogs */
+[data-look=racing] .cl-box,[data-look=racing] .clip-box{border-top:3px solid var(--accent)}
+[data-look=racing] .cl-head h2,[data-look=racing] .clip-head h2{font-size:24px}
+[data-look=racing] #toast{border-left:4px solid var(--accent)!important;border-radius:2px!important;font-family:var(--display)!important;font-style:italic;font-weight:700!important;text-transform:uppercase;letter-spacing:.4px}
+@media (max-width:700px){[data-look=racing] .panel h2{font-size:19px} [data-look=racing] .char .n{font-size:17px} [data-look=racing] .track>.n{font-size:15px}
+  [data-look=racing] .start-bar button.big{font-size:22px}}
